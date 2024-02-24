@@ -1,0 +1,223 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.body{
+    background: rgb(147,210,243);
+    background: linear-gradient(277deg, rgba(147,210,243,1) 41%, rgba(64,149,229,1) 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+:root {
+    --border-color: #BBBBBB;
+    --border-input-color: #888888;
+    --main-header-color: #f6f5fa;
+    --nav-color: #fff;
+    --principal-color: #4095e5;
+    --secundary-color: #03E812;
+    --secundary-2-color: #FCCA00;
+    --secundary-3-color: #f00707;
+    --text-color: #000;
+
+}
+.conteLogin{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 600px;
+    width: 1200px;
+
+}
+.containerImg{
+    position: relative;
+    height: 500px;
+    width: 500px;
+    overflow: hidden;
+    border-radius: 50%;
+    transform: translateX(100px);
+  
+}
+.containerImg img{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    
+}
+/* formulario */
+.containerFomulario{
+
+    position: relative;
+    transform: translate(-150px,20px);
+    width: 400px;
+    height: 500px;
+    background: transparent ;
+    border-radius: 40px;
+
+}
+
+.containerFomulario form{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+
+}
+.containerFomulario form h2{
+    font-size: 30px;
+    padding: 20px 0; 
+    letter-spacing: 2px;
+}
+.containerFomulario form select{
+    position: relative;
+    border: 3px solid var(--principal-color);
+    height: 35px;
+    padding-left: 30px;
+    width: 220px;
+    border-radius: 20px;
+    gap: 12px;
+    margin-bottom:10px;
+    background: var(--nav-color);
+}
+.containerFomulario form label{
+    position: relative;
+    left: -10px;
+}
+.containerFomulario form #iconLogin{
+    position: relative;
+    color: var(--principal-color);
+    left: 33px;
+    top: 7px;
+    height: 25px;
+    width: 25px;
+    z-index: 100;
+}
+.containerFomulario form input{
+    position: relative;
+    border: 3px solid var(--principal-color);
+    height: 35px;
+    width: 220px;
+    padding-left: 30px;
+    border-radius: 20px;
+    margin-bottom:10px;
+
+}
+ form h3{
+    font-size: 25px;
+    font-weight: 100;
+    display: flex;
+    align-items: center;
+    color: #000000c5;
+}
+form h3::before{
+    position: absolute;
+    content: '';
+    transform: translateY(3px);
+    left: 40px;    
+    height: 2px;
+    width: 110px;
+    border-radius: 50px;
+    background: #0000006c;
+}
+form h3::after{
+    position: absolute;
+    content: '';
+    transform: translateY(3px);
+    right: 40px;
+    height: 2px;
+    width: 110px;
+    border-radius: 50px;
+    background:#0000006c;
+}
+.conteInfo{
+    margin: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    height: 50px;
+    width: 240px;
+    
+}
+.conteInfo span{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+}
+
+/* formulario */
+#icon{
+    color: var(--clr);
+    transition: 0.4s;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.conteInfo span:hover {
+    background: var(--principal-color);
+    color: var(--nav-color);
+}
+.conteInfo span #icon:hover {
+    color: #fff;
+    transition: none;
+}
+form button{
+    position: relative;
+    margin: 10px;
+    height: 35px;
+    width: 120px;
+    background: var(--principal-color);
+    color: var(--nav-color);
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 20px;
+    /* overflow: hidden; */
+}
+form button a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    text-decoration: none;
+    color: var(--nav-color);
+    border-radius: 50px;
+    transform: translate(0,-18px);
+    height: 35px;
+    width: 120px;
+}
+form button:hover{
+    opacity:  0.8;
+}
+form p {
+    font-size: 18px;
+    margin-top: 5px;
+    letter-spacing: 1px;
+}
+form p a{
+    padding-left: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+form p a:hover{
+    color: #f6f5fa;
+}

@@ -1,0 +1,651 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap'); */
+
+* {
+    font-family: 'Poppins', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 731px;
+    overflow: hidden;
+}
+
+:root {
+    --border-color: #BBBBBB;
+    --border-input-color: #888888;
+    --main-header-color: #f6f5fa;
+    --nav-color: #fff;
+    --principal-color: #4095e5;
+    --secundary-color: #03E812;
+    --secundary-2-color: #FCCA00;
+    --secundary-3-color: #f00707;
+    --text-color: #000;
+
+}
+
+.App {
+    position: relative;
+    height: 731px;
+    width: 100%;
+}
+
+
+
+
+
+
+
+/*distribucion 'maquetacion' de las areas con grid */
+.App {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    grid-template-rows: 50px 1fr;
+    transition: all 0.3s linear;
+}
+
+.App.active {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    grid-template-rows: 50px 1fr;
+    transition: all 0.3s linear;
+
+
+}
+
+
+
+#header_list {
+    grid-area: 1 / 2 / 2 / 4;
+}
+
+#nav_list {
+    grid-area: 1 / 1 / 5 / 2;
+}
+
+#mai_list {
+    grid-area: 2 / 2 / 5 / 4;
+}
+
+/* ---------------------------header ------------------------------------*/
+
+
+#header_list {
+    position: relative;
+    background: var(--main-header-color);
+    border-bottom: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px 0px 0px;
+
+}
+
+#header_list .list_header {
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+    gap: 5px;
+
+}
+
+#header_list .list_header #user_header {
+    font-size: 35px;
+    color: var(--principal-color);
+}
+
+.list_header #list_text {
+    font-size: 20px;
+    padding-left: 5px;
+    letter-spacing: 1px;
+}
+
+#header_list .list_header #search_header {
+    color: var(--principal-color);
+    position: absolute;
+    left: 16px;
+    font-size: 25px;
+    z-index: 1;
+}
+
+#header_list .list_header #search_input {
+    position: relative;
+    height: 27px;
+    width: 230px;
+    padding-left: 30px;
+    border-radius: 40px;
+    border: 1px solid var(--border-input-color);
+
+}
+
+#header_list .list_header #notificacion {
+    color: var(--principal-color);
+    font-size: 30px;
+    cursor: pointer;
+
+}
+
+#header_list .list_header #addUser {
+    color: var(--principal-color);
+    font-size: 30px;
+    cursor: pointer;
+
+}
+
+/* ---------------------------header ------------------------------------*/
+
+/* ---------------------------nav---------------------------------------- */
+#nav_list {
+    position: relative;
+    padding: 5px 0px 10px 0px;
+    border-right: 2px solid var(--border-color);
+    background: var(--nav-color);
+    justify-content: space-between;
+
+}
+
+#nav_header {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 7px;
+}
+
+#nav_header :first-child {
+    position: relative;
+    left: 65px;
+    transition: all 0.3s linear;
+}
+
+#nav_header #icon_nav {
+    position: relative;
+    display: flex;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
+#nav_header .active {
+    left: 0;
+    cursor: pointer;
+}
+
+#nav_header .img_user.active {
+    height: 40px;
+    width: 40px;
+    top: 20px;
+    transition: all 0.3s;
+}
+
+#nav_header .text_user.active {
+    position: relative;
+    transition: all 0.3s;
+    scale: 0;
+    opacity: 0;
+    top: 40px;
+    left: -20px;
+
+}
+
+#nav_header .img_user {
+    position: relative;
+    height: 80px;
+    top: 5px;
+    width: 80px;
+    border-radius: 50%;
+    background-size: cover;
+    transition: all 0.3s;
+
+}
+
+#nav_header .text_user {
+    position: relative;
+    opacity: 1;
+    top: 5px;
+    left: 0;
+    padding: 15px;
+    font-size: 25px;
+    transition: all 0.3s;
+    scale: 1;
+}
+
+.menu_bar {
+    position: relative;
+    height: 73.4%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.menu_bar .menu_items {
+    position: relative;
+    height: 100%;
+}
+
+.item_list.selected {
+    background: var(--principal-color);
+}
+
+.item_list.selected .item_link .item_icon,
+.item_list.selected .item_link .item_text {
+    color: var(--nav-color);
+}
+
+.menu_bar .menu_items #ul_list {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+    overflow: hidden;
+}
+
+.menu_bar .menu_items #ul_list .item_list,
+.bottom_content .item_list {
+    overflow: hidden;
+    width: 100%;
+    height: 40px;
+}
+
+.item_link {
+    position: relative;
+    width: 160px;
+    height: 100%;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    transition: 0.4s;
+}
+
+.item_link.active {
+    width: 160px;
+}
+
+.item_link:hover {
+    background: var(--principal-color);
+}
+
+.item_icon {
+    position: relative;
+    height: 30px;
+    width: 30px;
+    color: var(--principal-color);
+
+
+}
+
+.item_icon.active {
+    position: relative;
+    height: 30px;
+    width: 30px;
+}
+
+.item_link:hover .item_icon,
+.item_link:hover .item_text {
+    color: var(--nav-color);
+    transition: none;
+}
+
+.item_text {
+    position: relative;
+    color: var(--text-color);
+    height: auto;
+    width: auto;
+    padding-left: 5px;
+}
+
+.item_text.active {
+    position: relative;
+    display: none;
+
+}
+
+
+.menu_bar .bottom_content {
+    /* background: blue; */
+    height: 40px;
+}
+
+.menu_bar .bottom_content .item_icon {
+    transform: rotate(-180deg);
+}
+
+
+/* ---------------------------nav---------------------------------------- */
+
+/* ---------------------------main User_list---------------------------------------- */
+#main_list {
+    background: var(--main-header-color);
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    align-items: center;
+
+
+}
+
+.conte_user {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    height: 100%;
+    padding: 20px;
+    width: 100%;
+
+}
+
+.conte_user table thead {
+    position: relative;
+    height: 40px;
+    text-transform: uppercase;
+}
+
+.conte_user table thead tr td {
+    position: relative;
+    font-size: 20px;
+    text-align: center;
+    width: 170px;
+    font-weight: 600;
+
+}
+
+.conte_user table tbody .tr_info td {
+    position: relative;
+    font-size: 14px;
+    text-align: center;
+    height: 50px;
+    width: 170px;
+    z-index: 2;
+}
+
+.tr_info .img_table {
+    position: relative;
+    height: 35px;
+    transform: translateY(1px);
+    width: 35px;
+    border-radius: 50%;
+}
+
+.tr_info::after {
+    left: 20px;
+    transform: translateY(4px);
+    content: '';
+    position: absolute;
+    height: 40px;
+    width: 95%;
+    z-index: 1;
+    border-radius: 50px;
+    box-shadow: 0 0 10px 1px;
+    background: var(--nav-color);
+
+}
+
+.tr_info:hover::after {
+    background-color: var(--principal-color);
+}
+
+.tr_info:hover {
+    color: var(--nav-color);
+
+}
+
+.delete {
+    color: var(--secundary-3-color);
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+}
+
+.button_actua {
+    position: relative;
+    border-radius: 50px;
+    width: 60px;
+    height: 25px;
+    background: var(--secundary-2-color);
+    cursor: pointer;
+    font-weight: 500;
+    color: #000;
+
+}
+
+.state_Act {
+    position: relative;
+    padding-left: 7px;
+}
+
+.state_Act::before {
+    content: '';
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    background: var(--secundary-color);
+    border-radius: 50%;
+    top: calc(50% - 5px);
+    transform: translateX(-17px);
+}
+
+.state_Act.red::before {
+    content: '';
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    background: var(--secundary-3-color);
+    border-radius: 50%;
+    top: calc(50% - 5px);
+    transform: translateX(-17px);
+}
+
+
+/* ---------------------------main User_list---------------------------------------- */
+
+/* ---------------------------main CreateUser_list---------------------------------------- */
+
+.conteCreateUser {
+    position: relative;
+    background: var(--nav-color);
+    box-shadow: 0 0 10px 1px;
+    height: 94%;
+    width: 1200px;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.conteCreateUser .headerCreate {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.conteCreateUser .headerCreate #userRegister {
+    letter-spacing: 2px;
+}
+
+#userRegister::after {
+    position: absolute;
+    content: '';
+    background: var(--principal-color);
+    height: 3px;
+    width: 50px;
+    left: 0;
+    bottom: -5px;
+}
+
+.conteCreateUser .headerCreate #close {
+    color: var(--secundary-3-color);
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+
+/* ---------------------------form CreateUser_list---------------------------------------- */
+.conteFormulario {
+    position: relative;
+    height: 550px;
+    /* background: red; */
+
+}
+
+.conteFormulario form {
+    position: relative;
+    padding: 100px;
+    height: 100%;
+    /* background: red; */
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 30px;
+}
+
+.conteFormulario form div {
+    /* background: black; */
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+
+.conteFormulario form div input {
+    border: none;
+    border-bottom: 3.5px solid var(--principal-color);
+    background: transparent;
+    outline: none;
+    font-size: 18px;
+}
+
+.conteFormulario form div label {
+    padding-bottom: 20px;
+    font-size: 20px;
+}
+
+.conteFormulario form div li {
+    list-style: none;
+}
+
+.conteFormulario form div li label input {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background: red;
+    left: -5px;
+}
+
+.conteFormulario form div li label {
+    padding: 15px;
+    font-size: 18px;
+}
+
+.conteFormulario form button {
+    position: absolute;
+    height: 35px;
+    width: 120px;
+    bottom: 20px;
+    right: 50px;
+    border-radius: 20px;
+    font-size: 18px;
+    background: var(--principal-color);
+    /* transform: translate(-40px,-20px); */
+}
+/* ---------------------------form CreateUser_list---------------------------------------- */
+/* ---------------------------main CreateUser_list---------------------------------------- */
+
+/* ---------------------------main Permissions---------------------------------------- */
+
+
+
+.contePermissions {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto;
+    height: 100%;
+    width: 800px;
+    background: var(--nav-color);
+    padding-top: 30px;
+    gap: 30px;
+
+}
+.contePermissions .conteInfoPermissions{
+    position: relative;
+    padding-top: 10px;
+    /* padding-bottom: 170px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 300px;
+    width: 80%;
+    background: var(--nav-color);
+    box-shadow: 0 0 20px;
+    border-radius: 20px;
+    overflow:hidden ;
+}
+.conteInfoPermissions table{
+    position: relative;
+    width: 500px;
+}
+.conteInfoPermissions table thead{
+    height: 30px;
+
+}
+
+.td_info{
+    color: var(--principal-color);
+    text-align: left;
+    font-weight: 600;
+}
+
+
+
+/* ---------------------------main Permissions---------------------------------------- */
+
+
+
+/* para dispositivo moviles de 480 px */
+
+@media (max-width:480px) {
+    .App {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 50px 160px auto;
+
+    }
+
+    .App.active {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 50px 160px auto;
+
+    }
+
+    #header_list {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+
+    #nav_list {
+        grid-area: 2 / 1 / 3 / 2;
+
+        /* display: flex; */
+
+    }
+
+    #mai_list {
+        grid-area: 3 / 1 / 4 / 2;
+    }
+
+}
