@@ -30,9 +30,81 @@ export const DateVacation = () => {
   return (
     <main id='main_list'>
 
-      <div>
-        <h2>dateVacation</h2>
-        <p>Content of dateVacation</p>
+      <div className='conteinerDAte'>
+
+        <div className='conteInfoDate'>
+
+        <table>
+            <thead>
+              <tr>
+                <td className='td_infoDate'>ID</td>
+                <td className='td_infoDate'>Name</td>
+                <td className='td_infoDate'>Last Name</td>
+                <td className='td_infoDate'>Fecha Inicio</td>
+                <td className='td_infoDate'>Fecha Fin</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className='td_valueDate'>5842</td>
+                <td className='td_valueDate'>Raul</td>
+                <td className='td_valueDate'>Perez</td>
+                <td className='td_valueDate'>4/02/2024</td>
+                <td className='td_valueDate'>6/02/2024</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+        <div className='conteInfoDate'>
+
+        <table>
+            <thead>
+              <tr>
+                <td className='td_infoDate'>ID</td>
+                <td className='td_infoDate'>Name</td>
+                <td className='td_infoDate'>Last Name</td>
+                <td className='td_infoDate'>Fecha Inicio</td>
+                <td className='td_infoDate'>Fecha Fin</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className='td_valueDate'>2355</td>
+                <td className='td_valueDate'>Lus</td>
+                <td className='td_valueDate'>Esperanza</td>
+                <td className='td_valueDate'>4/02/2024</td>
+                <td className='td_valueDate'>6/02/2024</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+        <div className='conteInfoDate'>
+
+        <table>
+            <thead>
+              <tr>
+                <td className='td_infoDate'>ID</td>
+                <td className='td_infoDate'>Name</td>
+                <td className='td_infoDate'>Last Name</td>
+                <td className='td_infoDate'>Fecha Inicio</td>
+                <td className='td_infoDate'>Fecha Fin</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className='td_valueDate'>2225</td>
+                <td className='td_valueDate'>Jose</td>
+                <td className='td_valueDate'>Alvares</td>
+                <td className='td_valueDate'>4/02/2024</td>
+                <td className='td_valueDate'>6/02/2024</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      
       </div>
 
     </main>

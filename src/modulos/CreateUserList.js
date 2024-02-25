@@ -3,6 +3,8 @@ import './App.css';
 import { Headerlist } from './UserList';
 import { IoMdCloseCircle } from 'react-icons/io';
 import React, { useState } from 'react';
+import Messages from './Messages';
+
 
 export const HeaderUser = () => {
     return (
@@ -19,9 +21,13 @@ export const CreateUserList = () => {
         setRadioValue(e.target.value);
     };
     console.log(radioValue)
+    const [estadoMes, cambiarEstadoMes] = useState(false);
 
     return (
         <main id='main_list'>
+            <Messages estadoMessages={estadoMes} cambiarEstadoMessages={cambiarEstadoMes} title2='Registration' messagesParrafo={'Congratulations on your registration,you have completed the registration page'} lin="/App/userList">
+            </Messages>
+
 
 
             <div className='conteCreateUser'>
@@ -60,7 +66,7 @@ export const CreateUserList = () => {
                             <input type="password" name="" />
                         </div>
                         <div>
-                            <label for="Gende">Gende</label>
+                            <label for="Gende">Gender</label>
                             <li>
                                 <label for="man">
                                     <input
@@ -81,7 +87,8 @@ export const CreateUserList = () => {
                                 </label>
                             </li>
                         </div>
-                        <button type='submit'>Register</button>
+                       
+                        <button type='button' onClick={() => cambiarEstadoMes(!estadoMes)}>Register</button>
                     </form>
                 </div>
 

@@ -1,13 +1,18 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap'); */
-
+/* @import url('https://raw.githubusercontent.com/necolas/normalize.css/master/normalize.css'); */
 * {
     font-family: 'Poppins', sans-serif;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
+
+    -webkit-height: 731px;
     height: 731px;
     overflow: hidden;
 }
@@ -27,6 +32,7 @@ body {
 
 .App {
     position: relative;
+    -webkit-height: 731px;
     height: 731px;
     width: 100%;
 }
@@ -144,6 +150,7 @@ body {
     padding: 5px 0px 10px 0px;
     border-right: 2px solid var(--border-color);
     background: var(--nav-color);
+    -webkit-justify-content: space-between;
     justify-content: space-between;
 
 }
@@ -225,12 +232,15 @@ body {
     position: relative;
     height: 73.4%;
     display: flex;
+    -webkit-justify-content: space-between;
     justify-content: space-between;
     flex-direction: column;
+    
 }
 
 .menu_bar .menu_items {
     position: relative;
+    -webkit-height: 100%;
     height: 100%;
 }
 
@@ -333,10 +343,8 @@ body {
     justify-content: center;
     height: 100%;
     width: 100%;
-    overflow-y: scroll;
+    overflow: hidden;
     align-items: center;
-
-
 }
 
 .conte_user {
@@ -347,6 +355,7 @@ body {
     height: 100%;
     padding: 20px;
     width: 100%;
+    overflow-y: scroll;
 
 }
 
@@ -570,21 +579,22 @@ body {
 
 .contePermissions {
     position: relative;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    display: grid;
     overflow-y: auto;
+    place-items: center;
     height: 100%;
     width: 800px;
     background: var(--nav-color);
     padding-top: 30px;
-    gap: 30px;
+    padding-bottom: 30px;
+    overflow: hidden;
+    overflow-y: auto;
+    gap: 40px;
 
 }
 .contePermissions .conteInfoPermissions{
     position: relative;
     padding-top: 10px;
-    /* padding-bottom: 170px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -604,15 +614,80 @@ body {
 
 }
 
-.td_info{
+.td_info{    
     color: var(--principal-color);
     text-align: left;
     font-weight: 600;
 }
 
+.contenidoParrafo{
+    position: relative;
+    height: 70%;
+    width: 80%;
+    margin: 10px;
+    border: 1px solid var(--border-input-color);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+#message{
+    
+    transform: translate(-175px,5px);
+    position: relative;
+    margin-bottom: 10px;
+    color: var(--principal-color);
+}
+.contenidoParrafo p{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    overflow-y: auto;
+
+}
+
+
 
 
 /* ---------------------------main Permissions---------------------------------------- */
+/* ---------------------------main Date Vacation---------------------------------------- */
+.conteinerDAte{
+    position: relative;
+    background: var(--nav-color);
+    border-radius: 40px;
+    top: 20px;
+    height: 100%;
+    width: 70%;
+    padding: 50px 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+.conteInfoDate{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--nav-color);
+    box-shadow: 0 0 10px 1px;
+    height: 70px;
+    width: 80%;
+    border-radius: 20px;
+}
+.conteInfoDate table{
+    position: relative;
+    
+    height: 50px;
+    width: 90%;
+}
+.conteInfoDate table thead{
+    color: var(--principal-color);
+    text-transform: uppercase;
+}
+/* ---------------------------main Date Vacation---------------------------------------- */
 
 
 

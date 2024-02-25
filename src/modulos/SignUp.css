@@ -1,6 +1,19 @@
-.container{
-    background: rgb(147,210,243);
-    background: linear-gradient(277deg, rgba(147,210,243,1) 41%, rgba(64,149,229,1) 100%);
+:root {
+    --border-color: #BBBBBB;
+    --border-input-color: #888888;
+    --main-header-color: #f6f5fa;
+    --nav-color: #fff;
+    --principal-color: #4095e5;
+    --secundary-color: #03E812;
+    --secundary-2-color: #FCCA00;
+    --secundary-3-color: #f00707;
+    --text-color: #000;
+
+}
+
+.container {
+    background: rgb(147, 210, 243);
+    background: linear-gradient(277deg, rgba(147, 210, 243, 1) 41%, rgba(64, 149, 229, 1) 100%);
     /* background: rgb(255,255,255);
     background: linear-gradient(275deg, rgba(255,255,255,1) 0%, rgba(64,149,229,1) 36%, rgba(64,149,229,1) 66%, rgba(255,255,255,1) 100%); */
     height: 100vh;
@@ -8,4 +21,126 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+
 }
+
+.conteCreateSignUp {
+    position: relative;
+    background: var(--nav-color);
+    box-shadow: 0 0 10px 1px;
+    height: 94%;
+    max-width: 1200px;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.conteCreateSignUp .headerCreateSignUp {
+    position: relative;
+    display: flex;
+
+}
+
+.conteCreateSignUp .headerCreateSignUp #userRegisterSignUp {
+    letter-spacing: 2px;
+}
+
+#userRegisterSignUp::after {
+    position: absolute;
+    content: '';
+    background: var(--principal-color);
+    height: 3px;
+    width: 50px;
+    left: 0;
+    bottom: -5px;
+}
+
+#closeConte {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    top: 20px;
+
+}
+
+#closeSignUp {
+    color: var(--principal-color);
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+
+/* ---------------------------form CreateUser_list---------------------------------------- */
+
+.conteFormularioSignUp {
+    position: relative;
+    height: 550px;
+    
+
+}
+
+.conteFormularioSignUp form {
+    position: relative;
+    padding: 100px;
+    height: 100%;
+    /* background: red; */
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 30px;
+}
+
+.conteFormularioSignUp form div {
+    /* background: black; */
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+
+.conteFormularioSignUp form div input {
+    border: none;
+    border-bottom: 3.5px solid var(--principal-color);
+    background: transparent;
+    outline: none;
+    font-size: 18px;
+}
+
+.conteFormularioSignUp form div label {
+    padding-bottom: 20px;
+    font-size: 20px;
+}
+
+.conteFormularioSignUp form div li {
+    list-style: none;
+}
+
+.conteFormularioSignUp form div li label input {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    left: -5px;
+}
+
+.conteFormularioSignUp form div li label {
+    padding: 15px;
+    font-size: 18px;
+}
+
+.conteFormularioSignUp form button {
+    position: absolute;
+    height: 35px;
+    width: 120px;
+    bottom: 20px;
+    right: 50px;
+    border-radius: 20px;
+    font-size: 18px;
+    background: var(--principal-color);
+    /* transform: translate(-40px,-20px); */
+}
+
+/* ---------------------------form CreateUser_list---------------------------------------- */

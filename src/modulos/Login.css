@@ -17,12 +17,11 @@
     --border-input-color: #888888;
     --main-header-color: #f6f5fa;
     --nav-color: #fff;
-    --principal-color: #4095e5;
+    --principal-color: rgb(47, 125, 198);
     --secundary-color: #03E812;
     --secundary-2-color: #FCCA00;
     --secundary-3-color: #f00707;
     --text-color: #000;
-
 }
 .conteLogin{
     position: relative;
@@ -220,4 +219,13 @@ form p a{
 }
 form p a:hover{
     color: #f6f5fa;
+    
+}
+
+
+
+
+.overlay::after{
+    background: red;
+ 
 }
