@@ -40,17 +40,17 @@ export const Staff = () => {
   return (
     <main id='main_list'>
       <Messages
-      estadoMessages={estadoMes} 
-      cambiarEstadoMessages={cambiarEstadoMes} 
-      title2='update' 
-      messagesParrafo={'The data has been updated Successfully.'} 
+        estadoMessages={estadoMes}
+        cambiarEstadoMessages={cambiarEstadoMes}
+        title2='update'
+        messagesParrafo={'The data has been updated Successfully.'}
       >
       </Messages>
       <MessagesRemove
-      estadoMessagesRemove={estadoMessagesRemove}
-      cambiarEstadoMessagesRemove={cambiarEstadoMessagesRemove}
-      messagesParrafoRemove='The user whas   successfully deleted.'
-      linRemove='/App/staff'
+        estadoMessagesRemove={estadoMessagesRemove}
+        cambiarEstadoMessagesRemove={cambiarEstadoMessagesRemove}
+        messagesParrafoRemove='The user whas   successfully deleted.'
+        linRemove='/App/staff'
       >
       </MessagesRemove>
       <Modal estado={estadoModal1} cambiarEstado={cambiarEstadoModal} titulo='Update Staff' >
@@ -83,15 +83,15 @@ export const Staff = () => {
               <input type="number" name="" />
             </div>
             <div id='buttonModel' >
-            <button type='button'onClick={()=>cambiarEstadoMes(!estadoMes)}>Register</button>
-              
+              <button type='button' onClick={() => cambiarEstadoMes(!estadoMes)}>Register</button>
+
             </div>
 
           </form>
         </Contenido>
       </Modal>
       <div className='conte_user'>
-        <table>
+        <table className='blueTable'>
 
           <thead>
             <tr>
@@ -115,7 +115,7 @@ export const Staff = () => {
               <td>calle 53 No 10-60/46</td>
               <td>Lus@hotmail.com</td>
               <td><button className="button_actua" onClick={() => cambiarEstadoModal(!estadoModal1)}>Update</button></td>
-              <td><IoMdTrash className='delete' onClick={()=>cambiarEstadoMessagesRemove(!estadoMes)}/></td>
+              <td><IoMdTrash className='delete' onClick={() => cambiarEstadoMessagesRemove(!estadoMes)} /></td>
             </tr>
             <tr className="tr_info">
               <td>5842</td>
@@ -126,7 +126,7 @@ export const Staff = () => {
               <td>calle 53 No 10-60/46</td>
               <td>Raul@hotmail.com</td>
               <td><button className="button_actua" onClick={() => cambiarEstadoModal(!estadoModal1)}>Update</button></td>
-              <td><IoMdTrash className='delete'onClick={()=>cambiarEstadoMessagesRemove(!estadoMes)} /></td>
+              <td><IoMdTrash className='delete' onClick={() => cambiarEstadoMessagesRemove(!estadoMes)} /></td>
             </tr>
             <tr className="tr_info">
               <td>9854</td>
@@ -137,7 +137,7 @@ export const Staff = () => {
               <td>calle 53 No 10-60/46</td>
               <td>Ana@hotmail.com</td>
               <td><button className="button_actua" onClick={() => cambiarEstadoModal(!estadoModal1)}>Update</button></td>
-              <td><IoMdTrash className='delete' onClick={()=>cambiarEstadoMessagesRemove(!estadoMes)}/></td>
+              <td><IoMdTrash className='delete' onClick={() => cambiarEstadoMessagesRemove(!estadoMes)} /></td>
             </tr>
 
           </tbody>

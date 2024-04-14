@@ -54,13 +54,13 @@
     position: relative;
     transform: translate(-150px,20px);
     width: 400px;
-    height: 500px;
+    height: 600px;
     background: transparent ;
     border-radius: 40px;
 
 }
 
-.containerFomulario form{
+.containerFomulario .form{
     position: relative;
     height: 100%;
     width: 100%;
@@ -70,12 +70,12 @@
     gap: 10px;
 
 }
-.containerFomulario form h2{
+.containerFomulario .form h2{
     font-size: 30px;
     padding: 20px 0; 
     letter-spacing: 2px;
 }
-.containerFomulario form select{
+.containerFomulario .form select{
     position: relative;
     border: 3px solid var(--principal-color);
     height: 35px;
@@ -86,11 +86,11 @@
     margin-bottom:10px;
     background: var(--nav-color);
 }
-.containerFomulario form label{
+.containerFomulario .form label{
     position: relative;
     left: -10px;
 }
-.containerFomulario form #iconLogin{
+.containerFomulario .form #iconLogin{
     position: relative;
     color: var(--principal-color);
     left: 33px;
@@ -99,7 +99,20 @@
     width: 25px;
     z-index: 100;
 }
-.containerFomulario form input{
+.error{
+    position: relative;
+    color: red;
+    width: 220px;
+    left: 30px;
+    overflow: hidden;
+}
+.error .parrafo{
+    position: relative;
+    font-size: 12px;
+    
+}
+
+.containerFomulario .form input{
     position: relative;
     border: 3px solid var(--principal-color);
     height: 35px;
@@ -109,14 +122,14 @@
     margin-bottom:10px;
 
 }
- form h3{
+.form h3{
     font-size: 25px;
     font-weight: 100;
     display: flex;
     align-items: center;
     color: #000000c5;
 }
-form h3::before{
+.form h3::before{
     position: absolute;
     content: '';
     transform: translateY(3px);
@@ -126,7 +139,7 @@ form h3::before{
     border-radius: 50px;
     background: #0000006c;
 }
-form h3::after{
+.form h3::after{
     position: absolute;
     content: '';
     transform: translateY(3px);
@@ -179,7 +192,7 @@ form h3::after{
     color: #fff;
     transition: none;
 }
-form button{
+.form button{
     position: relative;
     margin: 10px;
     height: 35px;
@@ -192,7 +205,7 @@ form button{
     border-radius: 20px;
     /* overflow: hidden; */
 }
-form button a{
+.form button a{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -204,28 +217,248 @@ form button a{
     height: 35px;
     width: 120px;
 }
-form button:hover{
+.form button:hover{
     opacity:  0.8;
 }
-form p {
+.form p {
     font-size: 18px;
     margin-top: 5px;
     letter-spacing: 1px;
 }
-form p a{
+.form p a{
     padding-left: 10px;
     text-decoration: none;
     cursor: pointer;
 }
-form p a:hover{
+.form p a:hover{
     color: #f6f5fa;
     
 }
 
-
-
-
 .overlay::after{
     background: red;
  
+}
+@media (max-width:480px){
+    .conteLogin{
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content:center;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+    }
+    .containerImg{
+        background: transparent;
+        filter: blur(4px);
+        position: absolute;
+        height: 500px;
+        width: 500px;
+        overflow: hidden;
+        border-radius: 50%;
+        transform: translateX(0px);
+      z-index: 1;
+    }
+    .containerImg img{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-size: cover;
+      z-index: 1;
+        
+    }
+    /* formulario */
+    .containerFomulario{
+    
+        position: absolute;
+        transform: translate(-0px,40px);
+        width: 400px;
+        height: 600px;
+        background: transparent ;
+        border-radius: 40px;
+        z-index: 2;
+    
+    }
+    
+    .containerFomulario .form{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+    
+    }
+    .containerFomulario .form h2{
+        font-size: 30px;
+        padding: 20px 0; 
+        letter-spacing: 2px;
+    }
+    .containerFomulario .form select{
+        position: relative;
+        border: 3px solid var(--principal-color);
+        height: 35px;
+        padding-left: 30px;
+        width: 220px;
+        border-radius: 20px;
+        gap: 12px;
+        margin-bottom:10px;
+        background: var(--nav-color);
+    }
+    .containerFomulario .form label{
+        position: relative;
+        left: -10px;
+    }
+    .containerFomulario .form #iconLogin{
+        position: relative;
+        color: var(--principal-color);
+        left: 33px;
+        top: 7px;
+        height: 25px;
+        width: 25px;
+        z-index: 100;
+    }
+    .error{
+        position: relative;
+        color: black;
+        width: 220px;
+        left: 30px;
+        overflow: hidden;
+        border-radius: 20px;
+    }
+    .error .parrafo{
+        position: relative;
+        font-size: 12px;
+        
+    }
+    
+    .containerFomulario .form input{
+        position: relative;
+        border: 3px solid var(--principal-color);
+        height: 35px;
+        width: 220px;
+        padding-left: 30px;
+        border-radius: 20px;
+        margin-bottom:10px;
+    
+    }
+    .form h3{
+        font-size: 25px;
+        font-weight: 100;
+        display: flex;
+        align-items: center;
+        color: #000000c5;
+    }
+    .form h3::before{
+        position: absolute;
+        content: '';
+        transform: translateY(3px);
+        left: 40px;    
+        height: 2px;
+        width: 110px;
+        border-radius: 50px;
+        background: #0000006c;
+    }
+    .form h3::after{
+        position: absolute;
+        content: '';
+        transform: translateY(3px);
+        right: 40px;
+        height: 2px;
+        width: 110px;
+        border-radius: 50px;
+        background:#0000006c;
+    }
+    .conteInfo{
+        margin: 10px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content:space-between;
+        height: 50px;
+        width: 240px;
+        
+    }
+    .conteInfo span{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        background: #fff;
+        cursor: pointer;
+    }
+    
+    /* formulario */
+    #icon{
+        color: var(--clr);
+        transition: 0.4s;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    .conteInfo span:hover {
+        background: var(--principal-color);
+        color: var(--nav-color);
+    }
+    .conteInfo span #icon:hover {
+        color: #fff;
+        transition: none;
+    }
+    .form button{
+        position: relative;
+        margin: 10px;
+        height: 35px;
+        width: 120px;
+        background: var(--principal-color);
+        color: var(--nav-color);
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+        border-radius: 20px;
+        /* overflow: hidden; */
+    }
+    .form button a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        text-decoration: none;
+        color: var(--nav-color);
+        border-radius: 50px;
+        transform: translate(0,-18px);
+        height: 35px;
+        width: 120px;
+    }
+    .form button:hover{
+        opacity:  0.8;
+    }
+    .form p {
+        font-size: 18px;
+        margin-top: 5px;
+        letter-spacing: 1px;
+    }
+    .form p a{
+        padding-left: 10px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .form p a:hover{
+        color: #f6f5fa;
+        
+    }
+    
+    .overlay::after{
+        background: red;
+     
+    }
 }

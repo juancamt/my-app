@@ -62,7 +62,7 @@ function App() {
 
         <header id='nav_header'>
 
-          <IoMdMenu id='icon_nav' onClick={addClasse} className={classPrincipal} />
+          <IoMdMenu id='icon_nav' onClick={addClasse} className={`iconNav ${classPrincipal}`} />
 
           <img src="\imagenes\user-1.jpeg" alt=""  className={`img_user ${classPrincipal}`} />
           <span className={`text_user ${classPrincipal}`}>Santiago</span>

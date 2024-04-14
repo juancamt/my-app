@@ -1,19 +1,19 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 /* @import url('https://raw.githubusercontent.com/necolas/normalize.css/master/normalize.css'); */
 * {
     font-family: 'Poppins', sans-serif;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    scrollbar-color: var(--principal-color) #6391afbf;
+    scrollbar-width: thin;
 }
 
 body {
-
-    -webkit-height: 731px;
-    height: 731px;
+    position: relative;
+    height: 100%;
+    width: 100%;
     overflow: hidden;
 }
 
@@ -32,7 +32,6 @@ body {
 
 .App {
     position: relative;
-    -webkit-height: 731px;
     height: 731px;
     width: 100%;
 }
@@ -150,8 +149,6 @@ body {
     padding: 5px 0px 10px 0px;
     border-right: 2px solid var(--border-color);
     background: var(--nav-color);
-    -webkit-justify-content: space-between;
-    justify-content: space-between;
 
 }
 
@@ -230,12 +227,11 @@ body {
 
 .menu_bar {
     position: relative;
-    height: 73.4%;
+    height: 465px;
     display: flex;
-    -webkit-justify-content: space-between;
-    justify-content: space-between;
+    justify-content: start;
     flex-direction: column;
-    
+
 }
 
 .menu_bar .menu_items {
@@ -327,6 +323,7 @@ body {
 .menu_bar .bottom_content {
     /* background: blue; */
     height: 40px;
+    list-style: none;
 }
 
 .menu_bar .bottom_content .item_icon {
@@ -355,7 +352,14 @@ body {
     height: 100%;
     padding: 20px;
     width: 100%;
-    overflow-y: scroll;
+}
+
+.conte_user .blueTable {
+    display: block;
+    overflow-x: scroll;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
 
 }
 
@@ -363,13 +367,14 @@ body {
     position: relative;
     height: 40px;
     text-transform: uppercase;
+
 }
 
 .conte_user table thead tr td {
     position: relative;
     font-size: 20px;
     text-align: center;
-    width: 170px;
+    width: 180px;
     font-weight: 600;
 
 }
@@ -379,8 +384,10 @@ body {
     font-size: 14px;
     text-align: center;
     height: 50px;
-    width: 170px;
+    width: 180px;
     z-index: 2;
+    padding: 0 30px;
+
 }
 
 .tr_info .img_table {
@@ -554,6 +561,26 @@ body {
     left: -5px;
 }
 
+.errorUser {
+    position: relative;
+    color: red;
+    width: 220px;
+    overflow: hidden;
+    top: 10px;
+}
+
+.password-match {
+    position: relative;
+
+    top: 10px;
+    color: green;
+}
+
+
+.pUser {
+    font-size: 12px;
+}
+
 .conteFormulario form div li label {
     padding: 15px;
     font-size: 18px;
@@ -570,6 +597,7 @@ body {
     background: var(--principal-color);
     /* transform: translate(-40px,-20px); */
 }
+
 /* ---------------------------form CreateUser_list---------------------------------------- */
 /* ---------------------------main CreateUser_list---------------------------------------- */
 
@@ -580,19 +608,19 @@ body {
 .contePermissions {
     position: relative;
     display: grid;
-    overflow-y: auto;
     place-items: center;
     height: 100%;
     width: 800px;
     background: var(--nav-color);
     padding-top: 30px;
-    padding-bottom: 30px;
+    padding-bottom: 100px;
     overflow: hidden;
     overflow-y: auto;
     gap: 40px;
 
 }
-.contePermissions .conteInfoPermissions{
+
+.contePermissions .conteInfoPermissions {
     position: relative;
     padding-top: 10px;
     display: flex;
@@ -603,24 +631,26 @@ body {
     background: var(--nav-color);
     box-shadow: 0 0 20px;
     border-radius: 20px;
-    overflow:hidden ;
+    overflow: hidden;
 }
-.conteInfoPermissions table{
+
+.conteInfoPermissions table {
     position: relative;
     width: 500px;
 }
-.conteInfoPermissions table thead{
+
+.conteInfoPermissions table thead {
     height: 30px;
 
 }
 
-.td_info{    
+.td_info {
     color: var(--principal-color);
     text-align: left;
     font-weight: 600;
 }
 
-.contenidoParrafo{
+.contenidoParrafo {
     position: relative;
     height: 70%;
     width: 80%;
@@ -629,14 +659,16 @@ body {
     overflow: hidden;
     margin-bottom: 20px;
 }
-#message{
-    
-    transform: translate(-175px,5px);
+
+#message {
+
+    transform: translate(-175px, 5px);
     position: relative;
     margin-bottom: 10px;
     color: var(--principal-color);
 }
-.contenidoParrafo p{
+
+.contenidoParrafo p {
     display: flex;
     flex-wrap: wrap;
     height: 100%;
@@ -651,10 +683,10 @@ body {
 
 /* ---------------------------main Permissions---------------------------------------- */
 /* ---------------------------main Date Vacation---------------------------------------- */
-.conteinerDAte{
+.conteinerDAte {
     position: relative;
     background: var(--nav-color);
-    border-radius: 40px;
+    border-radius: 20px;
     top: 20px;
     height: 100%;
     width: 70%;
@@ -666,7 +698,8 @@ body {
     overflow: hidden;
     overflow-y: auto;
 }
-.conteInfoDate{
+
+.conteInfoDate {
     position: relative;
     display: flex;
     align-items: center;
@@ -677,16 +710,19 @@ body {
     width: 80%;
     border-radius: 20px;
 }
-.conteInfoDate table{
+
+.conteInfoDate table {
     position: relative;
-    
+
     height: 50px;
     width: 90%;
 }
-.conteInfoDate table thead{
+
+.conteInfoDate table thead {
     color: var(--principal-color);
     text-transform: uppercase;
 }
+
 /* ---------------------------main Date Vacation---------------------------------------- */
 
 
@@ -694,19 +730,323 @@ body {
 /* para dispositivo moviles de 480 px */
 
 @media (max-width:480px) {
+    body {
+        overflow-y: scroll;
+    }
+
     .App {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 50px 160px auto;
-
+        grid-template-rows: 50px 300px auto;
+        overflow-y: scroll;
+        transition: all 0.5s linear;
     }
 
     .App.active {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 50px 160px auto;
+        grid-template-rows: 50px 50px auto;
+        overflow-y: scroll;
+        transition: all 0.5s linear;
 
     }
+
+    /* ---------------------------nav---------------------------------------- */
+    #nav_list {
+        position: relative;
+        background: var(--nav-color);
+        overflow: hidden;
+        border-bottom: 4px solid var(--principal-color);
+        overflow-y: scroll;
+    }
+
+    #header_list .list_header #search_input {
+        width: 190px;
+    }
+
+
+    .list_header #list_text {
+        font-size: 12px;
+    }
+
+
+    #nav_header {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        border-bottom: 4px solid var(--principal-color);
+    }
+
+    #nav_header :first-child {
+        position: relative;
+        top: 0px;
+        left: 0;
+    }
+
+    #nav_header #icon_nav {
+        position: relative;
+        height: 40px;
+        width: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: translate(-160px, 5px);
+        transition: all 0.3s linear;
+        top: 0px;
+        left: 0;
+
+    }
+
+    .iconNav.active {
+        position: relative;
+        height: 40px;
+        width: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    #nav_header .img_user.active {
+        position: relative;
+        height: 80px;
+        top: 5px;
+        width: 80px;
+        border-radius: 50%;
+        background-size: cover;
+        transition: all 0.3s;
+
+    }
+
+    #nav_header .text_user.active {
+        position: relative;
+        opacity: 1;
+        top: 5px;
+        left: 0;
+        padding: 15px;
+        font-size: 25px;
+        transition: all 0.3s;
+        scale: 1;
+
+    }
+
+
+
+    .menu_bar {
+        position: relative;
+        height: 330px;
+        display: flex;
+        -webkit-justify-content: space-between;
+        justify-content: start;
+        flex-direction: column;
+    }
+
+
+
+
+    /* ---------------------------nav---------------------------------------- */
+
+    /* ---------------------------main userList---------------------------------------- */
+
+
+
+
+    .tr_info::after {
+        left: 20px;
+        transform: translateY(4px);
+        content: '';
+        position: absolute;
+        height: 45px;
+        width: 92%;
+        z-index: -1;
+        box-shadow: 0 0 10px 1px;
+        border-radius: 5px;
+        background: var(--nav-color);
+        /* padding-top: 10px; */
+        /* padding-bottom: 10px; */
+
+    }
+
+    .tr_info:hover::after {
+        background-color: var(--principal-color);
+    }
+
+
+
+
+
+    table.blueTable {
+        display: block;
+        overflow: scroll;
+        scrollbar-color: var(--principal-color) #6391afbf;
+        scrollbar-width: thin;
+        z-index: 5;
+        width: 670px;
+        height: 100%;
+    }
+
+
+    table.blueTable td,
+    table.blueTable th {
+        padding: 3px 2px;
+        overflow: auto;
+        overflow: hidden;
+    }
+
+    table.blueTable tbody td {
+        font-size: 13px;
+        padding: 0 10px;
+    }
+
+
+    table.blueTable thead th {
+        font-size: 14px;
+        font-weight: bold;
+        color: var(--text-color);
+        width: 80px;
+        text-align: center;
+    }
+
+
+
+
+    /* ---------------------------main userList---------------------------------------- */
+
+    /* ---------------------------main Permissions---------------------------------------- */
+
+    .contePermissions {
+        position: relative;
+        display: grid;
+        place-items: center;
+        height: 100%;
+        width: 800px;
+        background: var(--nav-color);
+        padding-top: 30px;
+        padding-bottom: 30px;
+        overflow: hidden;
+        overflow-y: auto;
+        gap: 40px;
+
+    }
+
+    .contePermissions .conteInfoPermissions {
+        position: relative;
+        padding-top: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 300px;
+        width: 95%;
+        background: var(--nav-color);
+        box-shadow: 0 0 20px;
+        border-radius: 20px;
+        overflow: hidden;
+        font-size: 12px;
+
+    }
+
+    .conteInfoPermissions table {
+        position: relative;
+        width: 350px;
+
+    }
+
+    .conteInfoPermissions table thead {
+        height: 30px;
+
+    }
+
+    .td_info {
+        color: var(--principal-color);
+        text-align: left;
+        font-weight: 600;
+    }
+
+    .contenidoParrafo {
+        position: relative;
+        height: 70%;
+        width: 80%;
+        margin: 10px;
+        border: 1px solid var(--border-input-color);
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+
+    #message {
+
+        /* transform: translate(-175px, 5px); */
+        position: relative;
+        left: 60px;
+        margin-bottom: 10px;
+        color: var(--principal-color);
+    }
+
+
+
+
+
+    /* ---------------------------main Permissions---------------------------------------- */
+
+
+    /* ---------------------------main Date Vacation---------------------------------------- */
+    .conteinerDAte {
+        position: relative;
+        background: var(--nav-color);
+        border-radius: 20px;
+        top: 20px;
+        height: 100%;
+        width: 400px;
+        padding: 50px 0;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+        overflow: hidden;
+        overflow-y: auto;
+        font-size: 12px;
+
+
+    }
+
+    .conteInfoDate {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--nav-color);
+        box-shadow: 0 0 10px 1px;
+        height: 70px;
+        width: 97%;
+        border-radius: 20px;
+
+    }
+
+    .conteInfoDate table {
+        position: relative;
+        height: 40px;
+        width: 95%;
+
+    }
+
+    .conteInfoDate table thead {
+        color: var(--principal-color);
+        text-transform: uppercase;
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .conteInfoDate table tbody td {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    /* ---------------------------main Date Vacation---------------------------------------- */
+
 
     #header_list {
         grid-area: 1 / 1 / 2 / 2;
@@ -720,7 +1060,112 @@ body {
     }
 
     #mai_list {
-        grid-area: 3 / 1 / 4 / 2;
+        grid-area: 3 / 1 / 5 / 2;
+        /* overflow: hidden; */
     }
+
+
+    /* ---------------------------form CreateUser_list---------------------------------------- */
+    .conteFormulario {
+        position: relative;
+        height: 100%;
+        overflow: hidden;
+        overflow-y: scroll;
+
+    }
+
+    .conteFormulario form {
+        position: relative;
+        padding: 100px;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows:1fr;
+        gap: 30px;
+    
+    }
+    #userRegister{
+        transform: translate(80px);
+    }
+
+    .conteFormulario form div {
+        display: flex;
+        flex-direction: column;
+        width: 250px;
+    }
+
+    .conteFormulario form div input {
+        border: none;
+        border-bottom: 3.5px solid var(--principal-color);
+        background: transparent;
+        outline: none;
+        font-size: 18px;
+    }
+
+    .conteFormulario form div label {
+        padding-bottom: 20px;
+        font-size: 20px;
+    }
+
+    .conteFormulario form div li {
+        list-style: none;
+    }
+
+    .conteFormulario form div li label input {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        background: red;
+        left: -5px;
+    }
+
+    #close{
+        transform: translateX(-60px);
+    }
+
+    .errorUser {
+        position: relative;
+        color: red;
+        width: 220px;
+        overflow: hidden;
+        top: 10px;
+    }
+
+    .password-match {
+        position: relative;
+
+        top: 10px;
+        color: green;
+    }
+
+
+    .pUser {
+        font-size: 12px;
+    }
+
+    .conteFormulario form div li label {
+        padding: 15px;
+        font-size: 18px;
+    }
+
+   
+    .conteFormulario form button {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 35px;
+        width: 120px;
+        bottom: 20px;
+        right: 50px;
+        border-radius: 20px;
+        font-size: 18px;
+        background: var(--principal-color);
+        margin: 20px;
+        transform: translateX(80px);
+    }
+
+    /* ---------------------------form CreateUser_list---------------------------------------- */
+
 
 }

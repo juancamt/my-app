@@ -140,7 +140,36 @@
     border-radius: 20px;
     font-size: 18px;
     background: var(--principal-color);
-    /* transform: translate(-40px,-20px); */
 }
 
 /* ---------------------------form CreateUser_list---------------------------------------- */
+@media (max-width:480px){
+    .conteFormularioSignUp {
+        position: relative;
+        height: 100%;
+        overflow: hidden;
+        overflow-y: scroll;
+    }
+    .conteFormularioSignUp form {
+        position: relative;
+        padding: 100px;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows:1fr;
+        gap: 30px;
+    }
+    #userRegisterSignUp{
+        transform: translate(80px);
+
+    }
+    #closeSignUp{
+        transform: translateX(30px);
+    }
+    .conteFormularioSignUp form button{
+        position: relative;
+        margin: 20px;
+        transform: translateX(80px);
+
+    }
+}

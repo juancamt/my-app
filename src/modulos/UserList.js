@@ -59,7 +59,7 @@ export const UserList = () => {
       >
       </MessagesRemove>
 
-      <Modal estado={estadoModal1} cambiarEstado={cambiarEstadoModal} titulo='User' >
+      <Modal estado={estadoModal1} cambiarEstado={cambiarEstadoModal} titulo='Update User' >
         <ContenidoUser>
 
           <form id='formula'>
@@ -95,17 +95,17 @@ export const UserList = () => {
 
 
       <div className='conte_user'>
-        <table>
+        <table className='blueTable'>
 
           <thead>
             <tr>
-              <td className="td_value">Id</td>
-              <td className="td_value">Rol</td>
-              <td className="td_value">User</td>
-              <td className="td_value">Name</td>
-              <td className="td_value">Last name</td>
-              <td className="td_value">Email</td>
-              <td className="td_value">state</td>
+              <th className="td_value">Id</th>
+              <th className="td_value">Rol</th>
+              <th className="td_value">User</th>
+              <th className="td_value">Name</th>
+              <th className="td_value">Last name</th>
+              <th className="td_value">Email</th>
+              <th className="td_value">state</th>
             </tr>
           </thead>
 
