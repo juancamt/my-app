@@ -58,7 +58,7 @@ function App() {
 
       {/* --------------------- --------------------------nav --------------------------- -------------------*/}
 
-      <nav id='nav_list'>
+      <nav id='nav_list' className={`nav_list ${classPrincipal}`}>
 
         <header id='nav_header'>
 

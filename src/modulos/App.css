@@ -181,6 +181,11 @@ body {
 
 }
 
+.iconNav {
+    height: 30px;
+    width: 30px;
+}
+
 #nav_header .active {
     left: 0;
     cursor: pointer;
@@ -737,7 +742,7 @@ body {
     .App {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 50px 300px auto;
+        grid-template-rows: 50px auto;
         overflow-y: scroll;
         transition: all 0.5s linear;
     }
@@ -745,19 +750,43 @@ body {
     .App.active {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 50px 50px auto;
+        grid-template-rows: 50px auto;
         overflow-y: scroll;
         transition: all 0.5s linear;
 
     }
 
+    #nav_header {
+        overflow: visible;
+        transition: all 0.3s linear;
+    }
+
     /* ---------------------------nav---------------------------------------- */
     #nav_list {
-        position: relative;
+        position: absolute;
         background: var(--nav-color);
-        overflow: hidden;
         border-bottom: 4px solid var(--principal-color);
-        overflow-y: scroll;
+        z-index: 9;
+        transition: 0.3s linear;
+        height: 100%;
+
+    }
+
+    #nav_list.active {
+        transform: translateX(-160px);
+        transition: 0.3s linear;
+    }
+
+    #nav_list.active::after {
+        position: absolute;
+        content: '';
+        height: 45px;
+        width: 60px;
+        background: transparent;
+        top: 0;
+        right: 0;
+        transform: translateX(50px);
+        z-index: 9;
     }
 
     #header_list .list_header #search_input {
@@ -774,7 +803,7 @@ body {
         position: relative;
         width: 100%;
         height: 200px;
-        overflow: hidden;
+        /* overflow: hidden; */
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -795,21 +824,25 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
-        transform: translate(-160px, 5px);
         transition: all 0.3s linear;
         top: 0px;
         left: 0;
 
     }
 
+    .item_link:hover {
+        background: var(--principal-color);
+    }
+
     .iconNav.active {
         position: relative;
-        height: 40px;
-        width: 40px;
+        height: 30px;
+        width: 30px;
         display: flex;
         justify-content: center;
         align-items: center;
-
+        transform: translateX(100px);
+        z-index: 10;
     }
 
     #nav_header .img_user.active {
@@ -1080,11 +1113,12 @@ body {
         height: 100%;
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows:1fr;
+        grid-template-rows: 1fr;
         gap: 30px;
-    
+
     }
-    #userRegister{
+
+    #userRegister {
         transform: translate(80px);
     }
 
@@ -1119,7 +1153,7 @@ body {
         left: -5px;
     }
 
-    #close{
+    #close {
         transform: translateX(-60px);
     }
 
@@ -1148,7 +1182,7 @@ body {
         font-size: 18px;
     }
 
-   
+
     .conteFormulario form button {
         position: relative;
         display: flex;
