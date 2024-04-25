@@ -9,7 +9,7 @@ const Login = () => {
     const [isAuthenticated, setAuthenticated] = useState(false);
 
     const usuariosRegistrados = [
-        { rol:'adminstrador', email: 'juanca@hotmail.com', password: '123' },
+        { rol:'adminstrador', email: 'example@hotmail.com', password: '123' },
         { rol:'usuario', email: 'usuario2@example.com', password: 'password2' },
         // Agrega más usuarios según sea necesario
     ];
