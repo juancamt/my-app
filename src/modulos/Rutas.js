@@ -26,8 +26,9 @@ function Rutas() {
             
             
             <Route path="Usuario" element={<Menu/>}>
-            <Route path="Perfil" element={<PerfilUsuario />} />
-            <Route path="permisosUsuario" element={<PermissionsUsuario />} />
+
+                <Route path="perfilUsuario" element={<PerfilUsuario />} />
+                <Route path="permisosUsuario" element={<PermissionsUsuario />} />
 
             </Route>
 

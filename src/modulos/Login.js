@@ -78,9 +78,9 @@ const Login = () => {
                                 // El usuario está autenticado, redirige a la lista de usuarios
                                 if(isAuthenticated.rol==="administrador"){
 
-                                    navigate('/App/userList');
+                                    navigate('/Administrador/userList');
                                 }else if(isAuthenticated.rol==="usuario"){
-                                    navigate('/App/perfilUsuario');
+                                    navigate('/Usuario/perfilUsuario');
                                 }
                                 setAuthenticated(true);
                             } else {

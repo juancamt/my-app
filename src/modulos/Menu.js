@@ -30,7 +30,7 @@ export function Menu() {
 
                 {/* --------------------- --------------------------header --------------------------- -------------------*/}
                 <Routes>
-                    <Route path="/perfil" element={<HeaderUsuario/>} />
+                    <Route path="/perfilUsuario" element={<HeaderUsuario/>} />
                     <Route path="/permisosUsuario" element={<HeaderPermissionsUsuario />} />
                     {/* <Route path="/permissions" element={<HeaderPermissions />} /> */}
                     {/* <Route path="/dateVacation" element={<HeaderDAte />} /> */}
@@ -61,7 +61,7 @@ export function Menu() {
                             <ul id='ul_list'>
 
                                 <li className={`item_list ${selectedItems === 'item1' ? 'selected' : ''}`} >
-                                    <Link to='/usuario/perfil' className={link} onClick={() => itemClick('item1')}>
+                                    <Link to='/Usuario/PerfilUsuario' className={link} onClick={() => itemClick('item1')}>
 
                                         <IoMdPerson className={icon} />
                                         <span className={item}>Profile</span>
@@ -70,7 +70,7 @@ export function Menu() {
                                 </li>
 
                                 <li className={`item_list ${selectedItems === 'item2' ? 'selected' : ''}`} >
-                                    <Link to='/usuario/permisosUsuario' className={link} onClick={() => itemClick('item2')}>
+                                    <Link to='/Usuario/permisosUsuario' className={link} onClick={() => itemClick('item2')}>
 
                                         <IoMdClipboard className={icon} />
                                         <span className={item}>Permissions</span>
