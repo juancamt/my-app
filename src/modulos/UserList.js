@@ -198,9 +198,11 @@ const ContenidoUser = styled.div`
 
     }
     button{
-    background:#FCCA00;
-    color:#000;
-
+      height: 30px;
+      width:100px;
+      background:#FCCA00;
+      color:#000;
+      border-radius:50px;
     }
     }
     #buttonModel{

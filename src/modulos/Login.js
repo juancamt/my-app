@@ -9,7 +9,7 @@ const Login = () => {
     const [isAuthenticated, setAuthenticated] = useState(false);
 
     const usuariosRegistrados = [
-        { rol:'adminstrador', email: 'example@hotmail.com', password: '123' },
+        { rol:'administrador', email: 'example@hotmail.com', password: '123' },
         { rol:'usuario', email: 'usuario2@example.com', password: 'password2' },
         // Agrega más usuarios según sea necesario
     ];
@@ -17,11 +17,14 @@ const Login = () => {
     const authenticateUser = async (values) => {
         // Simula una llamada a un servidor o base de datos para verificar las credenciales del usuario
         const usuarioEncontrado = usuariosRegistrados.find(
-            (usuario) =>usuario.rol===values.roles && usuario.email === values.email && usuario.password === values.passwordLogin
+          (usuario) =>
+            usuario.rol === values.roles &&
+            usuario.email === values.email &&
+            usuario.password === values.passwordLogin
         );
-
-        return usuarioEncontrado !== undefined;
-    };
+      
+        return usuarioEncontrado;
+      };
 
 
 
@@ -62,7 +65,7 @@ const Login = () => {
                             }
 
 
-                            return errores
+                            return errores  
                         }}
                         onSubmit={async (values, { resetForm, setSubmitting}) => {
                             // Reinicia el formulario después de enviar
@@ -73,7 +76,12 @@ const Login = () => {
 
                             if (isAuthenticated) {
                                 // El usuario está autenticado, redirige a la lista de usuarios
-                                navigate('/App/userList');
+                                if(isAuthenticated.rol==="administrador"){
+
+                                    navigate('/App/userList');
+                                }else if(isAuthenticated.rol==="usuario"){
+                                    navigate('/App/perfilUsuario');
+                                }
                                 setAuthenticated(true);
                             } else {
                                 // El usuario no está autenticado, muestra un mensaje de error
@@ -90,7 +98,7 @@ const Login = () => {
                                 <h2>LOGIN</h2>
                                 <Field name="roles" as="select">
                                     <option value="rol">Rol</option>
-                                    <option value="adminstrador">administrador</option>
+                                    <option value="administrador">administrador</option>
                                     <option value="usuario">usuario</option>
                                 </Field>
                                 <ErrorMessage name="roles" component={() => (<div className="error"><p className="parrafo">{errors.roles}</p></div>)} />

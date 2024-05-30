@@ -75,7 +75,7 @@ function App() {
             <ul id='ul_list'>
 
               <li className={`item_list ${selectedItems === 'item1' ? 'selected' : ''}`} >
-                <Link to='/App/userList' className={link}onClick={() => itemClick('item1')}>
+                <Link to='/Administrador/userList' className={link}onClick={() => itemClick('item1')}>
 
                   <IoMdPerson className={icon} />
                   <span className={item}>User List</span>
@@ -84,7 +84,7 @@ function App() {
               </li>
 
               <li className={`item_list ${selectedItems === 'item2' ? 'selected' : ''}`} >
-                <Link to='/App/Permissions' className={link }onClick={() => itemClick('item2')}>
+                <Link to='/Administrador/Permissions' className={link }onClick={() => itemClick('item2')}>
 
                   <IoMdClipboard className={icon} />
                   <span className={item}>Permissions</span>
@@ -93,7 +93,7 @@ function App() {
               </li>
 
               <li className={`item_list ${selectedItems === 'item3' ? 'selected' : ''}`}>
-                <Link to='/App/dateVacation' className={link}onClick={() => itemClick('item3')}>
+                <Link to='/Administrador/dateVacation' className={link}onClick={() => itemClick('item3')}>
 
                   <IoMdCalendar className={icon} />
                   <span className={item}>Date vacation</span>
@@ -102,7 +102,7 @@ function App() {
               </li>
 
               <li className={`item_list ${selectedItems === 'item4' ? 'selected' : ''}`}>
-                <Link to='/App/staff' className={link}onClick={() => itemClick('item4')}>
+                <Link to='/Administrador/staff' className={link}onClick={() => itemClick('item4')}>
 
                   <IoIosPerson className={icon} />
                   <span className={item}>Staff</span>
@@ -111,7 +111,7 @@ function App() {
               </li>
 
               <li className={`item_list ${selectedItems === 'item5' ? 'selected' : ''}`}>
-                <Link to='/App/registration' className={link} onClick={() => itemClick('item5')}>
+                <Link to='/Administrador/registration' className={link} onClick={() => itemClick('item5')}>
 
                   <IoIosBookmarks className={icon} />
                   <span className={item}>Registration</span>

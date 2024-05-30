@@ -1,0 +1,99 @@
+:root {
+    --border-color: #BBBBBB;
+    --border-input-color: #888888;
+    --main-header-color: #f6f5fa;
+    --nav-color: #fff;
+    --principal-color: #4095e5;
+    --secundary-color: #03E812;
+    --secundary-2-color: #FCCA00;
+    --secundary-3-color: #f00707;
+    --text-color: #000;
+
+}
+
+
+.contePerfil{
+    background: #fff;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+
+}
+.imagenPerfil{
+    height: 200px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+}
+
+.imagenPerfil .imagen img{
+    position: relative;
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    background-size: cover;
+
+}
+.datosPerfil{
+    position: relative;
+    height: auto;
+    width: 600px;
+}
+.tabla{
+    display: block;
+    width: 100%;
+    padding-bottom: 20px;
+}
+.tabla .fila .columna{
+    display: flex;
+}
+.tabla .fila .columna .header,
+.tabla .fila .columna .contenido{
+border-bottom: 1px solid var(--principal-color);
+padding: 20px;
+}
+
+.tabla .fila .columna .header{
+    width: 50%;
+  
+    font-weight: bold;
+}
+.tabla .fila .columna .contenido{
+    width: 50%;
+}
+.tabla .fila:nth-of-type(even) .columna .contenido{
+    background-color: #e6e6e6;
+}
+.tabla .fila .columna:hover .contenido,
+.tabla .fila .columna:last-of-type .header{
+    border-bottom: 1px solid #909090;
+}
+.tabla .fila .columna::before{
+    content:":";
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(120px,20px);
+    font-weight: bold;
+
+
+}
+
+
+.buttoUpdate{
+    height: 35px;
+    width: 170px;
+    background: var(--secundary-2-color);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(430px);
+    cursor: pointer;
+}
+
+

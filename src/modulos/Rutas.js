@@ -11,6 +11,9 @@ import { Staff, HeaderStaff } from './Staff'
 import { Registration, HeaderRegistration } from './Registration'
 import { CreateUserList, HeaderUser } from './CreateUserList';
 import SignUp from "./SignUp";
+import { PerfilUsuario } from '../modulosUsuario/PerfilUsuario';
+import { Menu } from "./Menu";
+import { PermissionsUsuario } from "../modulosUsuario/PermissionsUsuario";
 // import { Login } from './modulos/Login';
 
 
@@ -18,14 +21,18 @@ function Rutas() {
     return (
         <Routes>
             {/* <Route path="/App" element={<Navigate to="/App" replace />}/> */}
-            <Route path="/" element={<Login />} >
+            <Route path="/" element={<Login />} />
+            <Route path="/signUp" element={<SignUp/>} />
+            
+            
+            <Route path="Usuario" element={<Menu/>}>
+            <Route path="Perfil" element={<PerfilUsuario />} />
+            <Route path="permisosUsuario" element={<PermissionsUsuario />} />
 
             </Route>
-            <Route path="/signUp" element={<SignUp/>} />
 
-            <Route path="/App" element={<App />}>
+            <Route path="/Administrador" element={<App />}>
   
-           
                 <Route index element={<UserList />} /> 
                 <Route path="userList" element={<UserList />} />
                 <Route path="permissions" element={<Permissions />} />
@@ -33,9 +40,8 @@ function Rutas() {
                 <Route path="staff" element={<Staff />} />
                 <Route path="registration" element={<Registration />} />
                 <Route path="CreateUserList" element={<CreateUserList />} />
-
             </Route>
-
+          
         </Routes>
 
     )

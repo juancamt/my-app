@@ -29,11 +29,7 @@ export const HeaderStaff = () => {
   );
 };
 export const Staff = () => {
-  const [colorR, setColor] = useState("");
-  const miFuncion = () => {
-    setColor(colorR === 'disabled' ? 'activated' : 'disabled')
-  };
-
+ 
   const [estadoModal1, cambiarEstadoModal] = useState(false);
   const [estadoMes, cambiarEstadoMes] = useState(false);
   const [estadoMessagesRemove, cambiarEstadoMessagesRemove] = useState(false);
@@ -50,7 +46,7 @@ export const Staff = () => {
         estadoMessagesRemove={estadoMessagesRemove}
         cambiarEstadoMessagesRemove={cambiarEstadoMessagesRemove}
         messagesParrafoRemove='The user whas   successfully deleted.'
-        linRemove='/App/staff'
+        linRemove='/administrador/staff'
       >
       </MessagesRemove>
       <Modal estado={estadoModal1} cambiarEstado={cambiarEstadoModal} titulo='Update Staff' >
@@ -149,17 +145,21 @@ export const Staff = () => {
 };
 
 const Contenido = styled.div`
-position: relative;
 
+  position: relative;
+  display:flex;
+  justify-content:center;
+  margin-top:-70px;
+  height:650px;
 
   form{
     position: relative;
-    height: 500px;
-    display: grid;
-    grid-template-columns: auto auto ;
-    grid-template-rows: repeat(4,1fr);
-    
-    gap: 30px;
+    height: 650px;
+    width:200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
     
 
     div{
@@ -169,11 +169,12 @@ position: relative;
     gap:15px;
 
     input{
-      border-radius:50px;
+       border-radius:50px;
       border: 3.5px solid var(--principal-color);
       background: transparent;
       outline: none;
       font-size: 18px;
+      padding-left:10px;
       
       label{
         padding-bottom: 20px;
@@ -181,9 +182,11 @@ position: relative;
       }
     }
     button{
+      height:30px;
+    width:100px;
     background:#FCCA00;
     color:#000;
-
+    border-radius:50px;
     }
     }
     #buttonModel{
@@ -191,6 +194,7 @@ position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+
 
     }
   }
