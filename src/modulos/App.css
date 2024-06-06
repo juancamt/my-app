@@ -17,6 +17,7 @@ body {
     background: var(--main-header-color);
 }
 
+
 :root {
     --border-color: #BBBBBB;
     --border-input-color: #888888;
@@ -27,6 +28,65 @@ body {
     --secundary-2-color: #FCCA00;
     --secundary-3-color: #f00707;
     --text-color: #000;
+
+}
+
+.containerSpinner{
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.containerSpinner .circle{
+    position: relative;
+    height: 50px;
+    width: 50px;
+    background: #4095e5;
+    margin: 40px;
+    border-radius: 50%;
+    box-shadow: 0px 30px 50px 6px transparent,0px 30px 50px 6px transparent,
+    0px 30px 50px 6px #00000385;
+}
+.containerSpinner .circle.uno{
+    animation: animateUno 2s infinite;
+
+}
+.containerSpinner .circle.dos{
+    animation: animateDos 2s infinite;
+
+}
+.containerSpinner .circle.tres{
+    animation: animateTres 2s infinite;
+
+}
+
+@keyframes animateUno{
+    0%,100%{
+        transform: translate(0px,0px);
+    }
+    50%{
+        transform: translate(0px,-15px);
+    }
+
+}
+@keyframes animateDos{
+    0%,100%{
+        transform: translate(0px,0px);
+        
+    }
+    50%{
+        transform: translate(0px,10px);
+    }
+
+}
+@keyframes animateTres{
+    0%,100%{
+        transform: translate(0px,-5px);
+    }
+    50%{
+        transform: translate(0px,16px);
+    }
 
 }
 
@@ -165,7 +225,7 @@ body {
 
 #nav_header :first-child {
     position: relative;
-    left: 65px;
+    /* left: 65px; */
     transition: all 0.3s linear;
 }
 
@@ -313,9 +373,11 @@ body {
 .item_text {
     position: relative;
     color: var(--text-color);
-    height: auto;
-    width: auto;
+    width: fit-content;
+    min-width: 100px; /* Ancho mínimo */
+    max-width: 300px; /* Ancho máximo */
     padding-left: 5px;
+    font-size: 12px;
 }
 
 .item_text.active {
@@ -436,7 +498,7 @@ body {
 .button_actua {
     position: relative;
     border-radius: 50px;
-    width: 60px;
+    width: 90px;
     height: 25px;
     background: var(--secundary-2-color);
     cursor: pointer;
@@ -894,7 +956,7 @@ body {
         transform: translateY(4px);
         content: '';
         position: absolute;
-        height: 45px;
+        height: 50px !important;
         width: 92%;
         z-index: -1;
         box-shadow: 0 0 10px 1px;

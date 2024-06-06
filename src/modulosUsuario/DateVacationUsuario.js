@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
-import { IoMdPerson, IoMdNotifications,IoMdTrash,IoMdClipboard} from 'react-icons/io';
+import { IoMdPerson, IoMdNotifications,IoMdTrash,IoMdCalendar} from 'react-icons/io';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.module.css'
 
 
-export const HeaderPermissionsUsuario = () => {
+export const HeaderDateVacation = () => {
   return (
 
 
     <header id='header_list'>
       <div className="list_header">
-        <IoMdClipboard id='user_header' />
-        <span id="list_text">Permissions</span>
+        <IoMdCalendar id='user_header' />
+        <span id="list_text">Date Vacation</span>
 
       </div>
 
@@ -26,24 +26,15 @@ export const HeaderPermissionsUsuario = () => {
 
   );
 };
-export function PermissionsUsuario() {
+export function DateVacationUsuario() {
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
+  const [savedDates, setSavedDates] = useState([]);
 
-
-  const [textareaContent, setTextareaContent] = useState('');
-  const [savedEntries, setSavedEntries] = useState([]);
-
-  const saveEntry = () => {
-    setSavedEntries([
-      ...savedEntries,
-      { startDate, endDate, content: textareaContent }
-    ]);
-    // resetear  los valores del textarea
-
-    setTextareaContent('');
+  const saveDates = () => {
+    setSavedDates([...savedDates, { startDate, endDate }]);
   };
 
   const formatDate = (date) => {
@@ -76,32 +67,23 @@ export function PermissionsUsuario() {
           endDate={endDate}
           minDate={startDate}
         />
-
-        <textarea
-          name="postContent"
-          rows={4}
-          cols={40}
-          value={textareaContent}
-          onChange={(e) => setTextareaContent(e.target.value)}
-        />
-        <button className='btn' onClick={saveEntry}>+</button>
+        <button className='btnDate' onClick={saveDates}>+</button>
 
       </div>
 
       <div className='conteList'>
-        {savedEntries.map((dates, index) => (
-          <div key={index} className='conteInfoDate'>
-            <header className='headerDate' >
-
-              <h3>Motivo de Permiso</h3>
+        {savedDates.map((dates, index) => (
+          <div key={index} className='conteInfoDateUsuario'>
+            <header className='headerDate' style={{transform:"translateY(-25px)"}}>
+              <h3>estado</h3>
               <h3>Fecha de Inicio</h3>
               <h3>Fecha de Fin</h3>
             </header>
             <div className="contedaP">
-              <p> {dates.content}</p>
+              <h4 style={{color:"#4095e5"}}>Fecha regitrada</h4>
               <p> {formatDate(dates.startDate)}</p>
               <p> {formatDate(dates.endDate)}</p>
-              <IoMdTrash className='trash' />
+              <IoMdTrash className='trash' style={{transform:"translateY(40px)",position:"absolute"}} />
             </div>
           </div>
         ))}

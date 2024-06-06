@@ -50,18 +50,18 @@ const Login = () => {
                             //---------------------------------------------- validacion de rol---------------------------------------------------------
                            
                             if (!values.roles) {
-                                errores.roles = 'Por favor selecione un rol '
+                                errores.roles = 'Please select a role '
                             }
                             
                             //---------------------------------------------- validacion de correo---------------------------------------------------------
                             if (!values.email) {
-                                errores.email = 'Por favor ingresa un correo '
+                                errores.email = 'Please enter an email '
                             }
 
                             // ---------------------------------------------validacion de contraseña-----------------------------------------------------------
 
                             if (!values.passwordLogin) {
-                                errores.passwordLogin = 'Por favor ingresa una contraseña';
+                                errores.passwordLogin = 'Please enter a password';
                             }
 
 
@@ -85,7 +85,7 @@ const Login = () => {
                                 setAuthenticated(true);
                             } else {
                                 // El usuario no está autenticado, muestra un mensaje de error
-                                alert('usuario no encontrado');
+                                alert('User not found');
                             }
 
                             // Indica que el envío ha finalizado

@@ -1,20 +1,34 @@
 import React, { useState } from 'react'
-import { Link, Outlet, Routes, Route} from 'react-router-dom';
-import { IoMdPerson,IoMdMenu, IoMdClipboard, IoMdCalendar,IoIosBookmarks,IoMdExit} from 'react-icons/io';
+import { Link, Outlet, Routes, Route } from 'react-router-dom';
+import { IoMdPerson, IoMdMenu, IoMdClipboard, IoMdCalendar, IoIosBookmarks, IoMdExit } from 'react-icons/io';
 import { HeaderUsuario } from '../modulosUsuario/PerfilUsuario';
 import { HeaderPermissionsUsuario } from '../modulosUsuario/PermissionsUsuario';
-
+import { HeaderDateVacation } from '../modulosUsuario/DateVacationUsuario';
+import { HeaderRegistro, HeaderRegistroUsuario } from '../modulosUsuario/RegistroIngresoUsuario';
+import { Preloader } from '../modulos/Preloader';
 
 export function Menu() {
 
     const [claseActiva, setClaseActiva] = useState(false);
     const [selectedItems, setSelectedItem] = useState(null);
 
+    const [loading, setLoading] = useState(false);
+
+    const showPreloader = () => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 1500); 
+    };
+
+
+
     const addClasse = () => {
         setClaseActiva(!claseActiva);
     };
     const itemClick = (items) => {
         setSelectedItem(items);
+
     };
 
 
@@ -25,17 +39,16 @@ export function Menu() {
 
     return (
         <>
+            {loading && <Preloader />}
             <div className={`App ${classPrincipal}`}>
 
 
                 {/* --------------------- --------------------------header --------------------------- -------------------*/}
                 <Routes>
-                    <Route path="/perfilUsuario" element={<HeaderUsuario/>} />
+                    <Route path="/perfilUsuario" element={<HeaderUsuario />} />
                     <Route path="/permisosUsuario" element={<HeaderPermissionsUsuario />} />
-                    {/* <Route path="/permissions" element={<HeaderPermissions />} /> */}
-                    {/* <Route path="/dateVacation" element={<HeaderDAte />} /> */}
-                    {/* <Route path="/staff" element={<HeaderStaff />} /> */}
-                    {/* <Route path="/registration" element={<HeaderRegistration />} /> */}
+                    <Route path="/dateVacationUsuario" element={<HeaderDateVacation />} />
+                    <Route path="/registroIngresoUsuario" element={<HeaderRegistroUsuario />} />
 
                 </Routes>
                 {/* --------------------- --------------------------header --------------------------- -------------------*/}
@@ -61,7 +74,7 @@ export function Menu() {
                             <ul id='ul_list'>
 
                                 <li className={`item_list ${selectedItems === 'item1' ? 'selected' : ''}`} >
-                                    <Link to='/Usuario/PerfilUsuario' className={link} onClick={() => itemClick('item1')}>
+                                    <Link to='/Usuario/PerfilUsuario' className={link} onClick={() => { itemClick('item1'); showPreloader(); }}>
 
                                         <IoMdPerson className={icon} />
                                         <span className={item}>Profile</span>
@@ -70,7 +83,7 @@ export function Menu() {
                                 </li>
 
                                 <li className={`item_list ${selectedItems === 'item2' ? 'selected' : ''}`} >
-                                    <Link to='/Usuario/permisosUsuario' className={link} onClick={() => itemClick('item2')}>
+                                    <Link to='/Usuario/permisosUsuario' className={link} onClick={() => { itemClick('item2'); showPreloader(); }}>
 
                                         <IoMdClipboard className={icon} />
                                         <span className={item}>Permissions</span>
@@ -79,7 +92,7 @@ export function Menu() {
                                 </li>
 
                                 <li className={`item_list ${selectedItems === 'item3' ? 'selected' : ''}`}>
-                                    <Link to='/' className={link} onClick={() => itemClick('item3')}>
+                                    <Link to='/Usuario/dateVacationUsuario' className={link} onClick={() => { itemClick('item3'); showPreloader(); }}>
 
                                         <IoMdCalendar className={icon} />
                                         <span className={item}>Date vacation</span>
@@ -89,7 +102,7 @@ export function Menu() {
 
 
                                 <li className={`item_list ${selectedItems === 'item5' ? 'selected' : ''}`}>
-                                    <Link to='/' className={link} onClick={() => itemClick('item5')}>
+                                    <Link to='/Usuario/registroIngresoUsuario' className={link} onClick={() => {itemClick('item5');showPreloader();}}>
 
                                         <IoIosBookmarks className={icon} />
                                         <span className={item}>Registration</span>
@@ -103,7 +116,7 @@ export function Menu() {
                         <div className='bottom_content'>
 
                             <li className='item_list'>
-                                <Link to='/' className={link}>
+                                <Link to='/' className={link} onClick={() => showPreloader()}>
 
                                     <IoMdExit className={icon} />
                                     <span className={item}>Exit</span>

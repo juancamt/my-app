@@ -1,3 +1,8 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 :root {
     --border-color: #BBBBBB;
     --border-input-color: #888888;
@@ -10,9 +15,9 @@
     --text-color: #000;
 
 }
+/* Perfil de usuario */
 
-
-.contePerfil{
+.contePerfil {
     background: #fff;
     height: 100%;
     width: 100%;
@@ -22,69 +27,78 @@
     overflow-y: auto;
 
 }
-.imagenPerfil{
+
+.imagenPerfil {
     height: 200px;
     width: 200px;
     display: flex;
     align-items: center;
 }
 
-.imagenPerfil .imagen img{
+.imagenPerfil .imagen img {
     position: relative;
-    width:150px;
-    height:150px;
-    border-radius:50%;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
     background-size: cover;
 
 }
-.datosPerfil{
+
+.datosPerfil {
     position: relative;
     height: auto;
     width: 600px;
 }
-.tabla{
+
+.tabla {
     display: block;
     width: 100%;
     padding-bottom: 20px;
 }
-.tabla .fila .columna{
+
+.tabla .fila .columna {
     display: flex;
 }
+
 .tabla .fila .columna .header,
-.tabla .fila .columna .contenido{
-border-bottom: 1px solid var(--principal-color);
-padding: 20px;
+.tabla .fila .columna .contenido {
+    border-bottom: 1px solid var(--principal-color);
+    padding: 20px;
 }
 
-.tabla .fila .columna .header{
+.tabla .fila .columna .header {
     width: 50%;
-  
+
     font-weight: bold;
 }
-.tabla .fila .columna .contenido{
+
+.tabla .fila .columna .contenido {
     width: 50%;
 }
-.tabla .fila:nth-of-type(even) .columna .contenido{
+
+.tabla .fila:nth-of-type(even) .columna .contenido {
     background-color: #e6e6e6;
 }
+
 .tabla .fila .columna:hover .contenido,
-.tabla .fila .columna:last-of-type .header{
+.tabla .fila .columna:last-of-type .header {
     border-bottom: 1px solid #909090;
 }
-.tabla .fila .columna::before{
-    content:":";
+
+.tabla .fila .columna::before {
+    content: ":";
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translate(120px,20px);
+    transform: translate(120px, 20px);
     font-weight: bold;
 
 
 }
 
 
-.buttoUpdate{
+.buttoUpdate {
     height: 35px;
     width: 170px;
     background: var(--secundary-2-color);
@@ -95,5 +109,380 @@ padding: 20px;
     transform: translate(430px);
     cursor: pointer;
 }
+/* perfil de usuario movil */
+@media (max-width:480px) {
+    .contePerfil {
+        width: 100%;
+        height: 100%;
+    }
+    .imagenPerfil {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .datosPerfil {
+        width: 400px;
+    }
+    .buttoUpdate {
+        transform: translateX(230px);
+        
+    }
+    /* permisos de usuario */
+    .conteP{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .conteDate{
+        transform: translate(0%,0%) !important;
+        width: 480px !important;  
+        height: 280px !important;
+        display: grid;
+    }
+    .react-datepicker__month-container{
+        z-index: 7 !important;
+        
+    }
+    .fechas{
+        width: 100px !important;
+        border-radius: 12px;        
+    }
+    textarea{
+        width:  300px !important;
+
+    }
+    .conteList{
+        width: 100% !important;        
+        left: 0% !important;
+        top: 0% !important;
+        transform: translate(0px,0px) !important;
+    }
+
+    .conteInfoDateUsuario{
+        width: 400px !important;
+        font-size: 12px;
+    }
+    .contedaP p:nth-of-type(2){
+        transform: translate(0px,0px) !important;
+
+    }
 
 
+    /* permisos de usuario */
+
+    /* registro de usuario */
+  /* fecha Ingreso */
+  .conteDate .date-picker:nth-of-type(1)::after{
+    position: absolute ;
+    content: "Fecha Ingreso" ;
+    width: 140px ;
+    height: 40px ;
+    font-size: 12px;
+    display: grid ;
+    align-items: center ;
+    text-align: center ;
+    transform: translate(-115px,-40px) !important ;
+    z-index: 5 ;
+  }
+
+    /* hora Ingreso */
+    .conteDate .time-picker:nth-of-type(2)::after {
+        position: absolute ;
+        content: "Hora Ingreso" ;
+        width: 140px ;
+        height: 40px ;
+        display: grid ;
+        align-items: center ;
+        text-align: center ;
+        font-size: 12px;
+        transform: translate(-115px,-40px) !important ;
+        z-index: 5 ;
+      }
+
+        /* fecha salida */
+    .conteDate .date-picker:nth-of-type(3)::after{
+        position: absolute ;
+        content: "Fecha Salida" ;
+        width: 140px ;
+        height: 40px ;
+        font-size: 12px;
+        display: grid ;
+        align-items: center ;
+        text-align: center ;
+        transform: translate(-115px,-40px) !important ;
+        z-index: 5 ;
+      }
+
+          /* hora salida */
+    .conteDate .time-picker:nth-of-type(4)::after {
+        position: absolute ;
+        content: "Hora Salida" ;
+        width: 140px ;
+        height: 40px ;
+        font-size: 12px;
+        display: grid ;
+        align-items: center ;
+        text-align: center ;
+        transform: translate(-115px,-40px) !important;
+        z-index: 5 ;
+      }
+
+    
+      .conteDate .btnRegistro:nth-of-type(1) {
+        transform: translate(170px,-160px) !important;
+
+      }
+      
+      /* Estilos específicos para el segundo botón */
+      .conteDate .btnRegistro:nth-of-type(2) {
+        transform: translate(170px,-45px) !important;
+
+      }
+  
+    /* registro de usuario */
+    
+    /* Perfil de usuario */
+}
+
+/* permisos  de usuario */
+.conteP{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+.conteDate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 30%;
+    flex-wrap: wrap;
+    left: -50%;
+    top: -50%;
+    transform: translate(50%,5%);
+}
+.conteDate > button{
+    position: absolute;
+    bottom: -5px;
+}
+.fechas{
+    margin: 15px;
+    height: 40px;
+    width:  230px;
+    display: grid;
+    text-align: center;
+    border: 1px solid #888888;
+    
+}
+
+#span{
+    font-weight: 500;
+    
+}
+textarea{
+    resize: none;
+    border: 1px solid #888888;
+    width: 600px;
+    padding: 10px;
+    border-radius: 12px;
+}
+.btn{
+    background: #4095e5;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    color: #fff;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.conteList{
+    position: relative;
+    height: 500px;
+    width: 95%;
+    top: 40%;
+    left: 50%;
+    margin-top:40px;
+    padding: 20px;
+    padding-bottom: 20px;
+    border-radius: 20px;
+    transform: translate(-50%,-50%);
+    background: #fff;
+    display: grid;
+    justify-content: center;
+    overflow:scroll;
+    
+}
+/* .conteList:hover{
+    z-index: 2;
+} */
+.conteInfoDateUsuario{
+    width: 70rem;
+    height: 120px;
+    position: relative;
+    background: white;
+    box-shadow: 0px 0px 8px #888888;
+    border-radius: 20px;
+    padding: 15px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 40px;
+    overflow:hidden;
+}
+.headerDate{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+}
+
+.contedaP p:first-child{
+    position: relative;
+    width: 30%;
+    height: 80px;
+    padding: 0px 10px 10px 10px;
+    overflow-y:auto;
+    word-wrap: break-word;
+}
+
+.contedaP{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content:space-between;
+
+}
+.trash{
+    position: absolute;
+    font-size: 30px;
+    right: 0;
+    bottom: 0;
+    height: 40px;
+    width: 40px;
+    color: red;
+    cursor: pointer;
+}
+.react-datepicker-popper{
+    left: none;
+    top: none;
+    transform: translate(120px,-0px) !important;
+}
+
+/* permisos  de usuario */
+/* vacaciones de usuario */
+.btnDate{
+    background: #4095e5;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    color: #fff;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    transform: translateY(-40px);
+}
+
+/* vacaciones de usuario */
+
+/* Registro de usuario */
+.form-control{
+    height: 40px !important;
+    text-align: center;
+    margin-right: 10px;
+}
+.btnRegistro{
+    background: #4095e5;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    color: #fff;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+}
+    /* fecha Ingreso */
+  .conteDate .date-picker:nth-of-type(1)::after{
+    position: absolute ;
+    content: "Fecha Ingreso" ;
+    color: #4095e5;
+    width: 140px ;
+    height: 40px ;
+    display: grid ;
+    align-items: center ;
+    text-align: center ;
+    transform: translateY(-80px) ;
+    z-index: 5 ;
+  }
+
+    /* hora Ingreso */
+    .conteDate .time-picker:nth-of-type(2)::after {
+        position: absolute ;
+        content: "Hora Ingreso" ;
+        color: #4095e5;
+        width: 140px ;
+        height: 40px ;
+        display: grid ;
+        align-items: center ;
+        text-align: center ;
+        transform: translateY(-80px) ;
+        z-index: 5 ;
+      }
+
+        /* fecha salida */
+    .conteDate .date-picker:nth-of-type(3)::after{
+        position: absolute ;
+        content: "Fecha Salida" ;
+        color: red;
+        width: 140px ;
+        height: 40px ;
+        display: grid ;
+        align-items: center ;
+        text-align: center ;
+        transform: translateY(-80px) ;
+        z-index: 5 ;
+      }
+
+          /* hora salida */
+    .conteDate .time-picker:nth-of-type(4)::after {
+        position: absolute ;
+        content: "Hora Salida" ;
+        color: red;
+        width: 140px ;
+        height: 40px ;
+        display: grid ;
+        align-items: center ;
+        transform: translateY(-80px) ;
+        text-align: center ;
+        z-index: 5 ;
+      }
+      .react-datepicker__input-container:nth-of-type():before{
+      
+        position: absolute;
+        content: "Fecha Inicio";
+        color: red;
+        width: 140px ;
+        height: 40px ;
+        display: grid ;
+        align-items: center ;
+        transform: translateY(-30px) ;
+        text-align: center ;
+        z-index: 5 ;
+      }
+    
+/* Registro de usuario */
