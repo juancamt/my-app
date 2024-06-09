@@ -1,10 +1,12 @@
 import './App.css';
 import { IoMdPerson, IoMdTrash, IoIosSearch, IoMdNotifications, IoIosAddCircle } from 'react-icons/io';
 import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from './Modal';
 import styled from 'styled-components';
 import Messages, { MessagesRemove } from './Messages';
+import axios from 'axios';
+
 
 export const Headerlist = () => {
   return (
@@ -34,13 +36,88 @@ export const Headerlist = () => {
 };
 export const UserList = () => {
 
-  const [colorR, setColor] = useState("");
-  const miFuncion = () => {
-    setColor(colorR === 'disabled' ? 'activated' : 'disabled')
-  };
   const [estadoModal1, cambiarEstadoModal] = useState(false);
   const [estadoMes, cambiarEstadoMes] = useState(false);
   const [estadoMessagesRemove, cambiarEstadoMessagesRemove] = useState(false);
+
+  //api para llamar datos  "get"
+
+  const [usuarios, setUsuarios] = useState([]);
+
+  useEffect(() => {
+    getUsuarios();
+  }, []);
+  const getUsuarios = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/api/usuarios");
+      if (response.data.usuarios && Array.isArray(response.data.usuarios)) {
+        setUsuarios(response.data.usuarios);
+
+      } else {
+        console.error("La respuesta de la API no contiene un array de usuarios válido:", response.data);
+      }
+    } catch (error) {
+      console.error("Error al obtener usuarios:", error);
+    }
+  };
+
+  //api para llamar borrar datos  "delete"
+
+  const borrarUsuario = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3001/api/deleteUsuario/${id}`);
+      getUsuarios(); // Actualizar la lista de usuarios después de eliminar
+      cambiarEstadoMessagesRemove(true);
+      console.log("Usuario eliminado correctamente");
+    } catch (error) {
+      console.error("Error al eliminar usuario:", error);
+    }
+  };
+  // actualizar datos  update 
+
+  const [usuarioEditado, setUsuarioEditado] = useState({
+    rol: '',
+    nombre: '',
+    apellido: '',
+    correo: ''
+  });
+  
+  const handleEditClick = (usuario) => {
+    setUsuarioEditado({
+      rol: usuario.rol,
+      nombre: usuario.nombre,
+      apellido: usuario.apellido,
+      correo: usuario.correo,
+      _id: usuario._id
+    });
+    cambiarEstadoModal(true);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUsuarioEditado((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+  
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.put(`http://localhost:3001/api/updateUsuario/${usuarioEditado._id}`, usuarioEditado);
+      console.log("Respuesta de la API:", response.data); // Mostrar la respuesta completa en la consola
+      getUsuarios();
+      cambiarEstadoMes(true);
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000); 
+    } catch (error) {
+      console.error("Error al actualizar usuario:", error);
+    }
+  };
+
+
+
 
   return (
     <main id='main_list'>
@@ -55,40 +132,35 @@ export const UserList = () => {
         estadoMessagesRemove={estadoMessagesRemove}
         cambiarEstadoMessagesRemove={cambiarEstadoMessagesRemove}
         messagesParrafoRemove='The user whas   successfully deleted.'
-        linRemove='/App/userList'
+        linRemove='/administrador/userList'
       >
       </MessagesRemove>
 
       <Modal estado={estadoModal1} cambiarEstado={cambiarEstadoModal} titulo='Update User' >
         <ContenidoUser>
-
-          <form id='formula'>
+          <form id='formula' onSubmit={handleFormSubmit}>
             <div>
-              <label for="rol">Rol</label>
-              <select>
-                <option value="adiministrador">Adiministrador</option>
+              <label htmlFor="rol">Rol</label>
+              <select name="rol" value={usuarioEditado.rol} onChange={handleInputChange}>
+                <option value="adiministrador">Administrador</option>
                 <option value="usuario">Usuario</option>
               </select>
             </div>
-            <div >
-              <label for="name">Name</label>
-              <input type="text" />
-
-            </div>
-            <div >
-              <label for="last name">Last name</label>
-              <input type="text" name="" />
+            <div>
+              <label htmlFor="nombre">Name</label>
+              <input type="text" name="nombre" value={usuarioEditado.nombre} onChange={handleInputChange} />
             </div>
             <div>
-              <label for="email">Email</label>
-              <input type="email" name="" />
+              <label htmlFor="apellido">Last name</label>
+              <input type="text" name="apellido" value={usuarioEditado.apellido} onChange={handleInputChange} />
             </div>
-         
-            <div id='buttonModel' >
-              <button type='button' onClick={() => cambiarEstadoMes(!estadoMes)}>Register</button>
-
+            <div>
+              <label htmlFor="correo">Email</label>
+              <input type="email" name="correo" value={usuarioEditado.correo} onChange={handleInputChange} />
             </div>
-
+            <div id='buttonModel'>
+              <button type='submit'>Update</button>
+            </div>
           </form>
         </ContenidoUser>
       </Modal>
@@ -101,49 +173,27 @@ export const UserList = () => {
             <tr>
               <th className="td_value">Id</th>
               <th className="td_value">Rol</th>
-              <th className="td_value">User</th>
               <th className="td_value">Name</th>
               <th className="td_value">Last name</th>
               <th className="td_value">Email</th>
-              <th className="td_value">state</th>
             </tr>
           </thead>
 
           <tbody>
-            <tr className="tr_info">
-              <td>2355</td>
-              <td>Admin</td>
-              <td><img src="\imagenes\persona-ciudad.jpg" className="img_table" /></td>
-              <td>Lus</td>
-              <td>Esperanza</td>
-              <td>Lus@hotmail.com</td>
-              {/* la funcion de onclick toca cambiarla ala secion de update para poder hacer el cambio de color y de valor ="acivated" && "disabled" */}
-              <td className={`state_Act ${colorR === 'disabled' ? 'red' : ''}`} onClick={miFuncion}>activated</td>
-              <td><button className="button_actua" onClick={() => cambiarEstadoModal(!estadoModal1)}>Update</button></td>
-              <td><IoMdTrash className='delete' onClick={() => cambiarEstadoMessagesRemove(!estadoMes)} /></td>
-            </tr>
-            <tr className="tr_info">
-              <td>2355</td>
-              <td>Admin</td>
-              <td><img src="\imagenes\persona-ciudad.jpg" className="img_table" /></td>
-              <td>Lus</td>
-              <td>Esperanza</td>
-              <td>Lus@hotmail.com</td>
-              <td className="state_Act">activated</td>
-              <td><button className="button_actua" onClick={() => cambiarEstadoModal(!estadoModal1)}>Update</button></td>
-              <td><IoMdTrash className='delete' onClick={() => cambiarEstadoMessagesRemove(!estadoMes)} /></td>
-            </tr>
-            <tr className="tr_info">
-              <td>2355</td>
-              <td>Admin</td>
-              <td><img src="\imagenes\persona-ciudad.jpg" className="img_table" /></td>
-              <td>Lus</td>
-              <td>Esperanza</td>
-              <td>Lus@hotmail.com</td>
-              <td className={`state_Act ${colorR === 'disabled' ? 'red' : ''}`} onClick={miFuncion}>disabled</td>
-              <td><button className="button_actua" onClick={() => cambiarEstadoModal(!estadoModal1)}>Update</button></td>
-              <td><IoMdTrash className='delete' onClick={() => cambiarEstadoMessagesRemove(!estadoMes)} /></td>
-            </tr>
+
+            {usuarios.map((usuario) => (
+              <tr key={usuario._id} className="tr_info">
+                <td>{usuario._id}</td>
+                <td>{usuario.rol}</td>
+                <td>{usuario.nombre}</td>
+                <td>{usuario.apellido}</td>
+                <td>{usuario.correo}</td>
+                <td><button className="button_actua" onClick={() => handleEditClick(usuario)}>Update</button></td>
+                <td><IoMdTrash className='delete' onClick={() => borrarUsuario(usuario._id)} /></td>
+              </tr>
+            ))}
+
+
 
           </tbody>
 

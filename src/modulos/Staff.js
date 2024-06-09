@@ -1,9 +1,10 @@
 import './App.css';
 import { IoMdPerson, IoMdTrash, IoIosSearch, IoMdNotifications } from 'react-icons/io';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Modal from './Modal';
 import styled from 'styled-components';
 import Messages, { MessagesRemove } from './Messages';
+import axios from 'axios';
 
 export const HeaderStaff = () => {
   return (
@@ -33,6 +34,28 @@ export const Staff = () => {
   const [estadoModal1, cambiarEstadoModal] = useState(false);
   const [estadoMes, cambiarEstadoMes] = useState(false);
   const [estadoMessagesRemove, cambiarEstadoMessagesRemove] = useState(false);
+
+  const [empleados, setEmpleados] = useState([]);
+
+  useEffect(() => {
+    getEmpleados();
+  }, []);
+  
+  const getEmpleados = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/api/empleados");
+      if (response.data.empleado && Array.isArray(response.data.empleado)) {
+        setEmpleados(response.data.empleado);
+      } else {
+        console.error("La respuesta de la API no contiene un array de empleados válido:", response.data);
+      }
+    } catch (error) {
+      console.error("Error al obtener empleados:", error);
+    }
+  };
+  
+
+
   return (
     <main id='main_list'>
       <Messages
@@ -102,40 +125,21 @@ export const Staff = () => {
           </thead>
 
           <tbody>
-            <tr className="tr_info">
-              <td>2355</td>
-              <td>Lus</td>
-              <td>Esperanza</td>
-              <td>22</td>
-              <td>3164778254</td>
-              <td>calle 53 No 10-60/46</td>
-              <td>Lus@hotmail.com</td>
-              <td><button className="button_actua" onClick={() => cambiarEstadoModal(!estadoModal1)}>Update</button></td>
-              <td><IoMdTrash className='delete' onClick={() => cambiarEstadoMessagesRemove(!estadoMes)} /></td>
-            </tr>
-            <tr className="tr_info">
-              <td>5842</td>
-              <td>Raul</td>
-              <td>Perez</td>
-              <td>22</td>
-              <td>3164778254</td>
-              <td>calle 53 No 10-60/46</td>
-              <td>Raul@hotmail.com</td>
-              <td><button className="button_actua" onClick={() => cambiarEstadoModal(!estadoModal1)}>Update</button></td>
-              <td><IoMdTrash className='delete' onClick={() => cambiarEstadoMessagesRemove(!estadoMes)} /></td>
-            </tr>
-            <tr className="tr_info">
-              <td>9854</td>
-              <td>Ana</td>
-              <td>velez</td>
-              <td>25</td>
-              <td>3164778254</td>
-              <td>calle 53 No 10-60/46</td>
-              <td>Ana@hotmail.com</td>
-              <td><button className="button_actua" onClick={() => cambiarEstadoModal(!estadoModal1)}>Update</button></td>
-              <td><IoMdTrash className='delete' onClick={() => cambiarEstadoMessagesRemove(!estadoMes)} /></td>
-            </tr>
-
+   
+            {empleados.map((empleado) => (
+              <tr key={empleado._id} className="tr_info">
+                <td>{empleado._id}</td>
+                <td>{empleado.nombre}</td>
+                <td>{empleado.apellido}</td>
+                <td>{empleado.años}</td>
+                <td>{empleado.telefono}</td>
+                <td>{empleado.direccion}</td>
+                <td>{empleado.correo}</td>
+                {/* <td><button className="button_actua" onClick={() => handleEditClick(usuario)}>Update</button></td> */}
+                {/* <td><IoMdTrash className='delete' onClick={() => borrarUsuario(usuario._id)} /></td> */}
+              </tr>
+            ))}
+     
           </tbody>
 
         </table>

@@ -261,6 +261,8 @@ import React, { useState } from 'react';
 import Messages from './Messages';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
+
+
 export const HeaderUser = () => {
     return (
         <Headerlist />
@@ -423,7 +425,7 @@ export const CreateUserList = () => {
                                             </p>
                                         </div>
                                     )}
-                                    {/* <ErrorMessage name="confirmPassword" component={() => (<div className={errors.passwordsMatch ? 'password-match' : 'errorUser'}><p className="pUser">{errors.confirmPassword}</p></div>)} /> */}
+                                    <ErrorMessage name="confirmPassword" component={() => (<div className={errors.passwordsMatch ? 'password-match' : 'errorUser'}><p className="pUser">{errors.confirmPassword}</p></div>)} />
 
                                 </div>
                                 <div>
