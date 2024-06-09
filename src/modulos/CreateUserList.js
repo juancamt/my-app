@@ -302,7 +302,7 @@ export const CreateUserList = () => {
             <div className='conteCreateUser'>
                 <header className='headerCreate'>
                     <h1 id='userRegister'>Register User</h1>
-                    <Link to="/App/UserList">
+                    <Link to="/administrador/UserList">
                         <IoMdCloseCircle id='close' />
                     </Link>
                 </header>

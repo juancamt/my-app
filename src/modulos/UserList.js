@@ -20,7 +20,7 @@ export const Headerlist = () => {
       <div className="list_header">
         <IoIosSearch id='search_header' />
         <input type="text" placeholder="Search" id="search_input" />
-        <Link to="/App/CreateUserList">
+        <Link to="/administrador/CreateUserList">
           <IoIosAddCircle id='addUser' />
         </Link>
         <IoMdNotifications id='notificacion' />
