@@ -1,138 +1,3 @@
-// import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
-// import { IoIosArrowDropleftCircle } from 'react-icons/io';
-// import axios from 'axios';
-// import Messages from './Messages';
-// import './SignUp.css';
-
-// function SignUp() {
-//     const [radioValue, setRadioValue] = useState("");
-//     const radioInput = (e) => {
-//         setRadioValue(e.target.value);
-//     };
-
-//     const guardarUsuario = async (usuario) => {
-//         try {
-//             const response = await axios.post('http://localhost:3001/api/guardarUsuario', usuario);
-//             if (response.data.message === "Usuario guardado") {
-//                 console.log("Usuario guardado correctamente");
-//                 // Aquí puedes realizar acciones adicionales si el usuario se guarda correctamente
-//             } else {
-//                 console.error("Error al guardar usuario:", response.data.message);
-//             }
-//         } catch (error) {
-//             console.error("Error al guardar usuario:", error);
-//         }
-//     };
-
-//     const handleSubmit = (e) => {
-//         e.preventDefault();
-//         const formData = new FormData(e.target);
-//         const password = formData.get('password');
-//         const confirm_password = formData.get('confirm_password');
-    
-//         if (password !== confirm_password) {
-//             console.error("Las contraseñas no coinciden");
-//             return; // Detener el envío del formulario si las contraseñas no coinciden
-//         }
-    
-//         const nuevoUsuario = {
-//             nombre: formData.get('name'),
-//             apellido: formData.get('last_name'),
-//             telefono: formData.get('cell_phone'),
-//             correo: formData.get('email'),
-//             contraseña: password, 
-//             años: formData.get('age'),
-//             genero: radioValue
-//         };
-    
-//         guardarUsuario(nuevoUsuario);
-//     };
-//     const [estadoMes, cambiarEstadoMes] = useState(false);
-
-//     return (
-//         <div className="container">
-//             <Messages
-//                 estadoMessages={estadoMes}
-//                 cambiarEstadoMessages={cambiarEstadoMes}
-//                 title2='Registration'
-//                 messagesParrafo={'Congratulations on your registration, you have completed the registration page'}
-//                 lin="/"
-//             />
-//             <div className='conteCreateSignUp'>
-//                 <header className='headerCreateSignUp'>
-//                     <h1 id='userRegisterSignUp'>Register User</h1>
-//                 </header>
-//                 <div className='conteFormularioSignUp'>
-//                     <div id='closeConte'>
-//                         <Link to="/" >
-//                             <IoIosArrowDropleftCircle id='closeSignUp' />
-//                         </Link>
-//                     </div>
-//                     <form onSubmit={handleSubmit}>
-//                         <div>
-//                             <label htmlFor="name">Name</label>
-//                             <input type="text" name="name" />
-//                         </div>
-//                         <div>
-//                             <label htmlFor="last_name">Last name</label>
-//                             <input type="text" name="last_name" />
-//                         </div>
-//                         <div>
-//                             <label htmlFor="cell_phone">Cell phone</label>
-//                             <input type="number" name="cell_phone" />
-//                         </div>
-//                         <div>
-//                             <label htmlFor="email">Email</label>
-//                             <input type="email" name="email" />
-//                         </div>
-//                         <div>
-//                             <label htmlFor="password">Password</label>
-//                             <input type="password" name="password" />
-//                         </div>
-//                         <div>
-//                             <label htmlFor="confirm_password">Confirm password</label>
-//                             <input type="password" name="confirm_password" />
-//                         </div>
-//                         <div>
-//                             <label htmlFor="age">Age</label>
-//                             <input type="number" name="age" />
-//                         </div>
-//                         <div>
-//                             <label htmlFor="gender">Gender</label>
-//                             <li>
-//                                 <label htmlFor="man">
-//                                     <input
-//                                         type="radio"
-//                                         value="man"
-//                                         checked={radioValue === "man"}
-//                                         onChange={radioInput}
-//                                     />
-//                                     Man
-//                                 </label>
-//                                 <label htmlFor="women">
-//                                     <input
-//                                         type="radio"
-//                                         checked={radioValue === "women"}
-//                                         onChange={radioInput}
-//                                         value="women" />
-//                                     Women
-//                                 </label>
-//                             </li>
-//                         </div>
-//                         <div>
-//                             <button type='submit'>Register</button>
-//                         </div>
-//                     </form>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// }
-
-// export default SignUp;
-
-
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -149,13 +14,12 @@ function SignUp() {
     const handleRadioChange = (e) => {
         setRadioValue(e.target.value);
     };
-// guardamos el usuario 
+    // guardamos el usuario 
     const guardarUsuario = async (usuario) => {
         try {
             const response = await axios.post('http://localhost:3001/api/guardarUsuario', usuario);
             if (response.data.message === "Usuario guardado") {
                 console.log("Usuario guardado correctamente");
-                // Aquí puedes realizar acciones adicionales si el usuario se guarda correctamente
             } else {
                 console.error("Error al guardar usuario:", response.data.message);
             }
@@ -186,6 +50,7 @@ function SignUp() {
                     </div>
                     <Formik
                         initialValues={{
+                            rol:'',
                             name: '',
                             last_name: '',
                             cell_phone: '',
@@ -193,6 +58,7 @@ function SignUp() {
                             password: '',
                             confirm_password: '',
                             age: '',
+                            adress: ''
                         }}
                         validationSchema={Yup.object({
                             name: Yup.string()
@@ -218,19 +84,31 @@ function SignUp() {
                         })}
                         onSubmit={(values, { resetForm }) => {
                             const nuevoUsuario = {
+                                rol:values.rol,
                                 nombre: values.name,
                                 apellido: values.last_name,
                                 telefono: values.cell_phone,
                                 correo: values.email,
                                 contraseña: values.password,
                                 años: values.age,
-                                genero: radioValue
+                                genero: radioValue,
+                                direccion: values.adress
                             };
                             guardarUsuario(nuevoUsuario);
                             resetForm();
                         }}
                     >
                         <Form>
+                            <div>
+                                <label htmlFor="role">Rol</label>
+                                <Field as="select" name="rol" >
+                                    <option value="" label="Select role" disabled hidden />
+                                    <option value="administrador" label="administrador" />
+                                  
+                                </Field>
+                                <ErrorMessage name="role" component="div" className="error" />
+                            </div>
+
                             <div>
                                 <label htmlFor="name">Name</label>
                                 <Field type="text" name="name" />
@@ -262,6 +140,11 @@ function SignUp() {
                                 <ErrorMessage name="confirm_password" component="div" className="error" />
                             </div>
                             <div>
+                                <label htmlFor="adress">Adress</label>
+                                <Field type="text" name="adress" />
+                                <ErrorMessage name="adress" component="div" className="error" />
+                            </div>
+                            <div>
                                 <label htmlFor="age">Age</label>
                                 <Field type="number" name="age" />
                                 <ErrorMessage name="age" component="div" className="error" />
@@ -269,7 +152,7 @@ function SignUp() {
                             <div>
                                 <label htmlFor="gender">Gender</label>
                                 <li>
-                                <label htmlFor="man">
+                                    <label htmlFor="man">
                                         <Field
                                             type="radio"
                                             name="gender"

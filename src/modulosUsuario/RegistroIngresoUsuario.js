@@ -90,7 +90,7 @@ export function RegistroIngresoUsuario() {
       </div>
       <div className='conteList'>
         {savedDates.map((dates, index) => (
-          <div key={index} className='conteInfoDate'>
+          <div key={index} className='conteInfoDateUsuario'>
             <header className='headerDate' style={{ transform: "translateY(-25px)" }}>
               <h3>Estado</h3>
               <h3 style={{ color: "#4095e5" }}>Fecha Ingreso</h3>
@@ -105,7 +105,7 @@ export function RegistroIngresoUsuario() {
           </div>
         ))}
         {savedDatesSalida.map((dates2, index) => (
-          <div key={index} className='conteInfoDate'>
+          <div key={index} className='conteInfoDateUsuario'>
             <header className='headerDate' style={{ transform: "translateY(-25px)" }}>
               <h3>Estado</h3>
               <h3 style={{ color: "red" }}>Fecha Salida</h3>

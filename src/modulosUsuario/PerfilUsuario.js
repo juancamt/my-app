@@ -1,12 +1,14 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import { IoMdPerson, IoMdNotifications } from 'react-icons/io';
 import '../modulosUsuario/Usuarios.css';
 import Messages from '../modulos/Messages';
 import Modal from '../modulos/Modal';
 import styled from 'styled-components';
+import { UserContext } from '../modulos/UserContext';
 
 
 export const HeaderUsuario = () => {
+ 
   return (
 
 
@@ -32,9 +34,15 @@ export const PerfilUsuario = () => {
   const [estadoMes, cambiarEstadoMes] = useState(false);
   const [estadoModal1, cambiarEstadoModal] = useState(false);
 
+  const {user}=useContext(UserContext);
 
+
+  if (!user){
+    return <div>No user logged</div>
+  };
   return (
 
+    
 
     <div className='contePerfil'>
       <Messages
@@ -98,27 +106,27 @@ export const PerfilUsuario = () => {
 
             <div className='columna'>
               <div className='header'>Name</div>
-              <div className='contenido'>Raul</div>
+              <div className='contenido'>{user.nombre}</div>
             </div>
             <div className='columna'>
               <div className='header'>Last Name</div>
-              <div className='contenido'>Perez</div>
+              <div className='contenido'>{user.apellido}</div>
             </div>
             <div className='columna'>
               <div className='header'>Age</div>
-              <div className='contenido'>22</div>
+              <div className='contenido'>{user.años}</div>
             </div>
             <div className='columna'>
               <div className='header'>Phone</div>
-              <div className='contenido'>45458454</div>
+              <div className='contenido'>{user.telefono}</div>
             </div>
             <div className='columna'>
               <div className='header'>Address</div>
-              <div className='contenido'>Calle 53 No 10-60/46</div>
+              <div className='contenido'>{user.direcion}</div>
             </div>
             <div className='columna'>
               <div className='header'>Email</div>
-              <div className='contenido'>Raul@hotmail.com</div>
+              <div className='contenido'>{user.correo}</div>
             </div>
 
 

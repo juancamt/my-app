@@ -90,7 +90,7 @@ export function PermissionsUsuario() {
 
       <div className='conteList'>
         {savedEntries.map((dates, index) => (
-          <div key={index} className='conteInfoDate'>
+          <div key={index} className='conteInfoDateUsuario'>
             <header className='headerDate' >
 
               <h3>Motivo de Permiso</h3>

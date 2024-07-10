@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, Outlet, Routes, Route } from 'react-router-dom';
 import { IoMdPerson, IoMdMenu, IoMdClipboard, IoMdCalendar, IoIosBookmarks, IoMdExit } from 'react-icons/io';
 import { HeaderUsuario } from '../modulosUsuario/PerfilUsuario';
@@ -6,38 +6,46 @@ import { HeaderPermissionsUsuario } from '../modulosUsuario/PermissionsUsuario';
 import { HeaderDateVacation } from '../modulosUsuario/DateVacationUsuario';
 import { HeaderRegistro, HeaderRegistroUsuario } from '../modulosUsuario/RegistroIngresoUsuario';
 import { Preloader } from '../modulos/Preloader';
+import { UserContext } from './UserContext';
 
 export function Menu() {
 
+    const {user}=useContext(UserContext);
+
+
+    
     const [claseActiva, setClaseActiva] = useState(false);
     const [selectedItems, setSelectedItem] = useState(null);
-
+    
     const [loading, setLoading] = useState(false);
-
+    
     const showPreloader = () => {
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
-        }, 1500); 
-    };
-
-
-
-    const addClasse = () => {
-        setClaseActiva(!claseActiva);
+            }, 1500); 
+            };
+            
+            
+            
+            const addClasse = () => {
+                setClaseActiva(!claseActiva);
     };
     const itemClick = (items) => {
         setSelectedItem(items);
-
-    };
-
-
-    let classPrincipal = `${claseActiva ? 'active' : ''}`;
-    let link = `item_link ${claseActiva ? 'active' : ''}`;
-    let item = `item_text ${claseActiva ? 'active' : ''}`;
-    let icon = `item_icon ${claseActiva ? 'active' : ''}`;
-
-    return (
+        
+        };
+        
+        
+        let classPrincipal = `${claseActiva ? 'active' : ''}`;
+        let link = `item_link ${claseActiva ? 'active' : ''}`;
+        let item = `item_text ${claseActiva ? 'active' : ''}`;
+        let icon = `item_icon ${claseActiva ? 'active' : ''}`;
+        
+        if (!user){
+          return <div>No user logged</div>
+        };
+        return (
         <>
             {loading && <Preloader />}
             <div className={`App ${classPrincipal}`}>
@@ -64,7 +72,7 @@ export function Menu() {
                         <IoMdMenu id='icon_nav' onClick={addClasse} className={`iconNav ${classPrincipal}`} />
 
                         <img src="\imagenes\user-2.jpeg" alt="" className={`img_user ${classPrincipal}`} />
-                        <span className={`text_user ${classPrincipal}`}>Raul</span>
+                        <span className={`text_user ${classPrincipal}`}>{user.nombre}</span>
 
                     </header>
 

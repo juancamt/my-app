@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter,Outlet, Routes, Route, Navigate} from 'react-router-dom'
-import  Login  from './modulos/Login'
+import { BrowserRouter} from 'react-router-dom'
 import Rutas from './modulos/Rutas';
+import { UserProvider } from './modulos/UserContext';
 // const log = ReactDOM.createRoot(document.getElementById('log'));
 // log.render(
 //   <React.StrictMode>
@@ -17,8 +16,12 @@ import Rutas from './modulos/Rutas';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+
     <BrowserRouter>
+    <UserProvider>
+
       <Rutas/>
+    </UserProvider>
     </BrowserRouter>
 
   </React.StrictMode>

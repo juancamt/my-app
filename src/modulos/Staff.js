@@ -1,6 +1,6 @@
 import './App.css';
 import { IoMdPerson, IoMdTrash, IoIosSearch, IoMdNotifications } from 'react-icons/io';
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from './Modal';
 import styled from 'styled-components';
 import Messages, { MessagesRemove } from './Messages';
@@ -30,17 +30,19 @@ export const HeaderStaff = () => {
   );
 };
 export const Staff = () => {
- 
+
   const [estadoModal1, cambiarEstadoModal] = useState(false);
   const [estadoMes, cambiarEstadoMes] = useState(false);
   const [estadoMessagesRemove, cambiarEstadoMessagesRemove] = useState(false);
+
+  //api para llamar datos  "get"
 
   const [empleados, setEmpleados] = useState([]);
 
   useEffect(() => {
     getEmpleados();
   }, []);
-  
+
   const getEmpleados = async () => {
     try {
       const response = await axios.get("http://localhost:3001/api/empleados");
@@ -53,8 +55,69 @@ export const Staff = () => {
       console.error("Error al obtener empleados:", error);
     }
   };
-  
 
+  //api para  borrar datos  "delete"
+
+  const borrarEmpleado = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3001/api/deleteEmpleado/${id}`);
+      getEmpleados(); // Actualizar la lista de usuarios después de eliminar
+      cambiarEstadoMessagesRemove(true);
+      console.log("Empleado eliminado correctamente");
+    } catch (error) {
+      console.error("Error al eliminar el empleado:", error);
+    }
+  };
+
+
+  // actualizar datos  update 
+
+  const [empleadoEditado, setEmpleadoEditado] = useState({
+    nombre: '',
+    apellido: '',
+    telefono: '',
+    correo: '',
+    años: '',
+    genero:'',
+    direccion:''
+  });
+  
+  const handleEditClick = (empleado) => {
+    setEmpleadoEditado({
+      // rol: usuario.rol,
+      nombre: empleado.nombre,
+      apellido: empleado.apellido,
+      correo: empleado.correo,
+      direccion: empleado.direccion,
+      telefono: empleado.telefono,
+      años: empleado.años,
+      _id: empleado._id
+    });
+    cambiarEstadoModal(true);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEmpleadoEditado((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+  
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.put(`http://localhost:3001/api/updateEmpleado/${empleadoEditado._id}`, empleadoEditado);
+      console.log("Respuesta de la API:", response.data); // Mostrar la respuesta completa en la consola
+      getEmpleados();
+      cambiarEstadoMes(true);
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000); 
+    } catch (error) {
+      console.error("Error al actualizar empleado:", error);
+    }
+  };
 
   return (
     <main id='main_list'>
@@ -75,35 +138,33 @@ export const Staff = () => {
       <Modal estado={estadoModal1} cambiarEstado={cambiarEstadoModal} titulo='Update Staff' >
         <Contenido>
 
-          <form>
-            <div >
-              <label for="name">Name</label>
-              <input type="text" />
-
-            </div>
-            <div >
-              <label for="last name">Last name</label>
-              <input type="text" name="" />
+          <form  onSubmit={handleFormSubmit}>
+          <div>
+              <label htmlFor="nombre">Name</label>
+              <input type="text" name="nombre" value={empleadoEditado.nombre} onChange={handleInputChange} />
             </div>
             <div>
-              <label for="address">Address</label>
-              <input type="text" name="" />
+              <label htmlFor="apellido">Last name</label>
+              <input type="text" name="apellido" value={empleadoEditado.apellido} onChange={handleInputChange} />
             </div>
             <div>
-              <label for="cell Phone">Cell phone</label>
-              <input type="number" name="" />
+              <label htmlFor="direccion">Address</label>
+              <input type="text" name="direccion" value={empleadoEditado.direccion} onChange={handleInputChange} />
             </div>
             <div>
-              <label for="email">Email</label>
-              <input type="email" name="" />
+              <label htmlFor="telefono">Cell phone</label>
+              <input type="number" name="telefono" value={empleadoEditado.telefono} onChange={handleInputChange} />
             </div>
             <div>
-              <label for="age">Age</label>
-              <input type="number" name="" />
+              <label htmlFor="correo">Email</label>
+              <input type="email" name="correo" value={empleadoEditado.correo} onChange={handleInputChange} />
             </div>
-            <div id='buttonModel' >
-              <button type='button' onClick={() => cambiarEstadoMes(!estadoMes)}>Register</button>
-
+            <div>
+              <label htmlFor="años">Age</label>
+              <input type="number" name="años" value={empleadoEditado.años} onChange={handleInputChange} />
+            </div>
+            <div id='buttonModel'>
+              <button type='submit'>Update</button>
             </div>
 
           </form>
@@ -125,7 +186,7 @@ export const Staff = () => {
           </thead>
 
           <tbody>
-   
+
             {empleados.map((empleado) => (
               <tr key={empleado._id} className="tr_info">
                 <td>{empleado._id}</td>
@@ -135,11 +196,11 @@ export const Staff = () => {
                 <td>{empleado.telefono}</td>
                 <td>{empleado.direccion}</td>
                 <td>{empleado.correo}</td>
-                {/* <td><button className="button_actua" onClick={() => handleEditClick(usuario)}>Update</button></td> */}
-                {/* <td><IoMdTrash className='delete' onClick={() => borrarUsuario(usuario._id)} /></td> */}
+                <td><button className="button_actua" onClick={() => handleEditClick(empleado)}>Update</button></td>
+                <td><IoMdTrash className='delete' onClick={() => borrarEmpleado(empleado._id)} /></td>
               </tr>
             ))}
-     
+
           </tbody>
 
         </table>

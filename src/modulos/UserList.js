@@ -1,7 +1,7 @@
 import './App.css';
 import { IoMdPerson, IoMdTrash, IoIosSearch, IoMdNotifications, IoIosAddCircle } from 'react-icons/io';
 import { Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import Modal from './Modal';
 import styled from 'styled-components';
 import Messages, { MessagesRemove } from './Messages';
@@ -9,9 +9,8 @@ import axios from 'axios';
 
 
 export const Headerlist = () => {
+
   return (
-
-
     <header id='header_list'>
       <div className="list_header">
         <IoMdPerson id='user_header' />
@@ -20,29 +19,26 @@ export const Headerlist = () => {
       </div>
 
       <div className="list_header">
-        <IoIosSearch id='search_header' />
-        <input type="text" placeholder="Search" id="search_input" />
+      
         <Link to="/administrador/CreateUserList">
           <IoIosAddCircle id='addUser' />
         </Link>
         <IoMdNotifications id='notificacion' />
       </div>
-
-
+      {/* Pasa la lista filtrada como prop al componente UserList */}
     </header>
-
 
   );
 };
-export const UserList = () => {
 
+export const UserList = () => {
+  const [usuarios, setUsuarios] = useState([]);
   const [estadoModal1, cambiarEstadoModal] = useState(false);
   const [estadoMes, cambiarEstadoMes] = useState(false);
   const [estadoMessagesRemove, cambiarEstadoMessagesRemove] = useState(false);
 
   //api para llamar datos  "get"
 
-  const [usuarios, setUsuarios] = useState([]);
 
   useEffect(() => {
     getUsuarios();
@@ -52,7 +48,6 @@ export const UserList = () => {
       const response = await axios.get("http://localhost:3001/api/usuarios");
       if (response.data.usuarios && Array.isArray(response.data.usuarios)) {
         setUsuarios(response.data.usuarios);
-
       } else {
         console.error("La respuesta de la API no contiene un array de usuarios válido:", response.data);
       }
@@ -61,7 +56,7 @@ export const UserList = () => {
     }
   };
 
-  //api para llamar borrar datos  "delete"
+  //api para borrar datos  "delete"
 
   const borrarUsuario = async (id) => {
     try {
@@ -81,7 +76,7 @@ export const UserList = () => {
     apellido: '',
     correo: ''
   });
-  
+
   const handleEditClick = (usuario) => {
     setUsuarioEditado({
       rol: usuario.rol,
@@ -100,7 +95,7 @@ export const UserList = () => {
       [name]: value
     }));
   };
-  
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -110,17 +105,18 @@ export const UserList = () => {
       cambiarEstadoMes(true);
       setTimeout(() => {
         window.location.reload();
-      }, 2000); 
+      }, 2000);
     } catch (error) {
       console.error("Error al actualizar usuario:", error);
     }
   };
 
 
-
+  
 
   return (
     <main id='main_list'>
+      
       <Messages
         estadoMessages={estadoMes}
         cambiarEstadoMessages={cambiarEstadoMes}
@@ -192,6 +188,7 @@ export const UserList = () => {
                 <td><IoMdTrash className='delete' onClick={() => borrarUsuario(usuario._id)} /></td>
               </tr>
             ))}
+     
 
 
 

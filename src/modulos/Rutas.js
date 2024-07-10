@@ -17,6 +17,7 @@ import { Menu } from "./Menu";
 import { PermissionsUsuario } from "../modulosUsuario/PermissionsUsuario";
 import { DateVacationUsuario } from "../modulosUsuario/DateVacationUsuario";
 import { RegistroIngresoUsuario } from "../modulosUsuario/RegistroIngresoUsuario";
+import { UserProvider } from "./UserContext";
 // import { Login } from './modulos/Login';
 
 
@@ -31,8 +32,10 @@ function Rutas() {
         }, 1500)
     }
     return (
-
+       
         !loading && (
+
+            
             <Routes>
                 {/* <Route path="/App" element={<Navigate to="/App" replace />}/> */}
                 <Route path="/" element={<Login />} />

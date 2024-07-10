@@ -1,6 +1,6 @@
 import './modulos/App.css';
 import { Link, Outlet, Routes, Route, Navigate } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, {  useContext, useState } from 'react';
 import { IoMdPerson, IoMdMenu, IoMdClipboard, IoMdCalendar, IoIosPerson, IoIosBookmarks, IoMdExit } from 'react-icons/io';
 
 import { HeaderPermissions } from './modulos/Permissions';
@@ -10,6 +10,8 @@ import { HeaderStaff } from './modulos/Staff'
 import { HeaderRegistration } from './modulos/Registration'
 import { HeaderUser } from './modulos/CreateUserList';
 import { Preloader } from './modulos/Preloader';
+import { UserContext } from './modulos/UserContext';
+
 
 
 
@@ -17,9 +19,12 @@ import { Preloader } from './modulos/Preloader';
 
 
 function App() {
-
   const [loading, setLoading] = useState(false);
-
+  const {user}=useContext(UserContext);
+ 
+  
+  
+  
   const showPreloader = () => {
     setLoading(true);
     setTimeout(() => {
@@ -43,12 +48,15 @@ function App() {
   let item = `item_text ${claseActiva ? 'active' : ''}`;
   let icon = `item_icon ${claseActiva ? 'active' : ''}`;
 
-
+  if (!user){
+    return <div>No user logged</div>
+  };
 
   return (
     <>
-      {loading && <Preloader />}
-
+      {/* {loading && <Preloader />} */}
+      
+     
       <div className={`App ${classPrincipal}`}>
 
 
@@ -67,7 +75,7 @@ function App() {
 
 
         {/* --------------------- --------------------------nav --------------------------- -------------------*/}
-
+        
         <nav id='nav_list' className={`nav_list ${classPrincipal}`}>
 
           <header id='nav_header'>
@@ -75,7 +83,7 @@ function App() {
             <IoMdMenu id='icon_nav' onClick={addClasse} className={`iconNav ${classPrincipal}`} />
 
             <img src="\imagenes\user-1.jpeg" alt="" className={`img_user ${classPrincipal}`} />
-            <span className={`text_user ${classPrincipal}`}>Santiago</span>
+            <span className={`text_user ${classPrincipal}`}>{user.nombre}</span>
 
           </header>
 
