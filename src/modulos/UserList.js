@@ -41,13 +41,15 @@ export const UserList = () => {
 
 
   useEffect(() => {
+
     getUsuarios();
   }, []);
   const getUsuarios = async () => {
     try {
       const response = await axios.get("http://localhost:3001/api/usuarios");
       if (response.data.usuarios && Array.isArray(response.data.usuarios)) {
-        setUsuarios(response.data.usuarios);
+        const usuariosFiltrados = response.data.usuarios.filter(usuario => usuario.rol === 'administrador');
+        setUsuarios(usuariosFiltrados);
       } else {
         console.error("La respuesta de la API no contiene un array de usuarios válido:", response.data);
       }
@@ -138,7 +140,7 @@ export const UserList = () => {
             <div>
               <label htmlFor="rol">Rol</label>
               <select name="rol" value={usuarioEditado.rol} onChange={handleInputChange}>
-                <option value="adiministrador">Administrador</option>
+                <option value="administrador">Administrador</option>
                 <option value="usuario">Usuario</option>
               </select>
             </div>

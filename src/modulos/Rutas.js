@@ -1,4 +1,3 @@
-import { Routes, Route } from "react-router-dom";
 import App from "../App";
 import Login from "./Login";
 import './App.css';
@@ -18,7 +17,10 @@ import { PermissionsUsuario } from "../modulosUsuario/PermissionsUsuario";
 import { DateVacationUsuario } from "../modulosUsuario/DateVacationUsuario";
 import { RegistroIngresoUsuario } from "../modulosUsuario/RegistroIngresoUsuario";
 import { UserProvider } from "./UserContext";
-// import { Login } from './modulos/Login';
+import ProteccionRuta from "./PrivateRoute";
+// // import { Login } from './modulos/Login';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import NoAutorizado from "./NoAutorizado";
 
 
 function Rutas() {
@@ -32,38 +34,48 @@ function Rutas() {
         }, 1500)
     }
     return (
-       
+
         !loading && (
 
+
             
-            <Routes>
-                {/* <Route path="/App" element={<Navigate to="/App" replace />}/> */}
-                <Route path="/" element={<Login />} />
-                <Route path="/signUp" element={<SignUp />} />
+                    <Routes>
+                        <Route path="/" element={<Login />} />
+                        <Route path="/signUp" element={<SignUp />} />
+                        <Route path="/NoAutorizado" element={<NoAutorizado />} />
 
+                        <Route
+                            path="/Usuario"
+                            element={
+                                <ProteccionRuta roles={['usuario']}>
+                                    <Menu />
+                                </ProteccionRuta>
+                            }
+                        >
+                            <Route path="perfilUsuario" element={<PerfilUsuario />} />
+                            <Route path="permisosUsuario" element={<PermissionsUsuario />} />
+                            <Route path="DateVacationUsuario" element={<DateVacationUsuario />} />
+                            <Route path="RegistroIngresoUsuario" element={<RegistroIngresoUsuario />} />
+                        </Route>
 
-                <Route path="Usuario" element={<Menu />}>
-
-                    <Route path="perfilUsuario" element={<PerfilUsuario />} />
-                    <Route path="permisosUsuario" element={<PermissionsUsuario />} />
-                    <Route path="DateVacationUsuario" element={<DateVacationUsuario />} />
-                    <Route path="RegistroIngresoUsuario" element={<RegistroIngresoUsuario />} />
-
-
-                </Route>
-
-                <Route path="/Administrador" element={<App />}>
-
-                    <Route index element={<UserList />} />
-                    <Route path="userList" element={<UserList />} />
-                    <Route path="permissions" element={<Permissions />} />
-                    <Route path="dateVacation" element={<DateVacation />} />
-                    <Route path="staff" element={<Staff />} />
-                    <Route path="registration" element={<Registration />} />
-                    <Route path="CreateUserList" element={<CreateUserList />} />
-                </Route>
-
-            </Routes>
+                        <Route
+                            path="/Administrador"
+                            element={
+                                <ProteccionRuta roles={['administrador']}>
+                                    <App />
+                                </ProteccionRuta>
+                            }
+                        >
+                            <Route index element={<UserList />} />
+                            <Route path="userList" element={<UserList />} />
+                            <Route path="permissions" element={<Permissions />} />
+                            <Route path="dateVacation" element={<DateVacation />} />
+                            <Route path="staff" element={<Staff />} />
+                            <Route path="registration" element={<Registration />} />
+                            <Route path="CreateUserList" element={<CreateUserList />} />
+                        </Route>
+                    </Routes>
+           
 
         )
     )

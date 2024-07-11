@@ -1,14 +1,16 @@
-import React,{useContext, useState} from 'react'
+import React, { useContext, useState } from 'react'
 import { IoMdPerson, IoMdNotifications } from 'react-icons/io';
 import '../modulosUsuario/Usuarios.css';
 import Messages from '../modulos/Messages';
 import Modal from '../modulos/Modal';
 import styled from 'styled-components';
 import { UserContext } from '../modulos/UserContext';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 export const HeaderUsuario = () => {
- 
+
   return (
 
 
@@ -34,15 +36,48 @@ export const PerfilUsuario = () => {
   const [estadoMes, cambiarEstadoMes] = useState(false);
   const [estadoModal1, cambiarEstadoModal] = useState(false);
 
-  const {user}=useContext(UserContext);
+  const { user,setUser } = useContext(UserContext);
+
+  const [nombre, setNombre] = useState(user?.nombre || '');
+  const [apellido, setApellido] = useState(user?.apellido || '');
+  const [direccion, setDireccion] = useState(user?.direccion || '');
+  const [telefono, setTelefono] = useState(user?.telefono || '');
+  const [correo, setCorreo] = useState(user?.correo || '');
+  const [años, setAños] = useState(user?.años || '');
+  const navigate = useNavigate();
 
 
-  if (!user){
+
+  const handleUpdate = async () => {
+    try {
+
+      
+      const updatedUser = {
+        nombre,
+        apellido,
+        direccion,
+        telefono,
+        correo,
+        años
+      };
+      const response = await axios.put(`http://localhost:3001/api/updateUsuario/${user._id}`, updatedUser);
+      navigate('/Usuario/perfilUsuario');
+
+    // Actualiza el estado local del usuario con los datos devueltos por el servidor
+    setUser(response.data);
+    console.log('perfil actualizado')
+
+  } catch (error) {
+    console.error('Error al actualizar usuario:', error);
+  }
+};
+
+  if (!user) {
     return <div>No user logged</div>
   };
   return (
 
-    
+
 
     <div className='contePerfil'>
       <Messages
@@ -57,34 +92,32 @@ export const PerfilUsuario = () => {
         <Contenido>
 
           <form>
-            <div >
-              <label for="name">Name</label>
-              <input type="text" />
-
-            </div>
-            <div >
-              <label for="last name">Last name</label>
-              <input type="text" name="" />
+            <div>
+              <label htmlFor="name">Name</label>
+              <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} />
             </div>
             <div>
-              <label for="address">Address</label>
-              <input type="text" name="" />
+              <label htmlFor="last name">Last name</label>
+              <input type="text" value={apellido} onChange={(e) => setApellido(e.target.value)} />
             </div>
             <div>
-              <label for="cell Phone">Cell phone</label>
-              <input type="number" name="" />
+              <label htmlFor="address">Address</label>
+              <input type="text" value={direccion} onChange={(e) => setDireccion(e.target.value)} />
             </div>
             <div>
-              <label for="email">Email</label>
-              <input type="email" name="" />
+              <label htmlFor="cell Phone">Cell phone</label>
+              <input type="number" value={telefono} onChange={(e) => setTelefono(e.target.value)} />
             </div>
             <div>
-              <label for="age">Age</label>
-              <input type="number" name="" />
+              <label htmlFor="email">Email</label>
+              <input type="email" value={correo} onChange={(e) => setCorreo(e.target.value)} />
             </div>
-            <div id='buttonModel' >
-              <button type='button' onClick={() => cambiarEstadoMes(!estadoMes)}>Register</button>
-
+            <div>
+              <label htmlFor="age">Age</label>
+              <input type="number" value={años} onChange={(e) => setAños(e.target.value)} />
+            </div>
+            <div id='buttonModel'>
+              <button type='button' onClick={handleUpdate}>Register</button>
             </div>
 
           </form>
@@ -94,7 +127,7 @@ export const PerfilUsuario = () => {
       <div className='imagenPerfil'>
 
         <div className='imagen'>
-          <img src="\imagenes\user-2.jpeg" />
+          <img src="\imagenes\user-1.jpeg" />
         </div>
 
       </div>
@@ -122,7 +155,7 @@ export const PerfilUsuario = () => {
             </div>
             <div className='columna'>
               <div className='header'>Address</div>
-              <div className='contenido'>{user.direcion}</div>
+              <div className='contenido'>{user.direccion}</div>
             </div>
             <div className='columna'>
               <div className='header'>Email</div>

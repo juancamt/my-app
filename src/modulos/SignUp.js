@@ -101,7 +101,7 @@ function SignUp() {
                         <Form>
                             <div>
                                 <label htmlFor="role">Rol</label>
-                                <Field as="select" name="rol" >
+                                <Field as="select" name="rol" className="seleccion" >
                                     <option value="" label="Select role" disabled hidden />
                                     <option value="administrador" label="administrador" />
                                   

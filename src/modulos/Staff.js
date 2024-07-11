@@ -37,87 +37,92 @@ export const Staff = () => {
 
   //api para llamar datos  "get"
 
-  const [empleados, setEmpleados] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
 
   useEffect(() => {
-    getEmpleados();
-  }, []);
 
-  const getEmpleados = async () => {
+    getUsuarios();
+  }, []);
+  const getUsuarios = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/api/empleados");
-      if (response.data.empleado && Array.isArray(response.data.empleado)) {
-        setEmpleados(response.data.empleado);
+      const response = await axios.get("http://localhost:3001/api/usuarios");
+      if (response.data.usuarios && Array.isArray(response.data.usuarios)) {
+        const usuariosFiltrados = response.data.usuarios.filter(usuario => usuario.rol === 'usuario');
+        setUsuarios(usuariosFiltrados);
       } else {
-        console.error("La respuesta de la API no contiene un array de empleados válido:", response.data);
+        console.error("La respuesta de la API no contiene un array de usuarios válido:", response.data);
       }
     } catch (error) {
-      console.error("Error al obtener empleados:", error);
+      console.error("Error al obtener usuarios:", error);
     }
   };
 
-  //api para  borrar datos  "delete"
 
-  const borrarEmpleado = async (id) => {
+
+  //api para borrar datos  "delete"
+
+  const borrarUsuario = async (id) => {
     try {
-      await axios.delete(`http://localhost:3001/api/deleteEmpleado/${id}`);
-      getEmpleados(); // Actualizar la lista de usuarios después de eliminar
+      await axios.delete(`http://localhost:3001/api/deleteUsuario/${id}`);
+      getUsuarios(); // Actualizar la lista de usuarios después de eliminar
       cambiarEstadoMessagesRemove(true);
-      console.log("Empleado eliminado correctamente");
+      console.log("Usuario eliminado correctamente");
     } catch (error) {
-      console.error("Error al eliminar el empleado:", error);
+      console.error("Error al eliminar usuario:", error);
     }
   };
 
 
   // actualizar datos  update 
 
-  const [empleadoEditado, setEmpleadoEditado] = useState({
+  const [usuarioEditado, setUsuarioEditado] = useState({
+    rol:'',
     nombre: '',
     apellido: '',
     telefono: '',
     correo: '',
     años: '',
-    genero:'',
-    direccion:''
+    genero: '',
+    direccion: ''
   });
-  
-  const handleEditClick = (empleado) => {
-    setEmpleadoEditado({
-      // rol: usuario.rol,
-      nombre: empleado.nombre,
-      apellido: empleado.apellido,
-      correo: empleado.correo,
-      direccion: empleado.direccion,
-      telefono: empleado.telefono,
-      años: empleado.años,
-      _id: empleado._id
+
+  const handleEditClick = (usuario) => {
+    setUsuarioEditado({
+      rol: usuario.rol,
+      nombre: usuario.nombre,
+      apellido: usuario.apellido,
+      correo: usuario.correo,
+      direccion: usuario.direccion,
+      telefono: usuario.telefono,
+      años: usuario.años,
+      _id: usuario._id
     });
     cambiarEstadoModal(true);
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setEmpleadoEditado((prevState) => ({
+    setUsuarioEditado((prevState) => ({
       ...prevState,
       [name]: value
     }));
   };
-  
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(`http://localhost:3001/api/updateEmpleado/${empleadoEditado._id}`, empleadoEditado);
+      const response = await axios.put(`http://localhost:3001/api/updateUsuario/${usuarioEditado._id}`, usuarioEditado);
       console.log("Respuesta de la API:", response.data); // Mostrar la respuesta completa en la consola
-      getEmpleados();
+      getUsuarios();
       cambiarEstadoMes(true);
       setTimeout(() => {
         window.location.reload();
-      }, 2000); 
+      }, 2000);
     } catch (error) {
-      console.error("Error al actualizar empleado:", error);
+      console.error("Error al actualizar usuario:", error);
     }
   };
+
 
   return (
     <main id='main_list'>
@@ -138,30 +143,37 @@ export const Staff = () => {
       <Modal estado={estadoModal1} cambiarEstado={cambiarEstadoModal} titulo='Update Staff' >
         <Contenido>
 
-          <form  onSubmit={handleFormSubmit}>
+          <form onSubmit={handleFormSubmit}>
           <div>
+              <label htmlFor="rol">Rol</label>
+              <select className='seleccion' name="rol" value={usuarioEditado.rol} onChange={handleInputChange}>
+                <option value="administrador">Administrador</option>
+                <option value="usuario">Usuario</option>
+              </select>
+            </div>
+            <div>
               <label htmlFor="nombre">Name</label>
-              <input type="text" name="nombre" value={empleadoEditado.nombre} onChange={handleInputChange} />
+              <input type="text" name="nombre" value={usuarioEditado.nombre} onChange={handleInputChange} />
             </div>
             <div>
               <label htmlFor="apellido">Last name</label>
-              <input type="text" name="apellido" value={empleadoEditado.apellido} onChange={handleInputChange} />
+              <input type="text" name="apellido" value={usuarioEditado.apellido} onChange={handleInputChange} />
             </div>
             <div>
               <label htmlFor="direccion">Address</label>
-              <input type="text" name="direccion" value={empleadoEditado.direccion} onChange={handleInputChange} />
+              <input type="text" name="direccion" value={usuarioEditado.direccion} onChange={handleInputChange} />
             </div>
             <div>
               <label htmlFor="telefono">Cell phone</label>
-              <input type="number" name="telefono" value={empleadoEditado.telefono} onChange={handleInputChange} />
+              <input type="number" name="telefono" value={usuarioEditado.telefono} onChange={handleInputChange} />
             </div>
             <div>
               <label htmlFor="correo">Email</label>
-              <input type="email" name="correo" value={empleadoEditado.correo} onChange={handleInputChange} />
+              <input type="email" name="correo" value={usuarioEditado.correo} onChange={handleInputChange} />
             </div>
             <div>
               <label htmlFor="años">Age</label>
-              <input type="number" name="años" value={empleadoEditado.años} onChange={handleInputChange} />
+              <input type="number" name="años" value={usuarioEditado.años} onChange={handleInputChange} />
             </div>
             <div id='buttonModel'>
               <button type='submit'>Update</button>
@@ -177,6 +189,7 @@ export const Staff = () => {
             <tr>
               <td className="td_value">Id</td>
               <td className="td_value">Name</td>
+              <td className="td_value">Rol</td>
               <td className="td_value">Last name</td>
               <td className="td_value">Age</td>
               <td className="td_value">Phone</td>
@@ -187,17 +200,18 @@ export const Staff = () => {
 
           <tbody>
 
-            {empleados.map((empleado) => (
-              <tr key={empleado._id} className="tr_info">
-                <td>{empleado._id}</td>
-                <td>{empleado.nombre}</td>
-                <td>{empleado.apellido}</td>
-                <td>{empleado.años}</td>
-                <td>{empleado.telefono}</td>
-                <td>{empleado.direccion}</td>
-                <td>{empleado.correo}</td>
-                <td><button className="button_actua" onClick={() => handleEditClick(empleado)}>Update</button></td>
-                <td><IoMdTrash className='delete' onClick={() => borrarEmpleado(empleado._id)} /></td>
+            {usuarios.map((usuario) => (
+              <tr key={usuario._id} className="tr_info">
+                <td>{usuario._id}</td>
+                <td>{usuario.nombre}</td>
+                <td>{usuario.rol}</td>
+                <td>{usuario.apellido}</td>
+                <td>{usuario.años}</td>
+                <td>{usuario.telefono}</td>
+                <td>{usuario.direccion}</td>
+                <td>{usuario.correo}</td>
+                <td><button className="button_actua" onClick={() => handleEditClick(usuario)}>Update</button></td>
+                <td><IoMdTrash className='delete' onClick={() => borrarUsuario(usuario._id)} /></td>
               </tr>
             ))}
 

@@ -23,16 +23,16 @@ export const CreateUserList = () => {
         setRadioValue(e.target.value);
     };
     // guardamos el usuario 
-    const guardarEmpleado = async (empleado) => {
+    const guardarUsuario = async (usuario) => {
         try {
-            const response = await axios.post('http://localhost:3001/api/guardarEmpleado', empleado);
-            if (response.data.message === "Empleado guardado") {
-                console.log("Empleado guardado correctamente");
+            const response = await axios.post('http://localhost:3001/api/guardarUsuario', usuario);
+            if (response.data.message === "Usuario guardado") {
+                console.log("Usuario guardado correctamente");
             } else {
-                console.error("Error al guardar empleado:", response.data.message);
+                console.error("Error al guardar Usuario:", response.data.message);
             }
         } catch (error) {
-            console.error("Error al guardar empleado:", error);
+            console.error("Error al guardar Usuario:", error);
         }
     };
     const [estadoMes, cambiarEstadoMes] = useState(false);
@@ -57,6 +57,7 @@ export const CreateUserList = () => {
                 <div className='conteFormulario'>
                 <Formik
                         initialValues={{
+                            rol:'',
                             name: '',
                             last_name: '',
                             cell_phone: '',
@@ -90,7 +91,8 @@ export const CreateUserList = () => {
                                 .integer('Must be an integer'),
                         })}
                         onSubmit={(values, { resetForm }) => {
-                            const nuevoEmpleado = {
+                            const nuevoUsuario = {
+                                rol:values.rol,
                                 nombre: values.name,
                                 apellido: values.last_name,
                                 telefono: values.cell_phone,
@@ -100,11 +102,20 @@ export const CreateUserList = () => {
                                 genero: radioValue,
                                 direccion:values.direccion
                             };
-                            guardarEmpleado(nuevoEmpleado);
+                            guardarUsuario(nuevoUsuario);
                             resetForm();
                         }}
                     >
                         <Form>
+                            <div>
+                                <label htmlFor="role">Rol</label>
+                                <Field as="select" name="rol" className="seleccion">
+                                    <option value="" label="Select role" disabled hidden />
+                                    <option value="usuario" label="usuario" />
+                                  
+                                </Field>
+                                <ErrorMessage name="role" component="div" className="error" />
+                            </div>
                             <div>
                                 <label htmlFor="name">Name</label>
                                 <Field type="text" name="name" />

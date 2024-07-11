@@ -1,5 +1,5 @@
 import './modulos/App.css';
-import { Link, Outlet, Routes, Route, Navigate } from 'react-router-dom';
+import { Link, Outlet, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import React, {  useContext, useState } from 'react';
 import { IoMdPerson, IoMdMenu, IoMdClipboard, IoMdCalendar, IoIosPerson, IoIosBookmarks, IoMdExit } from 'react-icons/io';
 
@@ -12,6 +12,8 @@ import { HeaderUser } from './modulos/CreateUserList';
 import { Preloader } from './modulos/Preloader';
 import { UserContext } from './modulos/UserContext';
 
+
+// import { UserContext } from "./UserContext";
 
 
 
@@ -34,6 +36,8 @@ function App() {
 
   const [claseActiva, setClaseActiva] = useState(false);
   const [selectedItems, setSelectedItem] = useState(null);
+  const { logout } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const addClasse = () => {
     setClaseActiva(!claseActiva);
@@ -47,6 +51,14 @@ function App() {
   let link = `item_link ${claseActiva ? 'active' : ''}`;
   let item = `item_text ${claseActiva ? 'active' : ''}`;
   let icon = `item_icon ${claseActiva ? 'active' : ''}`;
+
+  const handleLogout = async (e) => {
+    e.preventDefault(); // Prevenir la acción por defecto del enlace
+    await logout(); // Llamar a la función de logout del contexto
+    navigate('/'); // Redirigir al usuario a la página de login
+  };
+
+
 
   if (!user){
     return <div>No user logged</div>
@@ -143,7 +155,7 @@ function App() {
             <div className='bottom_content'>
 
               <li className='item_list'>
-                <Link to='/' className={link}>
+                <Link  onClick={handleLogout} className={link}>
 
                   <IoMdExit className={icon} />
                   <span className={item}>Exit</span>
