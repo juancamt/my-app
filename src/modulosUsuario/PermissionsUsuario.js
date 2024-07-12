@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState,useContext,useEffect } from 'react'
 import { IoMdPerson, IoMdNotifications,IoMdTrash,IoMdClipboard} from 'react-icons/io';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.module.css'
+import axios from 'axios';
+import { UserContext } from '../modulos/UserContext';  
 
 
 export const HeaderPermissionsUsuario = () => {
@@ -28,25 +30,71 @@ export const HeaderPermissionsUsuario = () => {
 };
 export function PermissionsUsuario() {
 
+  const { user } = useContext(UserContext);  // Obtén el usuario del contexto
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-
-
-
   const [textareaContent, setTextareaContent] = useState('');
   const [savedEntries, setSavedEntries] = useState([]);
 
-  const saveEntry = () => {
-    setSavedEntries([
-      ...savedEntries,
-      { startDate, endDate, content: textareaContent }
-    ]);
-    // resetear  los valores del textarea
+  const saveEntry = async () => {
+    try {
+      const newEntry = {
+        startDate,
+        endDate,
+        content: textareaContent,
+        userId: user._id  // Asumiendo que user._id contiene el ID del usuario
+      };
+      // Hacer la solicitud POST al backend para guardar el permiso
+      const response = await axios.post('http://localhost:3001/api/guardarPermiso', newEntry ,{withCredentials:true} );
 
-    setTextareaContent('');
+      // Agregar la entrada guardada al estado de entradas
+      setSavedEntries([...savedEntries, response.data]);
+
+      // Reiniciar los valores del formulario
+      setPermisos([...permisos, response.data]);
+      setStartDate(new Date());
+      setEndDate(new Date());
+      setTextareaContent('');
+    } catch (error) {
+      console.error('Error al guardar permiso:', error);
+    }
   };
+// mostrar los permisos guardados 
+const [permisos, setPermisos] = useState([]);
+const [error, setError] = useState('');
+  useEffect(() => {
+    const fetchPermisos = async () => {
+        try {
+            const response = await axios.get(
+                'http://localhost:3001/api/mostrarPermisos',
+                { withCredentials: true }
+            );
+            setPermisos(response.data);
+        } catch (error) {
+            setError('Error al cargar los permisos');
+        }
+    };
+
+    fetchPermisos();
+}, []);
+
+if (error) {
+    return <p>{error}</p>;
+}
+// borrar el permiso
+const deleteEntry = async (permisoId) => {
+  try {
+    await axios.delete(`http://localhost:3001/api/borrarPermisos/${permisoId}`, { withCredentials: true });
+    const updatedPermisos = permisos.filter((permiso) => permiso._id !== permisoId);
+    setPermisos(updatedPermisos);
+  } catch (error) {
+    console.error('Error al eliminar permiso:', error);
+  }
+};
+
 
   const formatDate = (date) => {
+    date = new Date(date)
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
@@ -89,8 +137,8 @@ export function PermissionsUsuario() {
       </div>
 
       <div className='conteList'>
-        {savedEntries.map((dates, index) => (
-          <div key={index} className='conteInfoDateUsuario'>
+        {permisos.map((permiso) => (
+          <div key={permiso._id} className='conteInfoDateUsuario'>
             <header className='headerDate' >
 
               <h3>Motivo de Permiso</h3>
@@ -98,10 +146,10 @@ export function PermissionsUsuario() {
               <h3>Fecha de Fin</h3>
             </header>
             <div className="contedaP">
-              <p> {dates.content}</p>
-              <p> {formatDate(dates.startDate)}</p>
-              <p> {formatDate(dates.endDate)}</p>
-              <IoMdTrash className='trash' />
+              <p> {permiso.content}</p>
+              <p> {formatDate(permiso.startDate)}</p>
+              <p> {formatDate(permiso.endDate)}</p>
+              <IoMdTrash className='trash' onClick={() => deleteEntry(permiso._id)} />
             </div>
           </div>
         ))}
