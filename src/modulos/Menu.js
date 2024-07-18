@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Link, Outlet, Routes, Route } from 'react-router-dom';
+import { Link, Outlet, Routes, Route, useNavigate } from 'react-router-dom';
 import { IoMdPerson, IoMdMenu, IoMdClipboard, IoMdCalendar, IoIosBookmarks, IoMdExit } from 'react-icons/io';
 import { HeaderUsuario } from '../modulosUsuario/PerfilUsuario';
 import { HeaderPermissionsUsuario } from '../modulosUsuario/PermissionsUsuario';
@@ -41,6 +41,15 @@ export function Menu() {
         let link = `item_link ${claseActiva ? 'active' : ''}`;
         let item = `item_text ${claseActiva ? 'active' : ''}`;
         let icon = `item_icon ${claseActiva ? 'active' : ''}`;
+
+        const { logout } = useContext(UserContext);
+        const navigate = useNavigate();
+
+        const handleLogout = async (e) => {
+            e.preventDefault(); // Prevenir la acción por defecto del enlace
+            await logout(); // Llamar a la función de logout del contexto
+            navigate('/'); // Redirigir al usuario a la página de login
+          };
         
         if (!user){
           return <div>No user logged</div>
@@ -124,7 +133,9 @@ export function Menu() {
                         <div className='bottom_content'>
 
                             <li className='item_list'>
-                                <Link to='/' className={link} onClick={() => showPreloader()}>
+                                <Link  className={link} onClick={
+                                    handleLogout
+                                }>
 
                                     <IoMdExit className={icon} />
                                     <span className={item}>Exit</span>

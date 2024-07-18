@@ -471,7 +471,7 @@ body {
     content: '';
     position: absolute;
     height: 40px;
-    width: 95%;
+    width: 99%;
     z-index: 1;
     border-radius: 50px;
     box-shadow: 0 0 10px 1px;
@@ -694,16 +694,17 @@ body {
     flex-direction: column;
     align-items: center;
     height: 300px;
-    width: 80%;
+    width: 90%;
     background: var(--nav-color);
     box-shadow: 0 0 20px;
     border-radius: 20px;
     overflow: hidden;
+
 }
 
 .conteInfoPermissions table {
     position: relative;
-    width: 500px;
+    width:90%;
 }
 
 .conteInfoPermissions table thead {
@@ -720,19 +721,28 @@ body {
 .contenidoParrafo {
     position: relative;
     height: 70%;
-    width: 80%;
+    width: 90%;
     margin: 10px;
     border: 1px solid var(--border-input-color);
     overflow: hidden;
     margin-bottom: 20px;
 }
+.td_value{
 
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 40px;
+}
 #message {
 
-    transform: translate(-175px, 5px);
+    transform: translate(-249px, 5px);
     position: relative;
+    
     margin-bottom: 10px;
     color: var(--principal-color);
+
 }
 
 .contenidoParrafo p {
@@ -797,7 +807,6 @@ body {
     height: 35px;
     border-radius: 20px;
     padding-left: 10px;
-    background: none;
 }
 
 .NoAutorizado button{

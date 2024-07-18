@@ -34,7 +34,7 @@ export function PermissionsUsuario() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [textareaContent, setTextareaContent] = useState('');
-  const [savedEntries, setSavedEntries] = useState([]);
+  const [savedEntries, setSavedEntries] = useState([]); 
 
   const saveEntry = async () => {
     try {
@@ -58,8 +58,7 @@ export function PermissionsUsuario() {
     } catch (error) {
       console.error('Error al guardar permiso:', error);
     }
-  };
-// mostrar los permisos guardados 
+  };// mostrar los permisos guardados 
 const [permisos, setPermisos] = useState([]);
 const [error, setError] = useState('');
   useEffect(() => {
@@ -77,6 +76,7 @@ const [error, setError] = useState('');
 
     fetchPermisos();
 }, []);
+
 
 if (error) {
     return <p>{error}</p>;

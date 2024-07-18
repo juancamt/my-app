@@ -1,4 +1,6 @@
 import './App.css';
+import axios from 'axios';
+import React, {useEffect,useState} from 'react'; 
 import { IoMdPerson, IoIosSearch, IoMdNotifications } from 'react-icons/io';
 
 
@@ -26,50 +28,36 @@ export const HeaderPermissions = () => {
   );
 };
 export const Permissions = () => {
+
+  // mostrar los permisos guardados 
+const [permisos, setPermisos] = useState([]);
+const [error, setError] = useState('');
+
+useEffect(() => {
+  const fetchPermisos = async () => {
+    try {
+      const response = await axios.get('http://localhost:3001/api/listarPermisos', { withCredentials: true });
+      setPermisos(response.data);
+    } catch (error) {
+      setError('Error al cargar los permisos');
+    }
+  };
+
+    fetchPermisos();
+}, []);
+ 
+
+if (error) {
+    return <p>{error}</p>;
+}
   return (
     <main id='main_list'>
 
 
-      <div className='contePermissions'>
+      <div className='contePermissions'  >
+    {permisos.map((permiso)=>(
 
-        <div className='conteInfoPermissions'>
-
-          <table>
-            <thead>
-              <tr>
-                <td className='td_info'>ID</td>
-                <td className='td_info'>Name</td>
-                <td className='td_info'>Last Name</td>
-                <td className='td_info'>Fecha Inicio</td>
-                <td className='td_info'>Fecha Fin</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className='td_value'>5842</td>
-                <td className='td_value'>Jose</td>
-                <td className='td_value'>Alvares</td>
-                <td className='td_value'>4/02/2024</td>
-                <td className='td_value'>6/02/2024</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <h4 id='message'>Motivo de permiso:</h4>
-          <div className='contenidoParrafo'>
-            <p>contenido del permiso....    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eligendi repellendus, quas ut exercitationem blanditiis quibusdam accusantium, velit nostrum dolorem doloribus aliquid tempora porro commodi inventore nobis! Voluptatem, distinctio?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eligendi repellendus, quas ut exercitationem blanditiis quibusdam accusantium, velit nostrum dolorem doloribus aliquid tempora porro commodi inventore nobis! Voluptatem, distinctio?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eligendi repellendus, quas ut exercitationem blanditiis quibusdam accusantium, velit nostrum dolorem doloribus aliquid tempora porro commodi inventore nobis! Voluptatem, distinctio?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eligendi repellendus, quas ut exercitationem blanditiis quibusdam accusantium, velit nostrum dolorem doloribus aliquid tempora porro commodi inventore nobis! Voluptatem, distinctio?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eligendi repellendus, quas ut exercitationem blanditiis quibusdam accusantium, velit nostrum dolorem doloribus aliquid tempora porro commodi inventore nobis! Voluptatem, distinctio?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eligendi repellendus, quas ut exercitationem blanditiis quibusdam accusantium, velit nostrum dolorem doloribus aliquid tempora porro commodi inventore nobis! Voluptatem, distinctio?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eligendi repellendus, quas ut exercitationem blanditiis quibusdam accusantium, velit nostrum dolorem doloribus aliquid tempora porro commodi inventore nobis! Voluptatem, distinctio?
-
-            </p>
-          </div>
-
-        </div>
-        <div className='conteInfoPermissions'>
+        <div className='conteInfoPermissions' key={permiso._id}>
 
           <table>
             <thead>
@@ -83,67 +71,24 @@ export const Permissions = () => {
             </thead>
             <tbody>
               <tr>
-                <td className='td_value'>5842</td>
-                <td className='td_value'>Jose</td>
-                <td className='td_value'>Alvares</td>
-                <td className='td_value'>4/02/2024</td>
-                <td className='td_value'>6/02/2024</td>
+                <td className='td_value'>{permiso._id}</td>
+                <td className='td_value'>{permiso.user.nombre}</td>
+                <td className='td_value'>{permiso.user.apellido}</td>
+                <td className='td_value'>{permiso.startDate}</td>
+                <td className='td_value'>{permiso.endDate}</td>
               </tr>
             </tbody>
           </table>
 
           <h4 id='message'>Motivo de permiso:</h4>
           <div className='contenidoParrafo'>
-            <p>contenido del permiso....    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eligendi repellendus, quas ut exercitationem blanditiis quibusdam accusantium, velit nostrum dolorem doloribus aliquid tempora porro commodi inventore nobis! Voluptatem, distinctio?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eligendi repellendus, quas ut exercitationem blanditiis quibusdam accusantium, velit nostrum dolorem doloribus aliquid tempora porro commodi inventore nobis! Voluptatem, distinctio?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eligendi repellendus, quas ut exercitationem blanditiis quibusdam accusantium, velit nostrum dolorem doloribus aliquid tempora porro commodi inventore nobis! Voluptatem, distinctio?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eligendi repellendus, quas ut exercitationem blanditiis quibusdam accusantium, velit nostrum dolorem doloribus aliquid tempora porro commodi inventore nobis! Voluptatem, distinctio?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eligendi repellendus, quas ut exercitationem blanditiis quibusdam accusantium, velit nostrum dolorem doloribus aliquid tempora porro commodi inventore nobis! Voluptatem, distinctio?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eligendi repellendus, quas ut exercitationem blanditiis quibusdam accusantium, velit nostrum dolorem doloribus aliquid tempora porro commodi inventore nobis! Voluptatem, distinctio?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eligendi repellendus, quas ut exercitationem blanditiis quibusdam accusantium, velit nostrum dolorem doloribus aliquid tempora porro commodi inventore nobis! Voluptatem, distinctio?
-              
-            </p>
+            <p>{permiso.content}</p>
           </div>
 
         </div>
-        <div className='conteInfoPermissions'>
+        
 
-          <table>
-            <thead>
-              <tr>
-                <td className='td_info'>ID</td>
-                <td className='td_info'>Name</td>
-                <td className='td_info'>Last Name</td>
-                <td className='td_info'>Fecha Inicio</td>
-                <td className='td_info'>Fecha Fin</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className='td_value'>5842</td>
-                <td className='td_value'>Jose</td>
-                <td className='td_value'>Alvares</td>
-                <td className='td_value'>4/02/2024</td>
-                <td className='td_value'>6/02/2024</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <h4 id='message'>Motivo de permiso:</h4>
-          <div className='contenidoParrafo'>
-            <p>contenido del permiso....    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eligendi repellendus, quas ut exercitationem blanditiis quibusdam accusantium, velit nostrum dolorem doloribus aliquid tempora porro commodi inventore nobis! Voluptatem, distinctio?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eligendi repellendus, quas ut exercitationem blanditiis quibusdam accusantium, velit nostrum dolorem doloribus aliquid tempora porro commodi inventore nobis! Voluptatem, distinctio?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eligendi repellendus, quas ut exercitationem blanditiis quibusdam accusantium, velit nostrum dolorem doloribus aliquid tempora porro commodi inventore nobis! Voluptatem, distinctio?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eligendi repellendus, quas ut exercitationem blanditiis quibusdam accusantium, velit nostrum dolorem doloribus aliquid tempora porro commodi inventore nobis! Voluptatem, distinctio?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eligendi repellendus, quas ut exercitationem blanditiis quibusdam accusantium, velit nostrum dolorem doloribus aliquid tempora porro commodi inventore nobis! Voluptatem, distinctio?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eligendi repellendus, quas ut exercitationem blanditiis quibusdam accusantium, velit nostrum dolorem doloribus aliquid tempora porro commodi inventore nobis! Voluptatem, distinctio?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eligendi repellendus, quas ut exercitationem blanditiis quibusdam accusantium, velit nostrum dolorem doloribus aliquid tempora porro commodi inventore nobis! Voluptatem, distinctio?
-
-            </p>
-          </div>
-
-        </div>
-
+        ))}
       </div>
     </main>
 
