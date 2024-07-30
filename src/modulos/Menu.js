@@ -15,7 +15,7 @@ export function Menu() {
 
     
     const [claseActiva, setClaseActiva] = useState(false);
-    const [selectedItems, setSelectedItem] = useState(null);
+    const [selectedItems, setSelectedItem] = useState('item1');
     
     const [loading, setLoading] = useState(false);
     
@@ -80,7 +80,7 @@ export function Menu() {
 
                         <IoMdMenu id='icon_nav' onClick={addClasse} className={`iconNav ${classPrincipal}`} />
 
-                        <img src="\imagenes\user-2.jpeg" alt="" className={`img_user ${classPrincipal}`} />
+                        <img src="\imagenes\user-1.jpeg" alt="" className={`img_user ${classPrincipal}`} />
                         <span className={`text_user ${classPrincipal}`}>{user.nombre}</span>
 
                     </header>

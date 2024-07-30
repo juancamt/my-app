@@ -82,7 +82,17 @@ const [error, setError] = useState('');
 
     vacionesGet();
 }, []);
-  // mostrar las vacaciones guardados 
+
+  // eliminar vacaciones 
+  const deleteVacation = async (vacacionesId) => {
+    try {
+      await axios.delete(`http://localhost:3001/api/borrarVacaciones/${vacacionesId}`, { withCredentials: true });
+      const updatedVacation = vacaciones.filter((vacaciones) => vacaciones._id !== vacacionesId);
+      setVacaciones(updatedVacation);
+    } catch (error) {
+      console.error('Error al eliminar vacion:', error);
+    }
+  };
  
   const formatDate = (date) => {
     if (!date) return 'Fecha no disponible';
@@ -130,7 +140,7 @@ const [error, setError] = useState('');
             <h4 style={{ color: '#4095e5' }}>Fecha registrada</h4>
             <p>{formatDate(vacacion.fechaInicio)}</p>
             <p>{formatDate(vacacion.fechaFin)}</p>
-            <IoMdTrash className='trash' style={{ transform: 'translateY(40px)', position: 'absolute' }} />
+            <IoMdTrash className='trash' onClick={() => deleteVacation(vacacion._id)} style={{ transform: 'translateY(40px)', position: 'absolute' }} />
           </div>
         </div>
       ))}

@@ -35,7 +35,7 @@ function App() {
   };
 
   const [claseActiva, setClaseActiva] = useState(false);
-  const [selectedItems, setSelectedItem] = useState(null);
+  const [selectedItems, setSelectedItem] = useState('item1');
   const { logout } = useContext(UserContext);
   const navigate = useNavigate();
 
