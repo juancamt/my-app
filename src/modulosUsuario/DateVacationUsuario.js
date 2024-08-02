@@ -90,7 +90,7 @@ const [error, setError] = useState('');
       const updatedVacation = vacaciones.filter((vacaciones) => vacaciones._id !== vacacionesId);
       setVacaciones(updatedVacation);
     } catch (error) {
-      console.error('Error al eliminar vacion:', error);
+      console.error('Error al eliminar vacacion:', error);
     }
   };
  
