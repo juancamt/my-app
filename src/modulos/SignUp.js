@@ -7,6 +7,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Messages from './Messages';
 import './SignUp.css';
+import { useNavigate } from 'react-router-dom';
 
 function SignUp() {
     const [radioValue, setRadioValue] = useState("");
@@ -28,7 +29,7 @@ function SignUp() {
         }
     };
     const [estadoMes, cambiarEstadoMes] = useState(false);
-
+    const navigate = useNavigate();
     return (
         <div className="container">
             <Messages
@@ -96,6 +97,7 @@ function SignUp() {
                             };
                             guardarUsuario(nuevoUsuario);
                             resetForm();
+                            navigate('/'); // Redirige a la ruta de inicio
                         }}
                     >
                         <Form>

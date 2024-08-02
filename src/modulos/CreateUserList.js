@@ -7,6 +7,7 @@ import Messages from './Messages';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from 'axios';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 
 
 export const HeaderUser = () => {
@@ -36,6 +37,7 @@ export const CreateUserList = () => {
         }
     };
     const [estadoMes, cambiarEstadoMes] = useState(false);
+    const navigate = useNavigate();
 
 
     return (
@@ -104,6 +106,7 @@ export const CreateUserList = () => {
                             };
                             guardarUsuario(nuevoUsuario);
                             resetForm();
+                            navigate('/administrador/UserList'); // Redirige a la ruta de inicio
                         }}
                     >
                         <Form>
