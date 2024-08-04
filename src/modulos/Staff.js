@@ -29,6 +29,8 @@ export const Staff = () => {
   const [estadoMessagesRemove, cambiarEstadoMessagesRemove] = useState(false);
   const [filteredUsuarios, setFilteredUsuarios] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [userStatus, setUserStatus] = useState({});
+
 
   //api para llamar datos  "get"
 
@@ -45,6 +47,26 @@ export const Staff = () => {
         const usuariosFiltrados = response.data.usuarios.filter(usuario => usuario.rol === 'usuario');
         setUsuarios(usuariosFiltrados);
         setFilteredUsuarios(usuariosFiltrados);
+
+        const statuses = await Promise.all(usuariosFiltrados.map(async (usuario) => {
+          try {
+            const res = await axios.get(`http://localhost:3001/isOnline/${usuario._id}`, { withCredentials: true });
+            console.log(`Online status for user ${usuario._id}:`, res.data);
+            return { id: usuario._id, isOnline: res.data.isOnline };
+          } catch (error) {
+            console.error(`Error fetching online status for user ${usuario._id}:`, error);
+            return { id: usuario._id, isOnline: false }; // Default to offline on error
+          }
+        }));
+
+        // Crear un objeto de estado de usuarios en línea
+        const statusMap = statuses.reduce((acc, { id, isOnline }) => {
+          acc[id] = isOnline;
+          return acc;
+        }, {});
+        console.log("User status map:", statusMap);
+
+        setUserStatus(statusMap);
       } else {
         console.error("La respuesta de la API no contiene un array de usuarios válido:", response.data);
       }
@@ -235,6 +257,9 @@ export const Staff = () => {
                 <td>{usuario.correo}</td>
                 <td><button className="button_actua" onClick={() => handleEditClick(usuario)}>Update</button></td>
                 <td><IoMdTrash className='delete' onClick={() => borrarUsuario(usuario._id)} /></td>
+                <td style={{ color: userStatus[usuario._id] ? 'green' : 'red' }}>
+                {userStatus[usuario._id] ? 'Online' : 'Offline'}
+              </td>
               </tr>
             ))}
 
