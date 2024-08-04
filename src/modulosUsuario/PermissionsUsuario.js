@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.module.css'
 import axios from 'axios';
 import { UserContext } from '../modulos/UserContext';  
+import toast, { Toaster } from 'react-hot-toast';
 
 
 export const HeaderPermissionsUsuario = () => {
@@ -51,6 +52,7 @@ export function PermissionsUsuario() {
 
       // Agregar la entrada guardada al estado de entradas
       setSavedEntries([...savedEntries, response.data]);
+      toast.success('The permission was saved successfully!')
 
       // Reiniciar los valores del formulario
       setPermisos([...permisos, response.data]);
@@ -87,6 +89,14 @@ const deleteEntry = async (permisoId) => {
     await axios.delete(`http://localhost:3001/api/borrarPermisos/${permisoId}`, { withCredentials: true });
     const updatedPermisos = permisos.filter((permiso) => permiso._id !== permisoId);
     setPermisos(updatedPermisos);
+    toast('The permission was deleted successfully ', {
+      icon: <IoMdTrash 
+        style={{ 
+          color: 'red', 
+          fontSize: '20px' 
+        }}
+      />
+    });
   } catch (error) {
     console.error('Error al eliminar permiso:', error);
   }
@@ -103,7 +113,10 @@ const deleteEntry = async (permisoId) => {
   return (
 
     <div className='conteP'>
-
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+      />
       <div className='conteDate'>
 
         <DatePicker className='fechas'

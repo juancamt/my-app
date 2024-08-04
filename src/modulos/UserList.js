@@ -1,7 +1,7 @@
 import './App.css';
 import { IoMdPerson, IoMdTrash, IoIosSearch, IoMdNotifications, IoIosAddCircle } from 'react-icons/io';
 import { Link } from 'react-router-dom';
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from './Modal';
 import styled from 'styled-components';
 import Messages, { MessagesRemove } from './Messages';
@@ -19,13 +19,12 @@ export const Headerlist = () => {
       </div>
 
       <div className="list_header">
-      
+
         <Link to="/administrador/CreateUserList">
           <IoIosAddCircle id='addUser' />
         </Link>
         <IoMdNotifications id='notificacion' />
       </div>
-      {/* Pasa la lista filtrada como prop al componente UserList */}
     </header>
 
   );
@@ -33,6 +32,8 @@ export const Headerlist = () => {
 
 export const UserList = () => {
   const [usuarios, setUsuarios] = useState([]);
+  const [filteredUsuarios, setFilteredUsuarios] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [estadoModal1, cambiarEstadoModal] = useState(false);
   const [estadoMes, cambiarEstadoMes] = useState(false);
   const [estadoMessagesRemove, cambiarEstadoMessagesRemove] = useState(false);
@@ -50,6 +51,7 @@ export const UserList = () => {
       if (response.data.usuarios && Array.isArray(response.data.usuarios)) {
         const usuariosFiltrados = response.data.usuarios.filter(usuario => usuario.rol === 'administrador');
         setUsuarios(usuariosFiltrados);
+        setFilteredUsuarios(usuariosFiltrados);
       } else {
         console.error("La respuesta de la API no contiene un array de usuarios válido:", response.data);
       }
@@ -112,13 +114,23 @@ export const UserList = () => {
       console.error("Error al actualizar usuario:", error);
     }
   };
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  useEffect(() => {
+    const filtered = usuarios.filter(user =>
+      `${user.nombre} ${user.apellido} ${user.correo}`.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredUsuarios(filtered);
+  }, [searchTerm, usuarios]);
 
 
-  
+
 
   return (
     <main id='main_list'>
-      
+
       <Messages
         estadoMessages={estadoMes}
         cambiarEstadoMessages={cambiarEstadoMes}
@@ -165,6 +177,23 @@ export const UserList = () => {
 
 
       <div className='conte_user'>
+        <div
+        style={{
+          position: 'fixed',
+          top: '0px',
+          right:'70px'      
+        }}>
+
+          <IoIosSearch className='search' />
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className="search_input"
+          />
+        </div>
+
         <table className='blueTable'>
 
           <thead>
@@ -179,7 +208,7 @@ export const UserList = () => {
 
           <tbody>
 
-            {usuarios.map((usuario) => (
+            {filteredUsuarios.map((usuario) => (
               <tr key={usuario._id} className="tr_info">
                 <td>{usuario._id}</td>
                 <td>{usuario.rol}</td>
@@ -190,9 +219,6 @@ export const UserList = () => {
                 <td><IoMdTrash className='delete' onClick={() => borrarUsuario(usuario._id)} /></td>
               </tr>
             ))}
-     
-
-
 
           </tbody>
 

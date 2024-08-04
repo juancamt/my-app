@@ -538,7 +538,32 @@ body {
 /* ---------------------------main User_list---------------------------------------- */
 
 /* ---------------------------main CreateUser_list---------------------------------------- */
-
+.search{
+    position: absolute;
+    display: flex;
+    top: 0;
+    right: 0;
+    font-size: 25px;
+    color: var(--principal-color);
+    transform: translate(-280px, 12px);
+    z-index: 100;
+}   
+.search_input{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    right:20px;
+    top: 10px;
+    align-items: center;
+    width: 300px;
+    height: 30px;
+    border-radius: 50px;
+    border-color:var(--principal-color) ;
+    padding-left: 50px;
+    background: var(--nav-color);
+    color: var(--text-color);
+    z-index: 99;
+}
 .conteCreateUser {
     position: relative;
     background: var(--nav-color);
@@ -852,6 +877,32 @@ body {
         overflow-y: scroll;
         transition: all 0.5s linear;
 
+    }
+    .search{
+        position: absolute;
+        display: flex;
+        top: 0;
+        right: 0;
+        font-size: 25px;
+        color: var(--principal-color);
+        transform: translate(-180px, 12px);
+        z-index: 100;
+    }   
+    .search_input{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        right:20px;
+        top: 10px;
+        align-items: center;
+        width: 200px;
+        height: 30px;
+        border-radius: 50px;
+        border-color:var(--principal-color) ;
+        padding-left: 50px;
+        background: var(--nav-color);
+        color: var(--text-color);
+        z-index: 99;
     }
 
     #nav_header {

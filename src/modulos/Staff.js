@@ -17,13 +17,6 @@ export const HeaderStaff = () => {
 
       </div>
 
-      <div className="list_header">
-        <IoIosSearch id='search_header' />
-        <input type="text" placeholder="Search" id="search_input" />
-        <IoMdNotifications id='notificacion' />
-      </div>
-
-
     </header>
 
 
@@ -34,6 +27,8 @@ export const Staff = () => {
   const [estadoModal1, cambiarEstadoModal] = useState(false);
   const [estadoMes, cambiarEstadoMes] = useState(false);
   const [estadoMessagesRemove, cambiarEstadoMessagesRemove] = useState(false);
+  const [filteredUsuarios, setFilteredUsuarios] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   //api para llamar datos  "get"
 
@@ -49,6 +44,7 @@ export const Staff = () => {
       if (response.data.usuarios && Array.isArray(response.data.usuarios)) {
         const usuariosFiltrados = response.data.usuarios.filter(usuario => usuario.rol === 'usuario');
         setUsuarios(usuariosFiltrados);
+        setFilteredUsuarios(usuariosFiltrados);
       } else {
         console.error("La respuesta de la API no contiene un array de usuarios válido:", response.data);
       }
@@ -122,6 +118,17 @@ export const Staff = () => {
       console.error("Error al actualizar usuario:", error);
     }
   };
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  useEffect(() => {
+    const filtered = usuarios.filter(user =>
+      `${user.nombre} ${user.apellido} ${user.correo}`.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredUsuarios(filtered);
+  }, [searchTerm, usuarios]);
+
 
 
   return (
@@ -183,6 +190,22 @@ export const Staff = () => {
         </Contenido>
       </Modal>
       <div className='conte_user'>
+      <div
+        style={{
+          position: 'fixed',
+          top: '0px',
+          right:'70px'      
+        }}>
+
+          <IoIosSearch className='search' />
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className="search_input"
+          />
+        </div>
         <table className='blueTable'>
 
           <thead>
@@ -200,7 +223,7 @@ export const Staff = () => {
 
           <tbody>
 
-            {usuarios.map((usuario) => (
+            {filteredUsuarios.map((usuario) => (
               <tr key={usuario._id} className="tr_info">
                 <td>{usuario._id}</td>
                 <td>{usuario.nombre}</td>

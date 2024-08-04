@@ -15,13 +15,6 @@ export const HeaderDAte = () => {
 
       </div>
 
-      <div className="list_header">
-        <IoIosSearch id='search_header' />
-        <input type="text" placeholder="Search" id="search_input" />
-        <IoMdNotifications id='notificacion' />
-      </div>
-
-
     </header>
 
 
@@ -31,6 +24,8 @@ export const DateVacation = () => {
 
   const [vacaciones, setVacaciones] = useState([]);
   const [error, setError] = useState('');
+  const [filteredVacaciones, setFilteredVacaciones] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchVacaciones = async () => {
@@ -45,13 +40,38 @@ export const DateVacation = () => {
     fetchVacaciones();
   }, []);
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  useEffect(() => {
+    const filtered = vacaciones.filter(vacacioN =>
+      `${vacacioN.user.nombre} ${vacacioN.user.apellido} `.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredVacaciones(filtered);
+  }, [searchTerm, vacaciones]);
 
   return (
     <main id='main_list'>
 
       <div className='conteinerDAte'>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-        {vacaciones.map((vacacione) => (
+        <div style={{
+          position: 'fixed',
+          top: '0px',
+          right: '20px'
+        }}>
+
+          <IoIosSearch className='search' />
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className="search_input"
+          />
+        </div>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {filteredVacaciones.map((vacacione) => (
           <div className='conteInfoDate' key={vacacione._id}>
             <table>
               <thead>
