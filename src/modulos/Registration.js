@@ -101,56 +101,42 @@ export const Registration = () => {
 
         {filteredRegistro.map((reg) => (
 
-          <div key={reg._id} className='conteInfoDate'>
-
-            <table>
-              <thead>
-                <tr>
-                  <td className='td_infoDate'>ID</td>
-                  <td className='td_infoDate'>Name</td>
-                  <td className='td_infoDate'>Last Name</td>
-                  <td className='td_infoDate'>Fecha Inicio</td>
-                  <td className='td_infoDate'>Hora ingreso</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className='td_valueDate'>{reg.user._id}</td>
-                  <td className='td_valueDate'>{reg.user.nombre}</td>
-                  <td className='td_valueDate'>{reg.user.apellido}</td>
-                  <td className='td_valueDate'>{formatDate(reg.fechaInicio)}</td>
-                  <td className='td_valueDate'>{formatTime(reg.fechaInicio)}</td>
-                </tr>
-              </tbody>
-            </table>
+    
+          <div className="table-wrapper" key={reg._id}>
+            <div className="table-header">
+              <div className="table-cell">ID</div>
+              <div className="table-cell">NAME</div>
+              <div className="table-cell">LAST NAME</div>
+              <div className="table-cell">FECHA INICIO</div>
+              <div className="table-cell">HORA INGRESO</div>
+            </div>
+            <div className="table-row">
+              <div className="table-cell">{reg.user._id}</div>
+              <div className="table-cell">{reg.user.nombre}</div>
+              <div className="table-cell">{reg.user.apellido}</div>
+              <div className="table-cell">{formatDate(reg.fechaInicio)}</div>
+              <div className="table-cell" >{formatTime(reg.fechaInicio)}</div>
+            </div>
 
           </div>
         ))}
         {registroSalida.map((regSalida) => (
 
-          <div key={regSalida._id} className='conteInfoDate'>
-
-            <table>
-              <thead>
-                <tr>
-                  <td className='td_infoDate'>ID</td>
-                  <td className='td_infoDate'>Name</td>
-                  <td className='td_infoDate'>Last Name</td>
-                  <td className='td_infoDate'>Fecha Salida</td>
-                  <td className='td_infoDate'>Hora salida</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className='td_valueDate'>{regSalida.user._id}</td>
-                  <td className='td_valueDate'>{regSalida.user.nombre}</td>
-                  <td className='td_valueDate'>{regSalida.user.apellido}</td>
-                  <td style={{ color: "red" }} className='td_valueDate'>{formatDate(regSalida.fechaFin)}</td>
-                  <td style={{ color: "red" }} className='td_valueDate'>{formatTime(regSalida.fechaFin)}</td>
-                </tr>
-              </tbody>
-            </table>
-
+          <div className="table-wrapper" key={regSalida._id}>
+            <div className="table-header">
+              <div className="table-cell">ID</div>
+              <div className="table-cell">NAME</div>
+              <div className="table-cell">LAST NAME</div>
+              <div className="table-cell">FECHA SALIDA</div>
+              <div className="table-cell">HORA SALIDA</div>
+            </div>
+            <div className="table-row">
+              <div className="table-cell">{regSalida.user._id}</div>
+              <div className="table-cell">{regSalida.user.nombre}</div>
+              <div className="table-cell">{regSalida.user.apellido}</div>
+              <div className="table-cell" style={{ color: "red" }}>{formatDate(regSalida.fechaFin)}</div>
+              <div className="table-cell" style={{ color: "red" }}>{formatTime(regSalida.fechaFin)}</div>
+            </div>
           </div>
         ))}
       </div>

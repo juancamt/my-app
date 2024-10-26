@@ -202,10 +202,10 @@ export function RegistroIngresoUsuario() {
             dateFormat="Pp"
           />
 
-          <button className='btnDate' onClick={saveRegistro} style={{ transform: "translate(400px,-50px)" }}>+</button>
+          <button className='tn' onClick={saveRegistro} style={{ transform: "translate(400px,-50px)" }}>+</button>
 
         </label>
-        <label>
+        <babel>
           Fecha Salida:
 
           <DatePicker className='fechas'
@@ -215,9 +215,9 @@ export function RegistroIngresoUsuario() {
             dateFormat="Pp"
           />
 
-          <button className='btnDate' onClick={saveRegistroSalida} style={{ transform: "translate(400px,-50px)" }}>+</button>
+          <button className='tn' onClick={saveRegistroSalida} style={{ transform: "translate(400px,-50px)" }}>+</button>
 
-        </label>
+        </babel>
 
       </div>
 

@@ -5,7 +5,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    scrollbar-color: var(--principal-color) #6391afbf;
+    /* scrollbar-color: var(--principal-color) #6391afbf; */
     scrollbar-width: thin;
 }
 
@@ -31,61 +31,76 @@ body {
 
 }
 
-.containerSpinner{
+.containerSpinner {
     position: relative;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.containerSpinner .circle{
+
+.containerSpinner .circle {
     position: relative;
     height: 50px;
     width: 50px;
     background: #4095e5;
     margin: 40px;
     border-radius: 50%;
-    box-shadow: 0px 30px 50px 6px transparent,0px 30px 50px 6px transparent,
-    0px 30px 50px 6px #00000385;
+    box-shadow: 0px 30px 50px 6px transparent, 0px 30px 50px 6px transparent,
+        0px 30px 50px 6px #00000385;
 }
-.containerSpinner .circle.uno{
+
+.containerSpinner .circle.uno {
     animation: animateUno 2s infinite;
 
 }
-.containerSpinner .circle.dos{
+
+.containerSpinner .circle.dos {
     animation: animateDos 2s infinite;
 
 }
-.containerSpinner .circle.tres{
+
+.containerSpinner .circle.tres {
     animation: animateTres 2s infinite;
 
 }
 
-@keyframes animateUno{
-    0%,100%{
-        transform: translate(0px,0px);
+@keyframes animateUno {
+
+    0%,
+    100% {
+        transform: translate(0px, 0px);
     }
-    50%{
-        transform: translate(0px,-15px);
+
+    50% {
+        transform: translate(0px, -15px);
     }
 
 }
-@keyframes animateDos{
-    0%,100%{
-        transform: translate(0px,0px);
-        
+
+@keyframes animateDos {
+
+    0%,
+    100% {
+        transform: translate(0px, 0px);
+
     }
-    50%{
-        transform: translate(0px,10px);
+
+    50% {
+        transform: translate(0px, 10px);
     }
 
 }
-@keyframes animateTres{
-    0%,100%{
-        transform: translate(0px,-5px);
+
+@keyframes animateTres {
+
+    0%,
+    100% {
+        transform: translate(0px, -5px);
     }
-    50%{
-        transform: translate(0px,16px);
+
+    50% {
+        transform: translate(0px, 16px);
     }
 
 }
@@ -103,7 +118,7 @@ body {
 
 
 /*distribucion 'maquetacion' de las areas con grid */
-.App {
+/* .App {
     display: grid;
     grid-template-columns: 160px 1fr;
     grid-template-rows: 50px 1fr;
@@ -131,6 +146,51 @@ body {
 
 #mai_list {
     grid-area: 2 / 2 / 5 / 4;
+} */
+.App {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    grid-template-rows: 50px 1fr 50px;
+    /* Se agrega una fila para el footer */
+    grid-template-areas:
+        "nav header"
+        "nav main"
+        "footer footer";
+    /* Se agrega el área del footer */
+    transition: all 0.3s linear;
+}
+
+.App.active {
+    grid-template-columns: 60px 1fr;
+    grid-template-rows: 50px 1fr 50px;
+    /* Mantiene la fila del footer */
+    transition: all 0.3s linear;
+}
+
+#header_list {
+    grid-area: header;
+}
+
+#nav_list {
+    grid-area: nav;
+}
+
+#mai_list {
+    grid-area: main;
+}
+
+#footer_list {
+    grid-area: footer;
+    /* Nueva área para el footer */
+    background-color: var(--main-header-color);
+    /* Color de fondo para el footer */
+    padding: 10px;
+    text-align: center;
+    font-size: 15px;
+    border-top: 2px solid var(--border-color);
+    color: var(--principal-color);
+    font-weight: 500;
+
 }
 
 /* ---------------------------header ------------------------------------*/
@@ -374,8 +434,10 @@ body {
     position: relative;
     color: var(--text-color);
     width: fit-content;
-    min-width: 100px; /* Ancho mínimo */
-    max-width: 300px; /* Ancho máximo */
+    min-width: 100px;
+    /* Ancho mínimo */
+    max-width: 300px;
+    /* Ancho máximo */
     padding-left: 5px;
     font-size: 15px;
 }
@@ -538,7 +600,7 @@ body {
 /* ---------------------------main User_list---------------------------------------- */
 
 /* ---------------------------main CreateUser_list---------------------------------------- */
-.search{
+.search {
     position: absolute;
     display: flex;
     top: 0;
@@ -547,23 +609,25 @@ body {
     color: var(--principal-color);
     transform: translate(-280px, 12px);
     z-index: 100;
-}   
-.search_input{
+}
+
+.search_input {
     position: absolute;
     display: flex;
     justify-content: center;
-    right:20px;
+    right: 20px;
     top: 10px;
     align-items: center;
     width: 300px;
     height: 30px;
     border-radius: 50px;
-    border-color:var(--principal-color) ;
+    border-color: var(--principal-color);
     padding-left: 50px;
     background: var(--nav-color);
     color: var(--text-color);
     z-index: 99;
 }
+
 .conteCreateUser {
     position: relative;
     background: var(--nav-color);
@@ -695,14 +759,89 @@ body {
 
 /* ---------------------------main Permissions---------------------------------------- */
 
+/* esto es nuevo */
+.permission-card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    border: 1px solid #e0e0e0;
+}
 
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.field {
+    margin-bottom: 10px;
+    width: 48%;
+    /* Para que dos elementos quepan en la misma fila */
+}
+
+.label {
+    display: block;
+    font-weight: bold;
+    color: #4285F4;
+
+}
+
+.bodyCard {
+    margin-top: 20px;
+}
+
+.reason-label {
+    display: block;
+    font-weight: bold;
+    color: #4285F4;
+    margin-bottom: 10px;
+}
+
+.textoP {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    overflow-y: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .field {
+        width: 100%;
+        /* En pantallas pequeñas, cada campo ocupa toda la fila */
+    }
+
+    .permission-card {
+        padding: 15px;
+    }
+
+    .textoP {
+        height: 80px;
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        width: 65%;
+
+    }
+}
+
+/* esto es nuevo */
 
 .contePermissions {
     position: relative;
     display: grid;
     place-items: center;
     height: 100%;
-    width: 800px;
+    width: 80%;
     background: var(--nav-color);
     padding-top: 30px;
     padding-bottom: 100px;
@@ -729,7 +868,7 @@ body {
 
 .conteInfoPermissions table {
     position: relative;
-    width:90%;
+    width: 90%;
 }
 
 .conteInfoPermissions table thead {
@@ -752,7 +891,8 @@ body {
     overflow: hidden;
     margin-bottom: 20px;
 }
-.td_value{
+
+.td_value {
 
     font-size: 13px;
     overflow: hidden;
@@ -760,11 +900,12 @@ body {
     white-space: nowrap;
     width: 40px;
 }
+
 #message {
 
     transform: translate(-249px, 5px);
     position: relative;
-    
+
     margin-bottom: 10px;
     color: var(--principal-color);
 
@@ -785,6 +926,90 @@ body {
 
 /* ---------------------------main Permissions---------------------------------------- */
 /* ---------------------------main Date Vacation---------------------------------------- */
+
+/* esto es nuevo */
+/* Estilos para el contenedor de la tabla */
+.table-wrapper {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* Cinco columnas iguales */
+    gap: 1px;
+    /* border-radius: 30px; */
+    max-width: 95%;
+    border-radius: 30px;
+    box-shadow: 0px 0px 5px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table-header,
+.table-row {
+    display: contents;
+    /* Para que las celdas mantengan el grid */
+}
+
+.table-cell {
+    padding: 10px;
+    text-align: center;
+    background-color: white;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* Estilos para el header */
+.table-header .table-cell {
+    font-weight: bold;
+}
+.table-header{
+    color: #4285F4;
+
+}
+
+/* Adaptabilidad a móviles */
+@media (max-width: 768px) {
+    .table-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Dos columnas: una para títulos y otra para contenidos */
+      grid-template-rows: repeat(5, auto); /* Cada fila para un título y su contenido */
+      gap: 0; /* Sin espacio entre las filas */
+    }
+  
+    .table-row {
+      display: contents; /* Para que los elementos se comporten de manera fluida dentro del grid */
+    }
+   
+  
+    .table-cell {
+      padding: 10px;
+      text-align: left;
+
+      /* border: 1px solid #ddd; */
+    }
+    .table-row .table-cell{
+        background-color:#f6f5fa;
+        border-bottom: 1px solid #ddd;
+
+    }
+  
+    /* Ocultar los encabezados en vista móvil */
+    .table-header {
+      display: block;
+    }
+  
+    /* Mostrar cada celda con su respectivo nombre y contenido */
+   
+    /* Títulos y valores en filas consecutivas */
+    .table-row {
+      display: grid;
+    }
+  
+    /* Evitar que los valores se expandan demasiado */
+    .table-cell:nth-child(2) {
+      white-space: normal;
+      text-align: left;
+    }
+  }
+  
+
+/* esto es nuevo */
 .conteinerDAte {
     position: relative;
     background: var(--nav-color);
@@ -826,7 +1051,7 @@ body {
 }
 
 /* ---------------------------main Date Vacation---------------------------------------- */
-.seleccion{
+.seleccion {
     position: relative;
     border-color: var(--principal-color);
     height: 35px;
@@ -834,7 +1059,7 @@ body {
     padding-left: 10px;
 }
 
-.NoAutorizado button{
+.NoAutorizado button {
     width: 150px;
     height: 35px;
     border-radius: 12px;
@@ -842,7 +1067,8 @@ body {
     margin-top: 40px;
     text-transform: uppercase;
 }
-.NoAutorizado{
+
+.NoAutorizado {
     position: absolute;
     width: 100%;
     height: 900px;
@@ -857,28 +1083,50 @@ body {
 
 /* para dispositivo moviles de 480 px */
 
-@media (max-width:480px) {
+@media (max-width:768px) {
     body {
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 
     .App {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 50px auto;
+        /* Una sola columna */
+        grid-template-rows: 50px auto 50px;
+        /* Ajusta las filas para el contenido principal y el footer */
+        grid-template-areas:
+            "header"
+            "main"
+            "footer";
+        /* El nav queda fuera para móviles */
         overflow-y: scroll;
         transition: all 0.5s linear;
     }
 
     .App.active {
-        display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 50px auto;
-        overflow-y: scroll;
+        grid-template-rows: 50px auto 50px;
         transition: all 0.5s linear;
-
     }
-    .search{
+
+    #nav_list {
+        display: block;
+        /* Oculta el menú de navegación en móviles */
+    }
+
+    #header_list {
+        grid-area: header;
+    }
+
+    #mai_list {
+        grid-area: main;
+    }
+
+    #footer_list {
+        grid-area: footer;
+    }
+
+    .search {
         position: absolute;
         display: flex;
         top: 0;
@@ -887,18 +1135,19 @@ body {
         color: var(--principal-color);
         transform: translate(-180px, 12px);
         z-index: 100;
-    }   
-    .search_input{
+    }
+
+    .search_input {
         position: absolute;
         display: flex;
         justify-content: center;
-        right:20px;
+        right: 20px;
         top: 10px;
         align-items: center;
         width: 200px;
         height: 30px;
         border-radius: 50px;
-        border-color:var(--principal-color) ;
+        border-color: var(--principal-color);
         padding-left: 50px;
         background: var(--nav-color);
         color: var(--text-color);
@@ -1182,7 +1431,7 @@ body {
         border-radius: 20px;
         top: 20px;
         height: 100%;
-        width: 400px;
+        width: 850px;
         padding: 50px 0;
         display: flex;
         align-items: center;
@@ -1347,9 +1596,18 @@ body {
         margin: 20px;
         transform: translateX(80px);
     }
-  
+
 
     /* ---------------------------form CreateUser_list---------------------------------------- */
+
+
+
+    /* --------------------------Principal --------------------------*/
+
+
+
+
+    /* --------------------------Principal --------------------------*/
 
 
 }

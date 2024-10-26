@@ -1,4 +1,5 @@
-import { IoMdPerson, IoLogoFacebook, IoLogoLinkedin, IoLogoGoogle, IoIosLock } from "react-icons/io";
+import { IoMdPerson, IoLogoFacebook, IoLogoLinkedin, IoLogoGoogle, IoIosLock} from "react-icons/io";
+import { HiArrowCircleLeft } from "react-icons/hi";
 import React, { useState,useContext } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import './Login.css';
@@ -13,6 +14,9 @@ const Login = () => {
     const {setUser} = useContext(UserContext);
     const navigate = useNavigate();
 
+    const handleRedirect = () => {
+        navigate('/');  // Redirige a la ruta de login
+    };
 
 
     const loginIngreso = async (values, { setSubmitting, setErrors }) => {
@@ -54,6 +58,7 @@ const Login = () => {
     return (
         <div className="body">
 
+            <HiArrowCircleLeft  style={{position:'absolute',top:'10px',left:'10px',cursor:'pointer',width:'60px',height:'40px',color:'white'}} onClick={handleRedirect}/>
             <div className="conteLogin">
 
                 <div className="containerImg">
@@ -99,8 +104,8 @@ const Login = () => {
                                 <h2>LOGIN</h2>
                                 <Field name="role" as="select" >
                                     <option value="" disabled hidden>select rol</option>
-                                    <option value="administrador">administrador</option>
-                                    <option value="usuario">usuario</option>
+                                    <option value="administrador">Administrator</option>
+                                    <option value="usuario">User</option>
                                 </Field>
                                 <ErrorMessage name="rol" component={() => (<div className="error"><p className="parrafo">{errors.rol}</p></div>)} />
                                 <label >
@@ -127,9 +132,10 @@ const Login = () => {
 
                                 </label>
                                 
-                                <h3>or</h3>
-                                <div className="conteInfo">
-                                    <span style={{ color: '#EA4335' }}>
+                                {/* <h3>or</h3> */}
+                                {/* cambio  autenticacion por url de empresa*/}
+                                {/* <div className="conteInfo">
+                                    <span style={{ color: '#EA4335' }}onClick={handleRedirect}>
                                         <IoLogoGoogle id="icon" />
                                     </span>
                                     <span style={{ color: '#1877f2' }} >
@@ -138,7 +144,7 @@ const Login = () => {
                                     <span style={{ color: '#0a66c2' }}>
                                         <IoLogoLinkedin id="icon" />
                                     </span >
-                                </div>
+                                </div> */}
                             
                                 <button type="submit">Sign in</button>
 

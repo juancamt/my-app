@@ -71,28 +71,24 @@ export const DateVacation = () => {
           />
         </div>
         {error && <p style={{ color: 'red' }}>{error}</p>}
+
         {filteredVacaciones.map((vacacione) => (
-          <div className='conteInfoDate' key={vacacione._id}>
-            <table>
-              <thead>
-                <tr>
-                  <td className='td_infoDate'>ID</td>
-                  <td className='td_infoDate'>Name</td>
-                  <td className='td_infoDate'>Last Name</td>
-                  <td className='td_infoDate'>Fecha Inicio</td>
-                  <td className='td_infoDate'>Fecha Fin</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className='td_valueDate'>{vacacione._id}</td>
-                  <td className='td_valueDate'>{vacacione.user.nombre}</td>
-                  <td className='td_valueDate'>{vacacione.user.apellido}</td>
-                  <td className='td_valueDate'>{vacacione.fechaInicio}</td>
-                  <td className='td_valueDate'>{vacacione.fechaFin}</td>
-                </tr>
-              </tbody>
-            </table>
+   
+          <div className="table-wrapper" key={vacacione._id}>
+            <div className="table-header">
+              <div className="table-cell">ID</div>
+              <div className="table-cell">NAME</div>
+              <div className="table-cell">LAST NAME</div>
+              <div className="table-cell">FECHA INICIO</div>
+              <div className="table-cell">FECHA FIN</div>
+            </div>
+            <div className="table-row">
+              <div className="table-cell">{vacacione._id}</div>
+              <div className="table-cell">{vacacione.user.nombre}</div>
+              <div className="table-cell">{vacacione.user.apellido}</div>
+              <div className="table-cell">{vacacione.fechaInicio}</div>
+              <div className="table-cell">{vacacione.fechaFin}</div>
+            </div>
           </div>
         ))}
 

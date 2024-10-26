@@ -172,6 +172,9 @@ function App() {
 
 
         <Outlet />
+        <footer id="footer_list">
+                <span>&copy; 2024 DeveloperHouse. All Rights Reserved.</span>
+        </footer>
       </div>
     </>
 

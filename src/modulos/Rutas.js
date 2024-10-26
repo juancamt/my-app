@@ -21,6 +21,8 @@ import ProteccionRuta from "./PrivateRoute";
 // // import { Login } from './modulos/Login';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NoAutorizado from "./NoAutorizado";
+import { Home } from "../Home";
+
 
 
 function Rutas() {
@@ -39,8 +41,11 @@ function Rutas() {
 
 
             
-                    <Routes>
-                        <Route path="/" element={<Login />} />
+            <Routes>
+
+                        <Route path="/" element={<Home/>} /> 
+
+                        <Route path="/inicio" element={<Login />} />
                         <Route path="/signUp" element={<SignUp />} />
                         <Route path="/NoAutorizado" element={<NoAutorizado />} />
 

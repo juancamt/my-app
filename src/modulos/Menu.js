@@ -10,51 +10,51 @@ import { UserContext } from './UserContext';
 
 export function Menu() {
 
-    const {user}=useContext(UserContext);
+    const { user } = useContext(UserContext);
 
 
-    
+
     const [claseActiva, setClaseActiva] = useState(false);
     const [selectedItems, setSelectedItem] = useState('item1');
-    
+
     const [loading, setLoading] = useState(false);
-    
+
     const showPreloader = () => {
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
-            }, 1500); 
-            };
-            
-            
-            
-            const addClasse = () => {
-                setClaseActiva(!claseActiva);
+        }, 1500);
+    };
+
+
+
+    const addClasse = () => {
+        setClaseActiva(!claseActiva);
     };
     const itemClick = (items) => {
         setSelectedItem(items);
-        
-        };
-        
-        
-        let classPrincipal = `${claseActiva ? 'active' : ''}`;
-        let link = `item_link ${claseActiva ? 'active' : ''}`;
-        let item = `item_text ${claseActiva ? 'active' : ''}`;
-        let icon = `item_icon ${claseActiva ? 'active' : ''}`;
 
-        const { logout } = useContext(UserContext);
-        const navigate = useNavigate();
+    };
 
-        const handleLogout = async (e) => {
-            e.preventDefault(); // Prevenir la acción por defecto del enlace
-            await logout(); // Llamar a la función de logout del contexto
-            navigate('/'); // Redirigir al usuario a la página de login
-          };
-        
-        if (!user){
-          return <div>No user logged</div>
-        };
-        return (
+
+    let classPrincipal = `${claseActiva ? 'active' : ''}`;
+    let link = `item_link ${claseActiva ? 'active' : ''}`;
+    let item = `item_text ${claseActiva ? 'active' : ''}`;
+    let icon = `item_icon ${claseActiva ? 'active' : ''}`;
+
+    const { logout } = useContext(UserContext);
+    const navigate = useNavigate();
+
+    const handleLogout = async (e) => {
+        e.preventDefault(); // Prevenir la acción por defecto del enlace
+        await logout(); // Llamar a la función de logout del contexto
+        navigate('/'); // Redirigir al usuario a la página de login
+    };
+
+    if (!user) {
+        return <div>No user logged</div>
+    };
+    return (
         <>
             {loading && <Preloader />}
             <div className={`App ${classPrincipal}`}>
@@ -119,7 +119,7 @@ export function Menu() {
 
 
                                 <li className={`item_list ${selectedItems === 'item5' ? 'selected' : ''}`}>
-                                    <Link to='/Usuario/registroIngresoUsuario' className={link} onClick={() => {itemClick('item5');showPreloader();}}>
+                                    <Link to='/Usuario/registroIngresoUsuario' className={link} onClick={() => { itemClick('item5'); showPreloader(); }}>
 
                                         <IoIosBookmarks className={icon} />
                                         <span className={item}>Registration</span>
@@ -133,7 +133,7 @@ export function Menu() {
                         <div className='bottom_content'>
 
                             <li className='item_list'>
-                                <Link  className={link} onClick={
+                                <Link className={link} onClick={
                                     handleLogout
                                 }>
 
@@ -152,6 +152,9 @@ export function Menu() {
 
 
                 <Outlet />
+                <footer id="footer_list">
+                    <span>&copy; 2024 DeveloperHouse. All Rights Reserved.</span>
+                </footer>
             </div>
         </>
     )

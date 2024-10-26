@@ -49,7 +49,7 @@ export const Permissions = () => {
   useEffect(() => {
     const filtered = permisos.filter(permis =>
       `${permis.user.nombre} ${permis.user.apellido} `.toLowerCase().includes(searchTerm.toLowerCase())
-     );
+    );
     setFilteredPermiso(filtered);
   }, [searchTerm, permisos]);
 
@@ -65,7 +65,7 @@ export const Permissions = () => {
         <div style={{
           position: 'fixed',
           top: '0px',
-          right:'20px'      
+          right: '20px'
         }}>
 
           <IoIosSearch className='search' />
@@ -79,34 +79,34 @@ export const Permissions = () => {
         </div>
         {filteredPermisos.map((permiso) => (
 
-          <div className='conteInfoPermissions' key={permiso._id}>
-
-            <table>
-              <thead>
-                <tr>
-                  <td className='td_info'>ID</td>
-                  <td className='td_info'>Name</td>
-                  <td className='td_info'>Last Name</td>
-                  <td className='td_info'>Fecha Inicio</td>
-                  <td className='td_info'>Fecha Fin</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className='td_value'>{permiso._id}</td>
-                  <td className='td_value'>{permiso.user.nombre}</td>
-                  <td className='td_value'>{permiso.user.apellido}</td>
-                  <td className='td_value'>{permiso.startDate}</td>
-                  <td className='td_value'>{permiso.endDate}</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <h4 id='message'>Motivo de permiso:</h4>
-            <div className='contenidoParrafo'>
-              <p>{permiso.content}</p>
+        
+          <div className="permission-card" key={permiso._id}>
+            <div className="header">
+              <div className="field">
+                <span className="label">ID</span>
+                <span>{permiso._id}</span>
+              </div>
+              <div className="field">
+                <span className="label">Name</span>
+                <span>{permiso.user.nombre}</span>
+              </div>
+              <div className="field">
+                <span className="label">Last Name</span>
+                <span>{permiso.user.apellido}</span>
+              </div>
+              <div className="field">
+                <span className="label">Fecha Inicio</span>
+                <span>{permiso.user.nombre}</span>
+              </div>
+              <div className="field">
+                <span className="label">Fecha Fin</span>
+                <span>{permiso.endDate}</span>
+              </div>
             </div>
-
+            <div className="bodyCard">
+              <span className="reason-label">Motivo de permiso:</span>
+              <p className="textoP">{permiso.content}</p>
+            </div>
           </div>
 
 
