@@ -58,7 +58,7 @@ const Login = () => {
     return (
         <div className="body">
 
-            <HiArrowCircleLeft  style={{position:'absolute',top:'10px',left:'10px',cursor:'pointer',width:'60px',height:'40px',color:'white'}} onClick={handleRedirect}/>
+            <HiArrowCircleLeft  style={{position:'absolute',top:'10px',left:'10px',cursor:'pointer',width:'60px',height:'40px',color:'white',zIndex:'100'}} onClick={handleRedirect}/>
             <div className="conteLogin">
 
                 <div className="containerImg">
