@@ -127,11 +127,14 @@ html {
 
 }
 
-.text-box * {
+.text-box *{
     opacity: 0;
 }
 
 .text-box span {
+    opacity: 1;
+}
+.text-box a {
     opacity: 1;
 }
 
@@ -178,11 +181,15 @@ html {
     transition: .3s;
     animation: to-right 1s ease forwards 1.9s;
 }
-
-.btn:hover,
-.btn:nth-child(2) {
+.btnBOx a{
+    position: absolute;
     color: #fff;
-    background-color: #403d87;
+}
+
+.btnBOx:hover,
+.btnBOx a:nth-child(2) {
+    color: #fff;
+    background-color: #2a56a3;
     box-shadow: 0 0 15px #403d87;
 }
 

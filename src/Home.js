@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import Servicios from './modulos/serviciosModuloPrincipal'
 import Footer from './modulos/footerModuloPrincipal'
 import { useInView } from 'react-intersection-observer';
+import manual from './assets/manual de usuario.pdf';
 
 
 export function Home() {
@@ -16,7 +17,7 @@ export function Home() {
 
     // funcion para el slider de personal 
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [isAnimating, setIsAnimating] = useState(false); 
+    const [isAnimating, setIsAnimating] = useState(false);
 
     const testimonies = [
         {
@@ -51,23 +52,23 @@ export function Home() {
 
     const changePosition = (add) => {
         if (isAnimating) return; // Prevenir múltiples animaciones al mismo tiempo
-    
+
         setIsAnimating(true); // Iniciar la animación
-    
+
         setTimeout(() => {
-          let newIndex = currentIndex + add;
-    
-          if (newIndex >= testimonies.length) {
-            newIndex = 0;
-          }
-          if (newIndex < 0) {
-            newIndex = testimonies.length - 1;
-          }
-    
-          setCurrentIndex(newIndex);
-          setIsAnimating(false); // Finalizar la animación
+            let newIndex = currentIndex + add;
+
+            if (newIndex >= testimonies.length) {
+                newIndex = 0;
+            }
+            if (newIndex < 0) {
+                newIndex = testimonies.length - 1;
+            }
+
+            setCurrentIndex(newIndex);
+            setIsAnimating(false); // Finalizar la animación
         }, 500); // El mismo tiempo que la transición CSS
-      };
+    };
     // para hacer animacion de scroll 
 
     const [refAbout, inViewAbout] = useInView({ triggerOnce: false, threshold: 0.2 });
@@ -102,7 +103,9 @@ export function Home() {
                             Start Now
                         </button>
                         <button type="button" className="btnBOx">
-                            Download Guide
+                            <a href={manual} download="manual">
+                                Download Guide
+                            </a>
                         </button>
                     </span>
                 </div>

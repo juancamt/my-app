@@ -255,11 +255,11 @@ export const Staff = () => {
                 <td>{usuario.telefono}</td>
                 <td>{usuario.direccion}</td>
                 <td>{usuario.correo}</td>
-                <td><button className="button_actua" onClick={() => handleEditClick(usuario)}>Update</button></td>
-                <td><IoMdTrash className='delete' onClick={() => borrarUsuario(usuario._id)} /></td>
                 <td style={{ color: userStatus[usuario._id] ? 'green' : 'red' }}>
                 {userStatus[usuario._id] ? 'Online' : 'Offline'}
               </td>
+                <td><button className="button_actua" onClick={() => handleEditClick(usuario)}>Update</button></td>
+                <td><IoMdTrash className='delete' onClick={() => borrarUsuario(usuario._id)} /></td>
               </tr>
             ))}
 

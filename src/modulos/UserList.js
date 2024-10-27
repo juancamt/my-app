@@ -246,11 +246,11 @@ export const UserList = () => {
                 <td>{usuario.nombre}</td>
                 <td>{usuario.apellido}</td>
                 <td>{usuario.correo}</td>
-                <td><button className="button_actua" onClick={() => handleEditClick(usuario)}>Update</button></td>
-                <td><IoMdTrash className='delete' onClick={() => borrarUsuario(usuario._id)} /></td>
                 <td style={{ color: userStatus[usuario._id] ? 'green' : 'red' }}>
                 {userStatus[usuario._id] ? 'Online' : 'Offline'}
               </td>
+                <td><button className="button_actua" onClick={() => handleEditClick(usuario)}>Update</button></td>
+                <td><IoMdTrash className='delete' onClick={() => borrarUsuario(usuario._id)} /></td>
               </tr>
             ))}
 
