@@ -60,7 +60,7 @@ export const PerfilUsuario = () => {
         correo,
         años
       };
-      const response = await axios.put(`http://localhost:3001/api/updateUsuario/${user._id}`, updatedUser);
+      const response = await axios.put(`https://personal-backend-project.onrender.com/api/updateUsuario/${user._id}`, updatedUser);
       navigate('/Usuario/perfilUsuario');
 
     // Actualiza el estado local del usuario con los datos devueltos por el servidor

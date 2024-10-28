@@ -24,7 +24,7 @@ export const UserProvider = ({ children }) => {
         setUser(null);
         localStorage.removeItem('user');
         //  hacer una solicitud al servidor para cerrar la sesión
-        await axios.post('http://localhost:3001/logout', {}, { withCredentials: true });
+        await axios.post('https://personal-backend-project.onrender.com/logout', {}, { withCredentials: true });
     };
 
     return (

@@ -45,7 +45,7 @@ export function Home() {
             id: 4,
             name: 'DAVID GUILLERMO AVILA CARDENAS',
             role: 'Backend developer',
-            text: 'As a backend developer, my passion is creating robust frameworks that support efficient applications. In this project, I use technologies such as Node.js and No SQL databases to develop APIs that optimize communication between the frontend and backend.',
+            text: 'As a backend developer, my passion is creating robust frameworks that support efficient applications. In this project I use technologies such as Node.js and No SQL databases to develop APIs that optimize communication between the frontend and the backend.',
             img: `${process.env.PUBLIC_URL}/imagenes/user-1.jpeg`,
         },
     ];

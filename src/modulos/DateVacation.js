@@ -30,7 +30,7 @@ export const DateVacation = () => {
   useEffect(() => {
     const fetchVacaciones = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/listarVacaciones', { withCredentials: true });
+        const response = await axios.get('https://personal-backend-project.onrender.com/api/listarVacaciones', { withCredentials: true });
         setVacaciones(response.data);
       } catch (error) {
         setError('Error al cargar las vacaciones');

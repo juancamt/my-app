@@ -52,7 +52,7 @@ export function RegistroIngresoUsuario() {
         userId: user._id  // Asumiendo que user._id contiene el ID del usuario
       };
       // Hacer la solicitud POST al backend para guardar el permiso
-      const response = await axios.post('http://localhost:3001/api/guardarRegistro', newEntry, { withCredentials: true });
+      const response = await axios.post('https://personal-backend-project.onrender.com/api/guardarRegistro', newEntry, { withCredentials: true });
 
       // Agregar la entrada guardada al estado de entradas
       setSaveRegistro([...savedRegistro, response.data]);
@@ -78,7 +78,7 @@ export function RegistroIngresoUsuario() {
         userId: user._id  // Asumiendo que user._id contiene el ID del usuario
       };
       // Hacer la solicitud POST al backend para guardar el permiso
-      const response = await axios.post('http://localhost:3001/api/guardarRegistroSalida', newEntry, { withCredentials: true });
+      const response = await axios.post('https://personal-backend-project.onrender.com/api/guardarRegistroSalida', newEntry, { withCredentials: true });
 
       // Agregar la entrada guardada al estado de entradas
       setSaveRegistroSalida([...savedRegistroSalida, response.data]);
@@ -103,7 +103,7 @@ export function RegistroIngresoUsuario() {
     const registrosGet = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:3001/api/mostrarRegistro',
+          'https://personal-backend-project.onrender.com/api/mostrarRegistro',
           { withCredentials: true }
         );
         console.log('Datos de registro:', response.data); // Verificar los datos recibidos
@@ -120,7 +120,7 @@ export function RegistroIngresoUsuario() {
     const registrosGetSalida = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:3001/api/mostrarRegistroSalida',
+          'https://personal-backend-project.onrender.com/api/mostrarRegistroSalida',
           { withCredentials: true }
         );
         console.log('Datos de registro:', response.data); // Verificar los datos recibidos
@@ -135,7 +135,7 @@ export function RegistroIngresoUsuario() {
 // eliminar registro
   const deleteRegistration = async (registroId) => {
     try {
-      await axios.delete(`http://localhost:3001/api/eliminarRegistro/${registroId}`, { withCredentials: true });
+      await axios.delete(`https://personal-backend-project.onrender.com/api/eliminarRegistro/${registroId}`, { withCredentials: true });
       const updatedRegistro = registro.filter((registro) => registro._id !== registroId);
       setregistro(updatedRegistro);
       toast('The record was deleted successfully ', {
@@ -154,7 +154,7 @@ export function RegistroIngresoUsuario() {
 
   const deleteRegistrationExit = async (registroSalidaId) => {
     try {
-      await axios.delete(`http://localhost:3001/api/eliminarRegistroSalida/${registroSalidaId}`, { withCredentials: true });
+      await axios.delete(`https://personal-backend-project.onrender.com/api/eliminarRegistroSalida/${registroSalidaId}`, { withCredentials: true });
       const updatedRegistroSalida = registroSalida.filter((registroSalida) => registroSalida._id !== registroSalidaId);
       setregistroSalida(updatedRegistroSalida);
       toast('The record was deleted successfully ', {
@@ -205,7 +205,7 @@ export function RegistroIngresoUsuario() {
           <button className='tn' onClick={saveRegistro} style={{ transform: "translate(400px,-50px)" }}>+</button>
 
         </label>
-        <babel>
+        <label>
           Fecha Salida:
 
           <DatePicker className='fechas'
@@ -217,7 +217,7 @@ export function RegistroIngresoUsuario() {
 
           <button className='tn' onClick={saveRegistroSalida} style={{ transform: "translate(400px,-50px)" }}>+</button>
 
-        </babel>
+        </label>
 
       </div>
 

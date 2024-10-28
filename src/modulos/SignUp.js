@@ -18,7 +18,7 @@ function SignUp() {
     // guardamos el usuario 
     const guardarUsuario = async (usuario) => {
         try {
-            const response = await axios.post('http://localhost:3001/api/guardarUsuario', usuario);
+            const response = await axios.post('https://personal-backend-project.onrender.com/api/guardarUsuario', usuario);
             if (response.data.message === "Usuario guardado") {
                 console.log("Usuario guardado correctamente");
             } else {

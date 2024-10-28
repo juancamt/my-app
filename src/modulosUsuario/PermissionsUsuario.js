@@ -48,7 +48,7 @@ export function PermissionsUsuario() {
         userId: user._id  // Asumiendo que user._id contiene el ID del usuario
       };
       // Hacer la solicitud POST al backend para guardar el permiso
-      const response = await axios.post('http://localhost:3001/api/guardarPermiso', newEntry ,{withCredentials:true} );
+      const response = await axios.post('https://personal-backend-project.onrender.com/api/guardarPermiso', newEntry ,{withCredentials:true} );
 
       // Agregar la entrada guardada al estado de entradas
       setSavedEntries([...savedEntries, response.data]);
@@ -67,7 +67,7 @@ export function PermissionsUsuario() {
     const fetchPermisos = async () => {
         try {
             const response = await axios.get(
-                'http://localhost:3001/api/mostrarPermisos',
+                'https://personal-backend-project.onrender.com/api/mostrarPermisos',
                 { withCredentials: true }
             );
             setPermisos(response.data);
@@ -86,7 +86,7 @@ if (error) {
 // borrar el permiso
 const deleteEntry = async (permisoId) => {
   try {
-    await axios.delete(`http://localhost:3001/api/borrarPermisos/${permisoId}`, { withCredentials: true });
+    await axios.delete(`https://personal-backend-project.onrender.com/api/borrarPermisos/${permisoId}`, { withCredentials: true });
     const updatedPermisos = permisos.filter((permiso) => permiso._id !== permisoId);
     setPermisos(updatedPermisos);
     toast('The permission was deleted successfully ', {

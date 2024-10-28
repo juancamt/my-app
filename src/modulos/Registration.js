@@ -32,7 +32,7 @@ export const Registration = () => {
   useEffect(() => {
     const registrosGet = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/listarRegistro', { withCredentials: true });
+        const response = await axios.get('https://personal-backend-project.onrender.com/api/listarRegistro', { withCredentials: true });
         setregistro(response.data);
         console.log('Datos de registro:', response.data); // Verificar los datos recibidos
       } catch (error) {
@@ -44,7 +44,7 @@ export const Registration = () => {
   useEffect(() => {
     const registrosGetSalida = async () => {
       try {
-        const responseSalida = await axios.get('http://localhost:3001/api/listarRegistroSalida', { withCredentials: true });
+        const responseSalida = await axios.get('https://personal-backend-project.onrender.com/api/listarRegistroSalida', { withCredentials: true });
         setregistroSalida(responseSalida.data);
         console.log('Datos de registro salida:', responseSalida.data); // Verificar los datos recibidos
 

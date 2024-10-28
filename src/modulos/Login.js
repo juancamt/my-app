@@ -21,7 +21,7 @@ const Login = () => {
 
     const loginIngreso = async (values, { setSubmitting, setErrors }) => {
         try {
-            const response = await axios.post('http://localhost:3001/login', values, { withCredentials: true });
+            const response = await axios.post('https://personal-backend-project.onrender.com/login', values, { withCredentials: true });
             console.log(response.data);
             const user = response.data.user;
             setUser(user)
@@ -46,7 +46,7 @@ const Login = () => {
     };
     const accessProtected = async () => {
         try {
-            const response = await axios.get('http://localhost:3001/protected', { withCredentials: true });
+            const response = await axios.get('https://personal-backend-project.onrender.com/protected', { withCredentials: true });
             setUserData(response.data);
             setMessage('Contenido protegido');
         } catch (error) {

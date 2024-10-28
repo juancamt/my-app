@@ -50,7 +50,7 @@ export function DateVacationUsuario() {
         userId: user._id  // Asumiendo que user._id contiene el ID del usuario
       };
       // Hacer la solicitud POST al backend para guardar el permiso
-      const response = await axios.post('http://localhost:3001/api/guardarVacaciones', newEntry, { withCredentials: true });
+      const response = await axios.post('https://personal-backend-project.onrender.com/api/guardarVacaciones', newEntry, { withCredentials: true });
 
       // Agregar la entrada guardada al estado de entradas
       setSaveVaciones([...savedVaciones, response.data]);
@@ -72,7 +72,7 @@ export function DateVacationUsuario() {
     const vacionesGet = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:3001/api/mostrarVacaciones',
+          'https://personal-backend-project.onrender.com/api/mostrarVacaciones',
           { withCredentials: true }
         );
         console.log('Datos de vacaciones:', response.data); // Verificar los datos recibidos
@@ -88,7 +88,7 @@ export function DateVacationUsuario() {
   // eliminar vacaciones 
   const deleteVacation = async (vacacionesId) => {
     try {
-      await axios.delete(`http://localhost:3001/api/borrarVacaciones/${vacacionesId}`, { withCredentials: true });
+      await axios.delete(`https://personal-backend-project.onrender.com/api/borrarVacaciones/${vacacionesId}`, { withCredentials: true });
       const updatedVacation = vacaciones.filter((vacaciones) => vacaciones._id !== vacacionesId);
       setVacaciones(updatedVacation);
       toast('The vacation was deleted successfully ', {

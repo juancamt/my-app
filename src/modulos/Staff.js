@@ -42,7 +42,7 @@ export const Staff = () => {
   }, []);
   const getUsuarios = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/api/usuarios");
+      const response = await axios.get("https://personal-backend-project.onrender.com/api/usuarios");
       if (response.data.usuarios && Array.isArray(response.data.usuarios)) {
         const usuariosFiltrados = response.data.usuarios.filter(usuario => usuario.rol === 'usuario');
         setUsuarios(usuariosFiltrados);
@@ -50,7 +50,7 @@ export const Staff = () => {
 
         const statuses = await Promise.all(usuariosFiltrados.map(async (usuario) => {
           try {
-            const res = await axios.get(`http://localhost:3001/isOnline/${usuario._id}`, { withCredentials: true });
+            const res = await axios.get(`https://personal-backend-project.onrender.com/isOnline/${usuario._id}`, { withCredentials: true });
             console.log(`Online status for user ${usuario._id}:`, res.data);
             return { id: usuario._id, isOnline: res.data.isOnline };
           } catch (error) {
@@ -81,7 +81,7 @@ export const Staff = () => {
 
   const borrarUsuario = async (id) => {
     try {
-      await axios.delete(`http://localhost:3001/api/deleteUsuario/${id}`);
+      await axios.delete(`https://personal-backend-project.onrender.com/api/deleteUsuario/${id}`);
       getUsuarios(); // Actualizar la lista de usuarios después de eliminar
       cambiarEstadoMessagesRemove(true);
       console.log("Usuario eliminado correctamente");
@@ -129,7 +129,7 @@ export const Staff = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(`http://localhost:3001/api/updateUsuario/${usuarioEditado._id}`, usuarioEditado);
+      const response = await axios.put(`https://personal-backend-project.onrender.com/api/updateUsuario/${usuarioEditado._id}`, usuarioEditado);
       console.log("Respuesta de la API:", response.data); // Mostrar la respuesta completa en la consola
       getUsuarios();
       cambiarEstadoMes(true);

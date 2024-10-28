@@ -32,7 +32,7 @@ export const Permissions = () => {
   useEffect(() => {
     const fetchPermisos = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/listarPermisos', { withCredentials: true });
+        const response = await axios.get('https://personal-backend-project.onrender.com/api/listarPermisos', { withCredentials: true });
         setPermisos(response.data);
       } catch (error) {
         setError('Error al cargar los permisos');
