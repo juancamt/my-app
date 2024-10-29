@@ -45,7 +45,7 @@ function Rutas() {
 
                         <Route path="/" element={<Home/>} /> 
 
-                        <Route path="/inicio" element={<Login />} />
+                        <Route path="/login" element={<Login />} />
                         <Route path="/signUp" element={<SignUp />} />
                         <Route path="/NoAutorizado" element={<NoAutorizado />} />
 
