@@ -39,7 +39,7 @@ export function Home() {
             name: 'LUISA FERNANDA NARANJO FERNANDEZ',
             role: 'User Experience (UX) Designer',
             text: 'As a user experience designer, my goal is to create intuitive and attractive interfaces. In this project, I focus on understanding user needs to design solutions that are not only functional, but also enjoyable to use.',
-            img: `${process.env.PUBLIC_URL}/imagenes/user-1.jpeg`,
+            img: `${process.env.PUBLIC_URL}/imagenes/luisa.jpg`,
         },
         {
             id: 4,
