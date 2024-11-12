@@ -536,12 +536,16 @@ html {
     .menu_horizontal li {
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: center; 
+        width: 100px;
+        left: -50px;
+
     }
     .menu_horizontal li a{
         display: flex;
         justify-content: center;
         align-items: center;
+        
     }
 
     .headerHome nav {
