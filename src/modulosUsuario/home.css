@@ -127,7 +127,11 @@ html {
 
 }
 
-.text-box *{
+.text-box span,
+.text-box a,
+.text-box h1,
+.text-box p,
+.text-box h1:nth-child(2) {
     opacity: 0;
     
 }
@@ -517,6 +521,7 @@ html {
 
 @media (max-width: 480px) {
     .text-box {
+        padding-top: 100px;
         width: 100%;
 
     }
@@ -545,6 +550,7 @@ html {
     }
     .headerHome nav a {
         margin-left: 0px;
+        padding-right: 20px;
     }
 
     .sectionHome img {
@@ -552,7 +558,8 @@ html {
     }
 
     .text-box h1 {
-        font-size: 47px;
+        font-size: 44px;
+        padding-top: 40px;
     }
 
     .text-box h1:nth-child(2) {
