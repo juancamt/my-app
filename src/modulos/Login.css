@@ -203,7 +203,7 @@
     cursor: pointer;
     font-size: 18px;
     border-radius: 20px;
-    /* overflow: hidden; */
+    
 }
 .form button a{
     display: flex;

@@ -132,19 +132,7 @@ const Login = () => {
 
                                 </label>
                                 
-                                {/* <h3>or</h3> */}
-                                {/* cambio  autenticacion por url de empresa*/}
-                                {/* <div className="conteInfo">
-                                    <span style={{ color: '#EA4335' }}onClick={handleRedirect}>
-                                        <IoLogoGoogle id="icon" />
-                                    </span>
-                                    <span style={{ color: '#1877f2' }} >
-                                        <IoLogoFacebook id="icon" />
-                                    </span>
-                                    <span style={{ color: '#0a66c2' }}>
-                                        <IoLogoLinkedin id="icon" />
-                                    </span >
-                                </div> */}
+                            
                             
                                 <button type="submit">Sign in</button>
 
