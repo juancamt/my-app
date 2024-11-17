@@ -66,8 +66,8 @@ export function Home() {
             }
 
             setCurrentIndex(newIndex);
-            setIsAnimating(false); // Finalizar la animación
-        }, 500); // El mismo tiempo que la transición CSS
+            setIsAnimating(false); 
+        }, 500); 
     };
     // para hacer animacion de scroll 
 
