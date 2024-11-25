@@ -21,10 +21,23 @@ export const UserProvider = ({ children }) => {
     }, [user]);
 
     const logout = async () => {
+        // Si no hay usuario, no hacer la solicitud
+        if (!user) {
+            console.log("No hay sesión activa.");
+            return;
+        }
+
+        // Limpia el estado y el localStorage
         setUser(null);
         localStorage.removeItem('user');
-        //  hacer una solicitud al servidor para cerrar la sesión
-        await axios.post('https://personal-backend-project.onrender.com/logout', {}, { withCredentials: true });
+
+        try {
+            // Hacer una solicitud al servidor para cerrar la sesión
+            const response = await axios.post('https://personal-backend-project.onrender.com/logout', {}, { withCredentials: true });
+            console.log("Logout exitoso", response.data); // Verifica la respuesta del servidor
+        } catch (error) {
+            console.error("Error al cerrar sesión:", error.response ? error.response.data : error.message);
+        }
     };
 
     return (
