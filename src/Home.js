@@ -25,14 +25,14 @@ export function Home() {
             name: 'SANDRA XIMENA PEREZ JARAMILLO',
             role: 'Software architect',
             text: 'As a software architect, my responsibility is to define the structure and technical standards of the project. I work closely with the team to create scalable and sustainable solutions that respond to business needs.',
-            img: `${process.env.PUBLIC_URL}/imagenes/user-1.jpeg`,
+            img: `${process.env.PUBLIC_URL}/imagenes/ximena.jpg`,
         },
         {
             id: 2,
             name: 'Juan Camilo Buriticá',
             role: 'Software developer',
             text: 'I am passionate about developing solutions that solve real problems. In this project, I apply my programming skills to create robust and scalable software, always with a focus on innovation."',
-            img: `${process.env.PUBLIC_URL}/imagenes/user-1.jpeg`,
+            img: `${process.env.PUBLIC_URL}/imagenes/camilo.png`,
         },
         {
             id: 3,
@@ -46,7 +46,7 @@ export function Home() {
             name: 'DAVID GUILLERMO AVILA CARDENAS',
             role: 'Backend developer',
             text: 'As a backend developer, my passion is creating robust frameworks that support efficient applications. In this project I use technologies such as Node.js and No SQL databases to develop APIs that optimize communication between the frontend and the backend.',
-            img: `${process.env.PUBLIC_URL}/imagenes/user-1.jpeg`,
+            img: `${process.env.PUBLIC_URL}/imagenes/david.jpg`,
         },
     ];
 
